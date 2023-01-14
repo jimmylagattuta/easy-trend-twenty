@@ -4,7 +4,8 @@ import { selectItem, fetchItems } from '../actions';
 
 class ItemList extends React.Component {
 	componentDidMount() {
-		this.props.fetchItems();
+		// moving to higher component
+		// this.props.fetchItems();
 	}
 	renderList() {
 		console.log('props', this.props);

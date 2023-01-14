@@ -14,7 +14,8 @@ class Navbar extends Component {
 		clicked: false, popUpGo: false
 	}
   	componentDidMount() {
-    	this.props.fetchLoginStatus();
+  		// moving to higher component
+    	// this.props.fetchLoginStatus();
   	}
 	handleClick = () => {
 		console.log('clicked');
