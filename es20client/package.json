@@ -1,9 +1,6 @@
 {
   "name": "es20client",
   "version": "0.1.0",
-  "engines": {
-    "node": "18.12.1"
-  },
   "private": true,
   "proxy": "http://localhost:3000",
   "dependencies": {
