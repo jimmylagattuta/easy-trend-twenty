@@ -1,38 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
-import React, {Component, useEffect} from 'react';
+import { useState, useEffect } from "react";
+import { BrowserRouter as Router } from "react-router-dom";
+import LoggedIn from "./components/LoggedIn";
+import LoggedOut from "./components/LoggedOut";
 
-class App extends Component {
-  componentWillMount() {
-    this.useEffect();
+const App = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [currentUser, setCurrentUser] = useState(null);
+
+  useEffect(() => {
+    fetch("/me").then((res) => {
+      if (res.ok) {
+        res.json().then((user) => {
+          setCurrentUser(user);
+          setIsAuthenticated(true);
+        });
+      }
+    });
+  }, []);
+
+  if (!isAuthenticated) {
+    return <div></div>;
   }
-    useEffect() {
-        fetch('api/v1/notes')
-        .then(resp => resp.json())
-        .then(data => console.log(data))
-      
-    }
-
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Editt <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-    }
-}
+  return (
+    <div className="app">
+      <Router>{false ? <LoggedIn /> : <LoggedOut />}</Router>
+    </div>
+  );
+};
 
 export default App;
