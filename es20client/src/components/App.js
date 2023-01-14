@@ -11,20 +11,20 @@ import Navbar from './Navbar/Navbar';
 import './App.css';
 
 const App = () => {
-  return (
-    <div>
-      <BrowserRouter>
-        <div className="App">
-          <Navbar />
-          <Route path="/" exact component={HomeScreen} />
-          <Route path="/productshome" component={ProductsHome} />
-          <Route path="/careershome" component={CareersHome} />
-          <Route path="/contactushome" component={ContactUsHome} />
-          <Route path="/userhome" component={UserHome} />
-        </div>
-      </BrowserRouter>
-    </div>
-  );
+	return (
+		<div>
+			<BrowserRouter>
+				<div className="App">
+					<Navbar />
+					<Route path="/" exact component={HomeScreen} />
+					<Route path="/productshome" component={ProductsHome} />
+					<Route path="/careershome" component={CareersHome} />
+					<Route path="/contactushome" component={ContactUsHome} />
+					<Route path="/userhome" component={UserHome} />
+				</div>
+			</BrowserRouter>
+		</div>
+	);
 };
 
 export default App;
