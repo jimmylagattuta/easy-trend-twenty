@@ -1,7 +1,8 @@
 class Api::V1::SessionsController < ApplicationController
 	skip_before_action :authenticate_user, only: [:create, :is_logged_in?]
 	def create
-		user = User.find_by_username(param[:username])
+		user = User.find_by_username(param[:email])
+		# user = User.find_by_username(param[:username])
 		if user&.authenticate(params[:password])
 			session[:user_id] = user.id
 			render json: user, status: :ok
@@ -20,7 +21,7 @@ class Api::V1::SessionsController < ApplicationController
 	    if @current_user
 	      puts "*" * 100
 	      puts "@current_user"
-	      puts @current_user.inpsect
+	      puts @current_user
 	      puts "*" * 100
 	      render json: {
 	        logged_in: true,
