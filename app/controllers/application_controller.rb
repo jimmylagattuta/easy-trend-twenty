@@ -11,7 +11,7 @@ class ApplicationController < ActionController::API
 	# end
 
 	def current_user
-		@current_user ||= User.find_by_id(session[:user_id])
+		@current_user = User.find_by_id(session[:user_id])
 	end
 
 	def record_not_found(errors)
@@ -23,6 +23,13 @@ class ApplicationController < ActionController::API
 	end
 
 	def authenticate_user
+		puts "*" * 100
+		puts "authenticate_user debugging"
+		puts "current_user"
+		puts current_user
+		puts "current_user.inspect"
+		puts current_user.inspect
+		puts "*" * 100
 		render json: "Not authorized", status: :unauthorized unless current_user
 	end
 end

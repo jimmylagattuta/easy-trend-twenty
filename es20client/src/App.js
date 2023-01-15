@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { Component, useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import ItemList from './components/ItemList';
 import ItemDetail from './components/ItemDetail';
@@ -10,11 +10,8 @@ import UserHome from './components/UserHome';
 import Navbar from './components/Navbar/Navbar';
 import './components/App.css';
 
-function App() {
-  const [currentUser, setCurrentUser] = useState(null);
-  const [authenticated, setAuthenticated] = useState(false);
-  console.log(currentUser);
-  useEffect(() => {
+class App extends Component {
+  componentDidMount() {
     fetch("api/v1/logged_in", {
       credentials: "include",
     }).then((res) => {
@@ -34,27 +31,27 @@ function App() {
         // setAuthenticated(true);
       }
     });
-  }, []);
-
-  if (!authenticated) {
-    return <div></div>;
   }
-  return (
-    <div>
-      <h1>Marketplace App</h1>
-
-      <Router>
-        <div className="App">
-          <Navbar />
-          <Route path="/" exact component={HomeScreen} />
-          <Route path="/productshome" component={ProductsHome} />
-          <Route path="/careershome" component={CareersHome} />
-          <Route path="/contactushome" component={ContactUsHome} />
-          <Route path="/userhome" component={UserHome} />
-        </div>
-      </Router>
-    </div>
-  );
+  render() {  
+    // reimplement
+    // if (!authenticated) {
+    //   return <div></div>;
+    // }
+    return (
+      <div>
+        <Router>
+          <div className="App">
+            <Navbar />
+            <Route path="/" exact component={HomeScreen} />
+            <Route path="/productshome" component={ProductsHome} />
+            <Route path="/careershome" component={CareersHome} />
+            <Route path="/contactushome" component={ContactUsHome} />
+            <Route path="/userhome" component={UserHome} />
+          </div>
+        </Router>
+      </div>
+    );
+  }
 }
 
 export default App;
