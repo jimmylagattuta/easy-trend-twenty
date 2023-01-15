@@ -1,31 +1,41 @@
 class Api::V1::SessionsController < ApplicationController
 	skip_before_action :authenticate_user, only: [:create, :is_logged_in?]
 	def create
-		user = User.find_by_username(param[:email])
+		puts "$" * 200
+		user = User.find_by_email(param[:email])
 		# user = User.find_by_username(param[:username])
+		puts "*" * 100
+		puts "user"
+		puts user.inspect
+		puts "*" * 100
 		if user&.authenticate(params[:password])
-			session[:user_id] = user.id
+			puts "user & authenticate"
+			session[:user_id] = {value: user.id, expires: 30.minutes}
+			puts "session.inspect"
+			puts session.inspect
+			cookies[:user_id] = {value: user.id, expires: 30.minutes}
+			puts "cookies.inspect"
+			puts cookies.inspect
 			render json: user, status: :ok
 		else
+			puts "!user & authenticate"
 			# render json: "Invalid Credentials. Try again!", status: :unauthorized
 	        render json: {
 	        	logged_in: false
 	        }
 		end
+		puts "$" * 200
 	end
 	def destroy
 		session.delete :user_id
+		cookies.delete :user_id
 	end
     def is_logged_in?
-	    @current_user = User.find(cookies[:user_id]) if cookies[:user_id]
+	    @current_user = User.find(session[:user_id] && cookies[:user_id]) if cookies[:user_id] && session[:user_id]
 	    if @current_user
-	      puts "*" * 100
-	      puts "@current_user"
-	      puts @current_user
-	      puts "*" * 100
 	      render json: {
 	        logged_in: true,
-	        user: @current_user,
+	        user: @current_user
 	      }
 	    else
 	      render json: {

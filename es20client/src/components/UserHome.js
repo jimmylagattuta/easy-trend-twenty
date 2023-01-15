@@ -9,23 +9,21 @@ class UserHome extends Component{
 	constructor(props){  
 	    super(props);  
 	    this.state = {  
-	         data: 'www.javatpoint.com'
+	         data: 'www.javatpoint.com',
+	         user_email: ''
 	      }  
 	    this.handleEvent = this.handleEvent.bind(this);  
 	}
 	componentWillMount() {
 		console.log('UserHome componentWillMount this.props', this.props);
 		console.log('UserHome componentWillMount this.state', this.state);
-		if (this.props.user_object != null) {
-			console.log('user found', this.state);
-			this.props.history.goBack();
-		}
+
 	}
 	handleEvent(){  
 	    console.log('props! will convert to actions and reducers after signup login logout and is_logged_in?', this.props);  
 	}  
 	onSubmit(values) {
-		console.log('onSubmit SignUpUser!', values);
+		console.log('onSubmit sign up!', values);
 		fetch("api/v1/signup", {
 	      method: "POST",
 	      credentials: 'same-origin',
@@ -40,6 +38,7 @@ class UserHome extends Component{
 	        	console.log('setCurrentUser(user)');
 	        	console.log('user', user);
 	        	this.props.setUserObject(user);
+	        	this.setState({ user_email: user.email });
 	          // reimplement
 	          // setCurrentUser(user);
 	        });
@@ -55,7 +54,33 @@ class UserHome extends Component{
 	}
 	onSubmitSignIn(values) {
 		console.log('onSubmit SignInUser!', values);
-		this.props.loginUser(values);
+		console.log('onSubmit SignInUser!', values);
+		fetch("api/v1/login", {
+	      method: "POST",
+	      credentials: 'same-origin',
+	      headers: {
+	        "Content-Type": "application/json",
+	      },
+	      body: JSON.stringify(values),
+	    }).then((res) => {
+    	  console.log('response', res);
+	      if (res.ok) {
+	        res.json().then((user) => {
+	        	console.log('setCurrentUser(user)');
+	        	console.log('user', user);
+	        	this.props.setUserObject(user);
+	        	this.setState({ user_email: user.email });
+	          // reimplement
+	          // setCurrentUser(user);
+	        });
+	      } else {
+	        res.json().then((errors) => {
+	          console.error('errors onSubmit SignInUser!', errors);
+	        });
+	      }
+	    });
+		// removing redux to configure then will branch to add back redux
+		// this.props.loginUser(values);
 	}
 	render() {
 		// old code that worked
@@ -67,8 +92,12 @@ class UserHome extends Component{
 
 
 
-		console.log('this.props UserHome render', this.props);
-		console.log('this.state UserHome render', this.state);
+		console.log('this.props UserHome render ~>', this.props);
+		console.log('this.state UserHome render ~>', this.state);
+		if (this.props.user_in_app_state) {
+			console.log('user found', this.state);
+			this.props.history.goBack();
+		}
 		return (
 			<div className="App">
 				<Form

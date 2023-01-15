@@ -1,5 +1,5 @@
 import React, { Component, useState, useEffect } from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, useNavigation } from "react-router-dom";
 import ItemList from './components/ItemList';
 import ItemDetail from './components/ItemDetail';
 import HomeScreen from './components/HomeScreen';
@@ -15,7 +15,7 @@ class App extends Component {
       super(props);  
       this.state = {  
            data: 'www.javatpoint.com',
-           user_object: null
+           user_in_app_state: false
         }  
       this.handleEvent = this.handleEvent.bind(this);  
   }
@@ -34,15 +34,21 @@ class App extends Component {
       if (res.ok) {
         res.json().then((user) => {
           console.log('user ~>', user);
+          console.log('user.logged_in ~>', user.logged_in);
+
           console.log('this.state is_logged_in? before', this.state);
-          this.setState({ user_object: user });
-          console.log('this.state is_logged_in? after', this.state);
-          // reimplement
-          console.log('setCurrentUser(user)');
-          // setCurrentUser(user);
-          // reimplement
-          console.log('setAuthenticated(true)');
-          // setAuthenticated(true);
+          if (user.logged_in) {
+            this.setState({ user_in_app_state: user });
+            console.log('this.state is_logged_in? after', this.state);
+            // reimplement
+            console.log('setCurrentUser(user)');
+            // setCurrentUser(user);
+            // reimplement
+            console.log('setAuthenticated(true)');
+            // setAuthenticated(true);
+          } else {
+
+          }
         });
       } else {
         console.log('setAuthenticated(true)');
@@ -51,9 +57,9 @@ class App extends Component {
       }
     });
   }
-  setUserObject(user_object) {
-    console.log('setting user object src/App');
-    this.setState({ user_object: user_object });
+  setUserObject(user_in_app_state) {
+    console.log('setting user object src/App', user_in_app_state);
+    this.setState({ user_in_app_state: user_in_app_state });
   }
   render() {  
     // reimplement
@@ -64,12 +70,27 @@ class App extends Component {
       <div>
         <Router>
           <div className="App">
-            <Navbar />
-            <Route path="/" exact component={HomeScreen} user_object={this.state.user_object} />
-            <Route path="/productshome" component={ProductsHome} user_object={this.state.user_object} />
-            <Route path="/careershome" component={CareersHome} user_object={this.state.user_object} />
-            <Route path="/contactushome" component={ContactUsHome} user_object={this.state.user_object} />
-            <Route path="/userhome" component={UserHome} user_object={this.state.user_object} setUserObject={this.setUserObject.bind(this)} />
+            <Navbar />            
+            <Route 
+              path="/homescreen" 
+              render= { (props) => <HomeScreen user_in_app_state={this.state.user_in_app_state} /> }
+            />
+            <Route 
+              path="/productshome" 
+              render= { (props) => <ProductsHome user_in_app_state={this.state.user_in_app_state} /> }
+            />            
+            <Route 
+              path="/careershome" 
+              render= { (props) => <CareersHome user_in_app_state={this.state.user_in_app_state} /> }
+            />  
+            <Route 
+              path="/contactushome" 
+              render= { (props) => <ContactUsHome user_in_app_state={this.state.user_in_app_state} /> }
+            />
+            <Route
+              path="/userhome"
+              render= { (props) => <UserHome setUserObject={this.setUserObject.bind(this)} user_in_app_state={this.state.user_in_app_state} /> }
+            />
           </div>
         </Router>
       </div>

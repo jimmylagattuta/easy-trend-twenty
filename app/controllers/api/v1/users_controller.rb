@@ -11,27 +11,12 @@ class Api::V1::UsersController < ApplicationController
 
 	def create
 		user = User.create(user_params)
+		# generate username
 		if user.valid?
-			session[:user_id] = user.id
+			session[:user_id] = {value: user.id, expires: 30.minutes}
 			cookies[:user_id] = {value: user.id, expires: 30.minutes}
-			puts "*" * 100
-			puts "session"
-			puts session.inspect
-			puts "session[:user_id]"
-			puts session[:user_id]
-			puts "cookies"
-			puts cookies.inspect
-			puts "cookies[:user_id]"
-			puts cookies[:user_id]
-			puts "*" * 100
 			render json: user, status: :created
 		else
-			puts "*" * 100
-			puts "user not valid"
-			puts "user_params"
-			puts user_params,inspect
-			puts "errors"
-			puts user.errors.full_messages
 			puts "*" * 100
 			render json: user.errors.full_messages, status: :unprocessable_entity
 		end

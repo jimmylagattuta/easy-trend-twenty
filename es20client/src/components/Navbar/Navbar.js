@@ -26,11 +26,11 @@ class Navbar extends Component {
 		const operatingSystem = navigator.appVersion;
 		if (operatingSystem.includes('Macintosh')) {
 			return (
-				<Link to="/"><h1 className="navbar-logo">Easy Trend 20<i className="fas fa-hat-wizard"></i></h1></Link>
+				<Link to="/homescreen"><h1 className="navbar-logo">Easy Trend 20<i className="fas fa-hat-wizard"></i></h1></Link>
 			);
 		} else if (operatingSystem.includes('Windows')) {
 			return (
-				<Link to="/"><h1 className="navbar-logo-windows">Easy Trend 20<i className="fas fa-hat-wizard"></i></h1></Link>
+				<Link to="/homescreen"><h1 className="navbar-logo-windows">Easy Trend 20<i className="fas fa-hat-wizard"></i></h1></Link>
 			);
 		} else {
 			console.log('Operating System not Macitosh or Windows Easy Trend And Logo');
