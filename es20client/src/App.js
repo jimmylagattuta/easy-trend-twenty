@@ -13,7 +13,7 @@ import './components/App.css';
 class App extends Component {
   componentDidMount() {
     fetch("api/v1/logged_in", {
-      credentials: "include",
+      credentials: "same-origin",
     }).then((res) => {
       if (res.ok) {
         res.json().then((user) => {
