@@ -10,10 +10,10 @@ class Api::V1::SessionsController < ApplicationController
 		puts "*" * 100
 		if user&.authenticate(params[:password])
 			puts "user & authenticate"
-			session[:user_id] = {value: user.id, expires: 30.minutes}
+			session[:user_id] = {value: user.id, expires: 5.minutes}
 			puts "session.inspect"
 			puts session.inspect
-			cookies[:user_id] = {value: user.id, expires: 30.minutes}
+			cookies[:user_id] = {value: user.id, expires: 5.minutes}
 			puts "cookies.inspect"
 			puts cookies.inspect
 			render json: user, status: :ok

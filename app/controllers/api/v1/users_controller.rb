@@ -13,8 +13,8 @@ class Api::V1::UsersController < ApplicationController
 		user = User.create(user_params)
 		# generate username
 		if user.valid?
-			session[:user_id] = {value: user.id, expires: 30.minutes}
-			cookies[:user_id] = {value: user.id, expires: 30.minutes}
+			session[:user_id] = {value: user.id, expires: 5.minutes}
+			cookies[:user_id] = {value: user.id, expires: 5.minutes}
 			render json: user, status: :created
 		else
 			puts "*" * 100
@@ -25,6 +25,6 @@ class Api::V1::UsersController < ApplicationController
 	private
 
 	def user_params
-		params.permit(:username, :email, :password, :password_confirmation)
+		params.permit(:username, :email, :first_name, :last_name, :password, :password_confirmation)
 	end
 end

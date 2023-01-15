@@ -1,9 +1,19 @@
 import React, { Component } from 'react';
-import { Link, useNavigation } from 'react-router-dom';
+import { Link, Redirect, useHistory } from 'react-router-dom';
 import { Form, Field } from 'react-final-form'
 import { signUpUser, signInUser, addUser, loginUser } from '../actions';
 import { connect } from 'react-redux';
 import './UserHome.css';
+
+// function SendHomeScreen() {
+//   const navigate = Redirect();
+
+//   useEffect(() => {
+//     if (this.props.user_in_app_state) {
+//       navigate("/homescreen");
+//     }
+//   }, []);
+// }
 
 class UserHome extends Component{
 	constructor(props){  
@@ -13,11 +23,6 @@ class UserHome extends Component{
 	         user_email: ''
 	      }  
 	    this.handleEvent = this.handleEvent.bind(this);  
-	}
-	componentWillMount() {
-		console.log('UserHome componentWillMount this.props', this.props);
-		console.log('UserHome componentWillMount this.state', this.state);
-
 	}
 	handleEvent(){  
 	    console.log('props! will convert to actions and reducers after signup login logout and is_logged_in?', this.props);  
@@ -84,19 +89,10 @@ class UserHome extends Component{
 	}
 	render() {
 		// old code that worked
-		// if (this.props.user_object != null) {
-		// 	console.log('user found', this.props);
-		// 	this.props.history.goBack();
-		// }
-
-
-
-
 		console.log('this.props UserHome render ~>', this.props);
 		console.log('this.state UserHome render ~>', this.state);
 		if (this.props.user_in_app_state) {
-			console.log('user found', this.state);
-			this.props.history.goBack();
+			this.props.navigateScreen("/homescreen");
 		}
 		return (
 			<div className="App">

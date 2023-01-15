@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import ItemList from './ItemList';
 import ItemDetail from './ItemDetail';
 import { fetchCookie } from '../actions';
@@ -13,7 +13,7 @@ class HomeScreen extends Component {
   	// getCSRFToken() {
     // 	return unescape(document.cookie.split('=')[1]);
 	// }
-	renderUser() {
+	renderUserMessage() {
 		return (
 			<div className="App">
 				Welcome User: {this.props.user_in_app_state.user.first_name} with Email: {this.props.user_in_app_state.user.email}
@@ -23,13 +23,12 @@ class HomeScreen extends Component {
 	render() {
 		console.log('this.props HomeScreen', this.props);
 		console.log('this.state HomeScreen', this.state);
-		console.log('tthis.props.user_in_app_state', this.props.user_in_app_state);
-
+		console.log('this.props.user_in_app_state', this.props.user_in_app_state);
 		if (this.props.user_in_app_state) {
 			console.log('render user');
 			return(
 			<div className="App">
-				{this.renderUser()}
+				{this.renderUserMessage()}
 			</div>
 			);
 		}

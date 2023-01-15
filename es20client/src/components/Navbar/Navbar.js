@@ -105,7 +105,7 @@ class Navbar extends Component {
 				            className="button"
 				            onClick={() => {
 				              console.log('Yes');
-				              this.props.logoutUser(this.props.user_object);
+				              this.props.logoutUser(this.props.user_in_app_state);
 				              close();
 				            }}
 				          >
@@ -129,7 +129,7 @@ class Navbar extends Component {
 	}
     // ^ for Popup 'top left', 'top center', 'top right', 'right top', 'right center', 'right bottom', 'bottom left', 'bottom center', 'bottom right', 'left top', 'left center', 'left bottom', 'center center',
 	renderNavTrack() {
-		if (!this.props.user_object) {
+		if (!this.props.user_in_app_state) {
 			return (
 				<div>
 					{this.renderNavHome()}
