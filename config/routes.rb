@@ -12,6 +12,6 @@ Rails.application.routes.draw do
       get "/logged_in", to: "sessions#is_logged_in?"
     end
 
-      get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
   end
+    get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
 end
