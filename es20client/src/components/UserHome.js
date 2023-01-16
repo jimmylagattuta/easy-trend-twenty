@@ -97,7 +97,7 @@ class UserHome extends Component{
 		// console.log('this.props UserHome render ~>', this.props);
 		// console.log('this.state UserHome render ~>', this.state);
 		const { redirect } = this.state;
-		if (redirect) {
+		if (redirect || this.props.user_in_app_state.logged_in) {
 			return <Redirect to="/homescreen" />;
 		}
 		return (
