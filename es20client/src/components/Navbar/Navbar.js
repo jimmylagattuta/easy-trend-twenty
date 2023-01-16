@@ -18,11 +18,11 @@ class Navbar extends Component {
     	// this.props.fetchLoginStatus();
   	}
 	handleClick = () => {
-		console.log('clicked');
+		// console.log('clicked');
 		this.setState({ clicked: !this.state.clicked });
 	}
 	renderEasyTrend() {
-		console.log('renderEasyTrend');
+		// console.log('renderEasyTrend');
 		const operatingSystem = navigator.appVersion;
 		if (operatingSystem.includes('Macintosh')) {
 			return (
@@ -37,7 +37,7 @@ class Navbar extends Component {
 		}
 	}
 	renderSignupButton() {
-		console.log('renderSignupButton');
+		// console.log('renderSignupButton');
 		const operatingSystem = navigator.appVersion;
 		if (operatingSystem.includes('Macintosh')) {
 			return (
@@ -144,9 +144,9 @@ class Navbar extends Component {
 		} 
 	}
 	render() {
-		console.log('this.props Navbar ~>', this.props);
-		console.log('this.state Navbar ~>', this.state);
-		console.log('navigator', navigator);
+		console.log('Navbar props, state ~>', this.props, this.state);
+		// console.log('this.state Navbar ~>', this.state);
+		// console.log('navigator', navigator);
 		return (
 			<div>
 				{this.renderNavTrack()}

@@ -8,10 +8,10 @@ class ItemList extends React.Component {
 		// this.props.fetchItems();
 	}
 	renderList() {
-		console.log('props', this.props);
+		// console.log('props', this.props);
 		if (this.props.items.data) {
 			return this.props.items.data.map((item) => {
-				console.log("item ~> ", item);
+				// console.log("item ~> ", item);
 				return (
 					<div className="item" key={item.name}>
 						<div className="right floated content">
@@ -35,6 +35,7 @@ class ItemList extends React.Component {
 	}
 
 	render() {
+		console.log('ItemList props', this.props);
 		return <div className="ui relaxed divided list">{this.renderList()}</div>;
 	}
 }

@@ -10,7 +10,7 @@ export default (
 ) => {
   switch (action.type) {
     case 'LOGIN_USER':
-      console.log('LOGIN_USER', action);
+      console.log('LOGIN_USER action dispatch', action);
       return {
         isLoggedIn: true,
         id: action.user.id,
@@ -18,7 +18,7 @@ export default (
         user_object: action.user
       };
     case 'LOGOUT_USER':
-      console.log('LOGOUT_USER', action);
+      console.log('LOGOUT_USER action dispatch', action);
       return {
         isLoggedIn: false,
         id: null,
@@ -26,7 +26,7 @@ export default (
         user_object: null
       };
     case 'FETCH_COOKIE':
-      console.log('FETCH_COOKIE reducer', action);
+      console.log('FETCH_COOKIE action dispatch', action);
       return { ...state, cookie: action.payload.data.cookie };
     default:
       return state;

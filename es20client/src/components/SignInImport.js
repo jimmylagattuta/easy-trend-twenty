@@ -39,7 +39,7 @@ class SignInImport extends Component {
 	   			.then(response => {
 	   				// port_active.push(response.data[0]['active']);
 	   				let user = response.data['user'];
-	   				console.log('user ', user);
+	   				// console.log('user ', user);
 	   				username.push(user);
 	   				// console.log('username here', username);
 	   				this.userName(username);
@@ -47,7 +47,7 @@ class SignInImport extends Component {
 	   			})
 	   			.catch(err => {alert(err)});
 	   	}
-	   	console.log('username here', username);
+	   	// console.log('username here', username);
 	   	
 	}
 
@@ -180,6 +180,7 @@ class SignInImport extends Component {
    			this.forceUpdate();
     }
 	render() {
+		console.log('SignInImport props state', this.props, this.state);
 	    const { handleSubmit } = this.props;
 	    // console.log('this.state.users_name in render', this.state.users_name);
 		if(this.state.userLive === false && this.state.signIn === false && this.state.signUp === false) {

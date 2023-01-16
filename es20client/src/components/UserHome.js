@@ -20,15 +20,16 @@ class UserHome extends Component{
 	    super(props);  
 	    this.state = {  
 	         data: 'www.javatpoint.com',
-	         user_email: ''
+	         user_email: '',
+	         redirect: false
 	      }  
 	    this.handleEvent = this.handleEvent.bind(this);  
 	}
 	handleEvent(){  
-	    console.log('props! will convert to actions and reducers after signup login logout and is_logged_in?', this.props);  
-	}  
+	    // console.log('props! will convert to actions and reducers after signup login logout and is_logged_in?', this.props);  
+	}
 	onSubmit(values) {
-		console.log('onSubmit sign up!', values);
+		// console.log('onSubmit sign up!', values);
 		fetch("api/v1/signup", {
 	      method: "POST",
 	      credentials: 'same-origin',
@@ -37,19 +38,19 @@ class UserHome extends Component{
 	      },
 	      body: JSON.stringify(values),
 	    }).then((res) => {
-    	  console.log('response', res);
+    	  // console.log('response', res);
 	      if (res.ok) {
 	        res.json().then((user) => {
-	        	console.log('setCurrentUser(user)');
-	        	console.log('user', user);
+	        	// console.log('setCurrentUser(user)');
+	        	// console.log('user', user);
 	        	this.props.setUserObject(user);
-	        	this.setState({ user_email: user.email });
+	        	this.setState({ redirect: true });
 	          // reimplement
 	          // setCurrentUser(user);
 	        });
 	      } else {
 	        res.json().then((errors) => {
-	          console.error('errors onSubmit SignUpUser!', errors);
+	          // console.error('errors onSubmit SignUpUser!', errors);
 	        });
 	      }
 	    });
@@ -58,8 +59,8 @@ class UserHome extends Component{
 
 	}
 	onSubmitSignIn(values) {
-		console.log('onSubmit SignInUser!', values);
-		console.log('onSubmit SignInUser!', values);
+		// console.log('onSubmit SignInUser!', values);
+		// console.log('onSubmit SignInUser!', values);
 		fetch("api/v1/login", {
 	      method: "POST",
 	      credentials: 'same-origin',
@@ -68,31 +69,36 @@ class UserHome extends Component{
 	      },
 	      body: JSON.stringify(values),
 	    }).then((res) => {
-    	  console.log('response', res);
+    	  // console.log('response', res);
 	      if (res.ok) {
 	        res.json().then((user) => {
-	        	console.log('setCurrentUser(user)');
-	        	console.log('user', user);
+	        	// console.log('setCurrentUser(user)');
+	        	// console.log('user', user);
 	        	this.props.setUserObject(user);
-	        	this.setState({ user_email: user.email });
+	        	this.setState({ redirect: true });
 	          // reimplement
 	          // setCurrentUser(user);
 	        });
 	      } else {
 	        res.json().then((errors) => {
-	          console.error('errors onSubmit SignInUser!', errors);
+	          // console.error('errors onSubmit SignInUser!', errors);
 	        });
 	      }
+	    })
+	    .then(() => {
+	    	this.setState({ redirect: false });
 	    });
 		// removing redux to configure then will branch to add back redux
 		// this.props.loginUser(values);
 	}
 	render() {
+		console.log('UserHome props state', this.props, this.state);
 		// old code that worked
-		console.log('this.props UserHome render ~>', this.props);
-		console.log('this.state UserHome render ~>', this.state);
-		if (this.props.user_in_app_state) {
-			this.props.navigateScreen("/homescreen");
+		// console.log('this.props UserHome render ~>', this.props);
+		// console.log('this.state UserHome render ~>', this.state);
+		const { redirect } = this.state;
+		if (redirect) {
+			return <Redirect to="/homescreen" />;
 		}
 		return (
 			<div className="App">
