@@ -12,6 +12,7 @@ import Logo from './fakelogo.png';
 class Navbar extends Component {
 	state = {
 		clicked: false, popUpGo: false
+
 	}
   	componentDidMount() {
   		// moving to higher component

@@ -28,8 +28,22 @@
 		puts "$" * 200
 	end
 	def destroy
+		puts "*" * 100
+		puts "session 1"
+		puts session.insepct
+		puts "*" * 100
+		puts "cookies 1"
+		puts cookies.inspect
+		puts "*" * 100
 		session.delete :user_id
 		cookies.delete :user_id
+		puts "*" * 100
+		puts "session 2"
+		puts session.insepct
+		puts "*" * 100
+		puts "cookies 2"
+		puts cookies.inspect
+		puts "*" * 100
 	end
     def is_logged_in?
 	    @current_user = User.find(session[:user_id] && cookies[:user_id]) if cookies[:user_id] && session[:user_id]
