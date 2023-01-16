@@ -15,7 +15,7 @@
 	def destroy
 		session.delete :user_id
 		cookies.delete :user_id
-		render json: "Deleted" stated: :ok
+		render json: "Deleted" status: :ok
 	end
     def is_logged_in?
 	    @current_user = User.find(session[:user_id] && cookies[:user_id]) if cookies[:user_id] && session[:user_id]
