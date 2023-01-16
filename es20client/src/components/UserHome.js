@@ -42,7 +42,7 @@ class UserHome extends Component{
 	      if (res.ok) {
 	        res.json().then((user) => {
 	        	// console.log('setCurrentUser(user)');
-	        	// console.log('user', user);
+	        	console.log('UserHome onSubmit response api/v1/signup user', user);
 	        	this.props.setUserObject(user);
 	        	this.setState({ redirect: true });
 	          // reimplement

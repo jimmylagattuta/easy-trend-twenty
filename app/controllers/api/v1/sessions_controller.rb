@@ -1,4 +1,4 @@
-class Api::V1::SessionsController < ApplicationController
+	class Api::V1::SessionsController < ApplicationController
 	skip_before_action :authenticate_user, only: [:create, :is_logged_in?]
 	def create
 		puts "$" * 200
@@ -10,13 +10,14 @@ class Api::V1::SessionsController < ApplicationController
 		puts "*" * 100
 		if user&.authenticate(params[:password])
 			puts "user & authenticate"
-			session[:user_id] = {value: user.id, expires: 5.minutes}
+			session[:user_id] = {value: user.id, expires: 1.minutes}
 			puts "session.inspect"
 			puts session.inspect
-			cookies[:user_id] = {value: user.id, expires: 5.minutes}
+			cookies[:user_id] = {value: user.id, expires: 1.minutes}
 			puts "cookies.inspect"
 			puts cookies.inspect
-			render json: user, status: :ok
+			render json: { logged_in: true, user: user }, status: :ok
+
 		else
 			puts "!user & authenticate"
 			# render json: "Invalid Credentials. Try again!", status: :unauthorized

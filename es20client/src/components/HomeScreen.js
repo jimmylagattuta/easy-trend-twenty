@@ -14,6 +14,7 @@ class HomeScreen extends Component {
     // 	return unescape(document.cookie.split('=')[1]);
 	// }
 	renderUserMessage() {
+		console.log('renderUserMessage props', this.props);
 		return (
 			<div className="App">
 				Welcome User: {this.props.user_in_app_state.user.first_name} with Email: {this.props.user_in_app_state.user.email}
