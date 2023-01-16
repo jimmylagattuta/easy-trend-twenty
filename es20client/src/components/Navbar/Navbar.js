@@ -74,6 +74,17 @@ class Navbar extends Component {
 			</nav>
 		);
 	}
+	handleLogout() {
+  		fetch('api/v1/logout', {method: "DELETE"})
+  			.then(res => {
+        		if (res.ok) {
+          			this.props.setUserObject(null);
+        		}
+      		})
+    		.catch((error) => {
+    			console.log('Navbar handleLogout error', error);
+    		});
+	}
 	renderNavUser() {
 		return (
 			<nav className="NavbarItems">
@@ -106,7 +117,16 @@ class Navbar extends Component {
 				            className="button"
 				            onClick={() => {
 				              console.log('Yes');
-				              this.props.logoutUser(this.props.user_in_app_state);
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+// move to different kind of component
+// --------------------------------------------------------------------------------------------------
+				              // this.props.logoutUser(this.props.user_in_app_state); |5:48PM 01/15/2023|
+// ------------------------------------------------------------------------------------------------------
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+				              this.handleLogout();
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 				              close();
 				            }}
 				          >

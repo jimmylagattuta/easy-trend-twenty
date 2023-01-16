@@ -69,7 +69,7 @@ class NavigationBridge extends Component {
     return (
       <div>
           <div className="App">
-            <Navbar user_in_app_state={this.state.user_in_app_state} />
+            <Navbar user_in_app_state={this.state.user_in_app_state} setUserObject={this.setUserObject.bind(this)} />
             <Route 
               path="/homescreen" 
               render= { (props) => <HomeScreen user_in_app_state={this.state.user_in_app_state} /> }
