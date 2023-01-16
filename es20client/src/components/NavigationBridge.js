@@ -16,7 +16,10 @@ class NavigationBridge extends Component {
       super(props);  
       this.state = {  
            data: 'www.javatpoint.com',
-           user_in_app_state: false,
+           user_in_app_state: {
+              logged_in: false,
+              user_in_app_state: null
+           },
            screen: ""
         }  
       this.handleEvent = this.handleEvent.bind(this);  
@@ -57,7 +60,7 @@ class NavigationBridge extends Component {
     });
   }
   setUserObject(user_in_app_state) {
-    console.log('setUserObject user_in_app_state', user_in_app_state);
+    // console.log('setUserObject user_in_app_state', user_in_app_state);
     this.setState({ user_in_app_state: user_in_app_state });
   }  
   navigateScreen(screen) {

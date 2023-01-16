@@ -78,7 +78,11 @@ class Navbar extends Component {
   		fetch('api/v1/logout', {method: "DELETE"})
   			.then(res => {
         		if (res.ok) {
-          			this.props.setUserObject(null);
+        			const resetUserInAppState = {
+        				logged_in: false,
+        				user: null
+        			};
+          			this.props.setUserObject(resetUserInAppState);
         		}
       		})
     		.catch((error) => {
@@ -150,16 +154,16 @@ class Navbar extends Component {
 	}
     // ^ for Popup 'top left', 'top center', 'top right', 'right top', 'right center', 'right bottom', 'bottom left', 'bottom center', 'bottom right', 'left top', 'left center', 'left bottom', 'center center',
 	renderNavTrack() {
-		if (!this.props.user_in_app_state) {
+		if (this.props.user_in_app_state.logged_in) {
 			return (
 				<div>
-					{this.renderNavHome()}
+					{this.renderNavUser()}
 				</div>
 			);
 		} else {
 			return (
 				<div>
-					{this.renderNavUser()}
+					{this.renderNavHome()}
 				</div>
 			);
 		} 
