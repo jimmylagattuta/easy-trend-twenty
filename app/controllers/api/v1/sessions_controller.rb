@@ -6,7 +6,6 @@
 			session[:user_id] = {value: user.id, expires: 45.minutes}
 			cookies[:user_id] = {value: user.id, expires: 45.minutes}
 			render json: { logged_in: true, user: user }, status: :ok
-
 		else
 	        render json: {
 	        	logged_in: false
