@@ -27,7 +27,6 @@ class Api::V1::UsersController < ApplicationController
 
 			render json: { logged_in: true, user: user }, status: :created
 		else
-			puts "*" * 100
 			render json: user.errors.full_messages, status: :unprocessable_entity
 		end
 	end
