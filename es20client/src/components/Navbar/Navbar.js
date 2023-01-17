@@ -151,7 +151,7 @@ class Navbar extends Component {
 				<div>
 					{this.renderPopup(this.handleLogout, this.props.setUserObject)}
 				</div>
-			); 
+			);  
 		} else {
 			console.log('renderSettingsButton screen 3', this.props.screen);
 			return (
