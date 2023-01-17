@@ -154,7 +154,7 @@ class Navbar extends Component {
 			return (
 				<div onClick={() => this.props.setScreen('homescreen')} id="add-hover-settings" className="make-row">
 						<h1>else</h1>
-				</div> 
+				</div>
 			);
 		}
 	}

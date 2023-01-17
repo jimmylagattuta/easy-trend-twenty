@@ -1,30 +1,30 @@
-import React from 'react';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
-import ItemList from './ItemList';
-import ItemDetail from './ItemDetail';
-import HomeScreen from './HomeScreen';
-import ProductsHome from './ProductsHome';
-import CareersHome from './CareersHome';
-import ContactUsHome from './ContactUsHome';
-import UserHome from './UserHome';
-import Navbar from './Navbar/Navbar';
-import './App.css';
+import React, { Component, useState, useEffect } from "react";
+import { BrowserRouter, Route, Link, withRouter } from "react-router-dom";
+import ItemList from './components/ItemList';
+import ItemDetail from './components/ItemDetail';
+import HomeScreen from './components/HomeScreen';
+import ProductsHome from './components/ProductsHome';
+import CareersHome from './components/CareersHome';
+import ContactUsHome from './components/ContactUsHome';
+import UserHome from './components/UserHome';
+import Navbar from './components/Navbar/Navbar';
+import NavigateToScreen from './components/helpers/NavigateToScreen';
+import NavigationBridge from './components/NavigationBridge';
 
-const App = () => {
-	return (
-		<div>
-			<BrowserRouter>
-				<div className="App">
-					<Navbar />
-					<Route path="/" exact component={HomeScreen} />
-					<Route path="/productshome" component={ProductsHome} />
-					<Route path="/careershome" component={CareersHome} />
-					<Route path="/contactushome" component={ContactUsHome} />
-					<Route path="/userhome" component={UserHome} />
-				</div>
-			</BrowserRouter>
-		</div>
-	);
-};
+import './components/App.css';
+  // "proxy": "https://sleepy-brook-50921.herokuapp.com",
+  // "proxy": "http://localhost:3000",
+
+class App extends Component {
+  render() {  
+    return (
+      <div>
+        <BrowserRouter>
+          <NavigationBridge />
+        </BrowserRouter>
+      </div>
+    );
+  }
+}
 
 export default App;
