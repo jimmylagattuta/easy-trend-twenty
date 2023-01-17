@@ -90,7 +90,7 @@ class Navbar extends Component {
     			console.log('Navbar handleLogout error', error);
     		});
 	}
-// reimplement popup signin renderPopup
+	// reimplement popup signin renderPopup
 	renderPopup(handleLogout, setUserObject) {
 		return (
 			<Popup
@@ -130,13 +130,21 @@ class Navbar extends Component {
 			</Popup>
 		);
 	}
-	// not rendering
 	renderSettingsButton() {
-		const screen = this.props.screen;
-		console.log('renderSettingsButton screen', this.props.screen);
-		console.log('renderSettingsButton screen screen', this.props.screen);
-		if (screen === "homescreen") {
-			console.log('screen === homescreen');
+		let screen = '';
+		if (this.props.screen.screen) {
+			screen = this.props.screen.screen;
+		} else {
+			screen = this.props.screen;
+		}
+		console.log('screen renderSettingsButton', screen);
+		if (screen === "settingsscreen") {
+			return (
+				<div>
+					{this.renderPopup(this.handleLogout, this.props.setUserObject)}
+				</div>
+			);
+		} else {
 			return (
 				<div onClick={() => this.props.setScreen('settingsscreen')} id="add-hover-settings" className="make-row">
 						<Link to="/settingshome">
@@ -145,18 +153,6 @@ class Navbar extends Component {
 						<Link to="/settingshome">
 							<p id="inner-element" className="account-holder">{this.props.user_in_app_state.user.first_name}</p>
 						</Link>
-				</div>
-			);
-		} else if (screen === "settingsscreen") {
-			return (
-				<div>
-					{this.renderPopup(this.handleLogout, this.props.setUserObject)}
-				</div>
-			);
-		} else {
-			return (
-				<div onClick={() => this.props.setScreen('homescreen')} id="add-hover-settings" className="make-row">
-						<h1>else</h1>
 				</div>
 			);
 		}
@@ -174,7 +170,7 @@ class Navbar extends Component {
 							if (item.title === "Sign Up") {
 							} else {
 								return (
-									<li key={index}>
+									<li onClick={() => this.props.setScreen(item.screen)} key={index}>
 										<Link to={item.linkTo}><h1 id="add-hover" className="menu-turn-white"><i class={item.class}></i></h1></Link>
 									</li>
 								);
