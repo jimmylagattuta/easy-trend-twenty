@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 class SettingsHome extends React.Component {
 
-	render() {
+	render() { 
 		console.log('SettingsHome props', this.props);
 		return <div><h1>SettingsHome</h1></div>;
 	}
