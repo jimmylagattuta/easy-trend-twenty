@@ -36,7 +36,7 @@ class Navbar extends Component {
 			);
 		} else {
 			console.log('Operating System not Macitosh or Windows Easy Trend And Logo');
-		}
+		}  
 	}
 	renderSignupButton() {
 		// console.log('renderSignupButton');
@@ -132,8 +132,9 @@ class Navbar extends Component {
 	}
 	renderSettingsButton() {
 		const screen = this.props.screen;
-		console.log('renderSettingsButton screen', this.props.screen);
+		console.log('renderSettingsButton screen 1', this.props.screen);
 		if (screen === "homescreen") {
+			console.log('renderSettingsButton screen 2', this.props.screen);
 			return (
 				<div onClick={() => this.props.setScreen('settingsscreen')} id="add-hover-settings" className="make-row">
 						<Link to="/settingshome">
@@ -145,12 +146,14 @@ class Navbar extends Component {
 				</div>
 			);
 		} else if (screen === "settingsscreen") {
+			console.log('renderSettingsButton screen 2', this.props.screen);
 			return (
-				<div>
+				<div> 
 					{this.renderPopup(this.handleLogout, this.props.setUserObject)}
 				</div>
-			);
+			);  
 		} else {
+			console.log('renderSettingsButton screen 3', this.props.screen);
 			return (
 				<div onClick={() => this.props.setScreen('homescreen')} id="add-hover-settings" className="make-row">
 						<h1>else</h1>
