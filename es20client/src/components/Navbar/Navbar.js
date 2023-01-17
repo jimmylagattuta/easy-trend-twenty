@@ -28,11 +28,11 @@ class Navbar extends Component {
 		if (operatingSystem.includes('Macintosh')) {
 			return (
 				// <Link to="/homescreen"><h1 className="navbar-logo">Easy Trend 20<i className="fas fa-hat-wizard"></i></h1></Link>
-				<Link onClick={() => this.props.setScreen({ screen: "homescreen" })} to="/homescreen"><h1 className="navbar-logo">Easy Trend 20<i className="fas fa-hat-wizard"></i></h1></Link>
+				<Link onClick={() => this.props.setScreen({ screen: "homescreen" })} to="/homescreen"><h1 id="add-hover" className="navbar-logo">Easy Trend 20<i className="fas fa-hat-wizard"></i></h1></Link>
 			);
 		} else if (operatingSystem.includes('Windows')) {
 			return (
-				<Link to="/homescreen"><h1 className="navbar-logo-windows">Easy Trend 20<i className="fas fa-hat-wizard"></i></h1></Link>
+				<Link to="/homescreen"><h1 id="add-hover" className="navbar-logo-windows">Easy Trend 20<i className="fas fa-hat-wizard"></i></h1></Link>
 			);
 		} else {
 			console.log('Operating System not Macitosh or Windows Easy Trend And Logo');
@@ -93,8 +93,13 @@ class Navbar extends Component {
 	// reimplement popup signin renderPopup
 	renderPopup(handleLogout, setUserObject) {
 		return (
-			<Popup
-			    trigger={<Button>Sign Out</Button>}
+			<div className="popup-signout">
+				<Popup
+			    trigger={
+			    	<div className="button">
+			    		<Button>Sign Out</Button>
+			    	</div>
+			    }
 			    modal
 			    nested
 			  >
@@ -109,6 +114,7 @@ class Navbar extends Component {
 			              console.log('Yes');
 			              handleLogout(setUserObject);
 			              // set screen(ok) and redirect(automatic?)
+			              localStorage.removeItem("currentScreen");
 			              this.props.setScreen("homescreen");
 			              close();
 			            }}
@@ -127,12 +133,13 @@ class Navbar extends Component {
 			        </div>
 			      </div>
 			    )}
-			</Popup>
+				</Popup>
+			</div>
 		);
 	}
 	renderSettingsButton() {
 		let screen = '';
-		if (this.props.screen.screen) {
+		if (this.props.screen && this.props.screen.screen) {
 			screen = this.props.screen.screen;
 		} else {
 			screen = this.props.screen;
@@ -158,7 +165,28 @@ class Navbar extends Component {
 		}
 	}
 	renderNavUser(user) {
-		if (user.super_admin) {
+		if (user.consumer) {
+			return (
+				<nav className="NavbarItems">
+					{this.renderEasyTrend()}
+					<div className="menu-icon" onClick={this.handleClick}>
+						<i className={this.state.clicked ? 'fas fa-times' : 'fas fa-bars'}></i>
+					</div>
+					<ul className={this.state.clicked ? 'nav-menu active' : 'nav-menu'}>
+						{MenuItems.map((item, index) => {
+							return (
+								<li key={index}>
+									<Link to={item.linkTo}><a className={item.cName} href={item.url}>
+									{item.title}
+									</a></Link>
+								</li>
+							);
+						})}
+					</ul>
+					{this.renderPopup(this.handleLogout, this.props.setUserObject)}
+				</nav>
+			);
+		} else {
 			return (
 				<nav className="NavbarItems">
 					{this.renderEasyTrend()}
@@ -180,70 +208,7 @@ class Navbar extends Component {
 					</ul>
 
 				</nav>
-			);
-		} else if (user.admin) {
-			return (
-				<nav className="NavbarItems">
-					{this.renderEasyTrend()}
-					<div className="menu-icon" onClick={this.handleClick}>
-						<i className={this.state.clicked ? 'fas fa-times' : 'fas fa-bars'}></i>
-					</div>
-					<ul className={this.state.clicked ? 'nav-menu active' : 'nav-menu'}>
-						{MenuItems.map((item, index) => {
-							return (
-								<li key={index}>
-									<Link to={item.linkTo}><a className={item.cName} href={item.url}>
-									{item.title}
-									</a></Link>
-								</li>
-							);
-						})}
-					</ul>
-					{this.renderPopup(this.handleLogout, this.props.setUserObject)}
-				</nav>
 			);			
-		} else if (user.employee) {
-			return (
-				<nav className="NavbarItems">
-					{this.renderEasyTrend()}
-					<div className="menu-icon" onClick={this.handleClick}>
-						<i className={this.state.clicked ? 'fas fa-times' : 'fas fa-bars'}></i>
-					</div>
-					<ul className={this.state.clicked ? 'nav-menu active' : 'nav-menu'}>
-						{MenuItems.map((item, index) => {
-							return (
-								<li key={index}>
-									<Link to={item.linkTo}><a className={item.cName} href={item.url}>
-									{item.title}
-									</a></Link>
-								</li>
-							);
-						})}
-					</ul>
-					{this.renderPopup(this.handleLogout, this.props.setUserObject)}
-				</nav>
-			);			
-		} else {
-			return (
-				<nav className="NavbarItems">
-					{this.renderEasyTrend()}
-					<div className="menu-icon" onClick={this.handleClick}>
-						<i className={this.state.clicked ? 'fas fa-times' : 'fas fa-bars'}></i>
-					</div>
-					<ul className={this.state.clicked ? 'nav-menu active' : 'nav-menu'}>
-						{MenuItems.map((item, index) => {
-							return (
-								<li key={index}>
-									<Link to={item.linkTo}><a className={item.cName} href={item.url}>
-									{item.title}
-									</a></Link>
-								</li>
-							);
-						})}
-					</ul>
-					{this.renderPopup(this.handleLogout, this.props.setUserObject)}
-				</nav>
-			);
 		}
 	}
     // ^ for Popup 'top left', 'top center', 'top right', 'right top', 'right center', 'right bottom', 'bottom left', 'bottom center', 'bottom right', 'left top', 'left center', 'left bottom', 'center center',

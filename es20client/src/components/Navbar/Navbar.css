@@ -1,3 +1,9 @@
+.popup-signout {
+  margin: auto;
+  padding-top: 15px;
+  padding-left: 15px;
+}
+
 .menu-turn-white {
 	color: white;
 	padding: 15px;
@@ -9,11 +15,11 @@ p.account-holder {
 }
 
 #add-hover:hover {
-	color: #e6ffe6;
+	color: #2e2ed1;
 }
 
 #add-hover-settings:hover #inner-element {
-	color: #e6ffe6;
+	color: #2e2ed1;
 }
 
 .make-row {
@@ -63,7 +69,7 @@ p.account-holder {
 }
 
 .navbar-logo:hover {
-		background-color: #7577fa;
+/*		background-color: #7577fa;*/
 		border-radius: 0;
 }
 

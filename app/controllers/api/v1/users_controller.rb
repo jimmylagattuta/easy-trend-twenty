@@ -14,6 +14,7 @@ class Api::V1::UsersController < ApplicationController
 		# generate username
 		if user.valid?
 			user.employee = false
+			# turn off when employee is true
 			user.consumer = true
 			user.admin = false
 			user.super_admin = false

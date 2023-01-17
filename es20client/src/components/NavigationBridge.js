@@ -26,11 +26,13 @@ class NavigationBridge extends Component {
       this.handleEvent = this.handleEvent.bind(this);  
   }
   handleEvent(){  
+    
     // console.log('NavigationBridge handleEvent. this.props', this.props);
     // console.log('NavigationBridge handleEvent. this.state', this.state);
   } 
   componentDidMount() {
     console.log('componentDidMount props state NOT YET RUNNING 4:04PM01/15/23(infinite loop userhome)', this.props, this.state);
+    const screenToken = localStorage.getItem('currentScreen');
     fetch("api/v1/logged_in", {
       credentials: "same-origin",
     }).then((res) => {
@@ -41,7 +43,7 @@ class NavigationBridge extends Component {
 
           // console.log('this.state is_logged_in? before', this.state);
           if (user.logged_in) {
-            this.setState({ user_in_app_state: user });
+            this.setState({ user_in_app_state: user, screen: screenToken });
             // console.log('this.state is_logged_in? after', this.state);
             // reimplement
             // console.log('setCurrentUser(user)');
@@ -66,10 +68,12 @@ class NavigationBridge extends Component {
   }  
   navigateScreen(screen) {
     console.log('XXXnavigateScreen screen', screen);
+    localStorage.setItem('currentScreen', screen);
     this.setState({ screen: screen });
   }
   setScreen(screen) {
     console.log('XXXsetScreen screen', screen);
+    localStorage.setItem('currentScreen', screen);
     this.setState({ screen: screen});
   }
   render() {  
