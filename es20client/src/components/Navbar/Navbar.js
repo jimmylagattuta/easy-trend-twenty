@@ -146,7 +146,7 @@ class Navbar extends Component {
 			);
 		} else if (screen === "settingsscreen") {
 			return (
-				<div>
+				<div> 
 					{this.renderPopup(this.handleLogout, this.props.setUserObject)}
 				</div>
 			);
