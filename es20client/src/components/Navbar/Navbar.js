@@ -36,7 +36,7 @@ class Navbar extends Component {
 			);
 		} else {
 			console.log('Operating System not Macitosh or Windows Easy Trend And Logo');
-		}
+		}  
 	}
 	renderSignupButton() {
 		// console.log('renderSignupButton');
