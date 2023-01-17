@@ -7,6 +7,7 @@ import ProductsHome from './ProductsHome';
 import CareersHome from './CareersHome';
 import ContactUsHome from './ContactUsHome';
 import UserHome from './UserHome';
+import SettingsHome from './settings/SettingsHome';
 import Navbar from './Navbar/Navbar';
 import NavigateToScreen from './helpers/NavigateToScreen';
 import './App.css';
@@ -20,7 +21,7 @@ class NavigationBridge extends Component {
               logged_in: false,
               user_in_app_state: null
            },
-           screen: ""
+           screen: "homescreen"
         }  
       this.handleEvent = this.handleEvent.bind(this);  
   }
@@ -59,21 +60,25 @@ class NavigationBridge extends Component {
       }
     });
   }
-  setUserObject(user_in_app_state) {
+  setUserObject(user_in_app_state, screen) {
     // console.log('setUserObject user_in_app_state', user_in_app_state);
-    this.setState({ user_in_app_state: user_in_app_state });
+    this.setState({ user_in_app_state: user_in_app_state, screen: screen });
   }  
   navigateScreen(screen) {
-    // console.log('navigateScreen screen', screen);
+    console.log('XXXnavigateScreen screen', screen);
     this.setState({ screen: screen });
+  }
+  setScreen(screen) {
+    console.log('XXXsetScreen screen', screen);
+    this.setState({ screen: screen});
   }
   render() {  
     console.log('NavigationBridge props state', this.props, this.state);
     return (
       <div>
           <div className="App">
-            <Navbar user_in_app_state={this.state.user_in_app_state} setUserObject={this.setUserObject.bind(this)} />
-            {"(under construction)"}
+            <Navbar screen={this.state.screen} setScreen={this.setScreen.bind(this)} user_in_app_state={this.state.user_in_app_state} setUserObject={this.setUserObject.bind(this)} />
+            <h1>(...under construction...)</h1>
             <Route 
               path="/homescreen" 
               render= { (props) => <HomeScreen user_in_app_state={this.state.user_in_app_state} /> }
@@ -89,6 +94,10 @@ class NavigationBridge extends Component {
             <Route 
               path="/contactushome" 
               render= { (props) => <ContactUsHome user_in_app_state={this.state.user_in_app_state} /> }
+            />
+            <Route 
+              path="/settingshome" 
+              render= { (props) => <SettingsHome user_in_app_state={this.state.user_in_app_state} /> }
             />
             <Route
               path="/userhome"

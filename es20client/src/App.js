@@ -12,6 +12,8 @@ import NavigateToScreen from './components/helpers/NavigateToScreen';
 import NavigationBridge from './components/NavigationBridge';
 
 import './components/App.css';
+  // "proxy": "https://sleepy-brook-50921.herokuapp.com",
+  // "proxy": "http://localhost:3000",
 
 class App extends Component {
   render() {  
