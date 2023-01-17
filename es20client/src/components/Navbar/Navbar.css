@@ -9,11 +9,11 @@ p.account-holder {
 }
 
 #add-hover:hover {
-	color: #FAEBD7;
+	color: #8A2BE2;
 }
 
 #add-hover-settings:hover #inner-element {
-	color: grey;
+	color: #8A2BE2;
 }
 
 .make-row {
