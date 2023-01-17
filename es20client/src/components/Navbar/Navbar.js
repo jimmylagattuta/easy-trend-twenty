@@ -130,10 +130,13 @@ class Navbar extends Component {
 			</Popup>
 		);
 	}
+	// not rendering
 	renderSettingsButton() {
 		const screen = this.props.screen;
 		console.log('renderSettingsButton screen', this.props.screen);
+		console.log('renderSettingsButton screen screen', this.props.screen);
 		if (screen === "homescreen") {
+			console.log('screen === homescreen');
 			return (
 				<div onClick={() => this.props.setScreen('settingsscreen')} id="add-hover-settings" className="make-row">
 						<Link to="/settingshome">
