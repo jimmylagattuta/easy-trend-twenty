@@ -63,11 +63,12 @@ class NavigationBridge extends Component {
     });
   }
   setUserObject(user_in_app_state, screen) {
-    // console.log('setUserObject user_in_app_state', user_in_app_state);
+    console.log('setUserObject user_in_app_state', user_in_app_state, screen);
+    localStorage.setItem('currentScreen', screen);
     this.setState({ user_in_app_state: user_in_app_state, screen: screen });
   }  
   navigateScreen(screen) {
-    // console.log('XXXnavigateScreen screen', screen);
+    console.log('navigateScreen screen', screen);
     localStorage.setItem('currentScreen', screen);
     this.setState({ screen: screen });
   }
@@ -81,7 +82,7 @@ class NavigationBridge extends Component {
     return (
       <div>
           <div className="App">
-            <Navbar screen={this.state.screen} setScreen={this.setScreen.bind(this)} user_in_app_state={this.state.user_in_app_state} setUserObject={this.setUserObject.bind(this)} />
+            <Navbar screen={this.state.screen} setScreen={this.setScreen.bind(this)} user_in_app_state={this.state.user_in_app_state} setUserObject={this.setUserObject.bind(this)} navigateScreen={this.navigateScreen.bind(this)} />
             <h1>(...under construction...)</h1>
             <Route 
               path="/homescreen" 

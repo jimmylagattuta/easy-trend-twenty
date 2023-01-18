@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { MenuItems } from "./MenuItems";
 import { Button } from "../Button";
 import { connect } from 'react-redux';
@@ -11,7 +11,7 @@ import Logo from './fakelogo.png';
 
 class Navbar extends Component {
 	state = {
-		clicked: false, popUpGo: false
+		clicked: false, popUpGo: false, redirect: false
 
 	}
   	componentDidMount() {
@@ -83,8 +83,12 @@ class Navbar extends Component {
         				logged_in: false,
         				user: null
         			};
-          			setUserObject(resetUserInAppState);
+          			setUserObject(resetUserInAppState, "homescreen");
+          			this.setState({ redirect: true });
         		}
+      		})
+      		.then(() => {
+      			this.setState({ redirect: false });
       		})
     		.catch((error) => {
     			console.log('Navbar handleLogout error', error);
@@ -92,6 +96,7 @@ class Navbar extends Component {
 	}
 	// reimplement popup signin renderPopup
 	renderPopup(handleLogout, setUserObject) {
+		// console.log('renderPopup setUserObject', setUserObject);
 		return (
 			<div className="popup-signout">
 				<Popup
@@ -112,10 +117,8 @@ class Navbar extends Component {
 			            className="button"
 			            onClick={() => {
 			              console.log('Yes');
-			              handleLogout(setUserObject);
+			              handleLogout(setUserObject).bind(this);
 			              // set screen(ok) and redirect(automatic?)
-			              localStorage.removeItem("currentScreen");
-			              this.props.setScreen("homescreen");
 			              close();
 			            }}
 			          >
@@ -138,17 +141,17 @@ class Navbar extends Component {
 		);
 	}
 	renderSettingsButton() {
+		console.log('Navbar renderSettingsButton props', this.props);
 		let screen = '';
 		if (this.props.screen && this.props.screen.screen) {
 			screen = this.props.screen.screen;
 		} else {
 			screen = this.props.screen;
 		}
-		console.log('screen renderSettingsButton', screen);
 		if (screen === "settingsscreen") {
 			return (
 				<div>
-					{this.renderPopup(this.handleLogout, this.props.setUserObject)}
+					{this.renderPopup(this.handleLogout.bind(this), this.props.setUserObject)}
 				</div>
 			);
 		} else {
@@ -231,6 +234,9 @@ class Navbar extends Component {
 		console.log('Navbar props, state ~>', this.props, this.state);
 		// console.log('this.state Navbar ~>', this.state);
 		// console.log('navigator', navigator);
+		if (this.state.redirect) {
+			return <Redirect to="/homescreen" />;
+		}
 		return (
 			<div>
 				{this.renderNavTrack()}

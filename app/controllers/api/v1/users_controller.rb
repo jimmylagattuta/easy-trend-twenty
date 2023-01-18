@@ -47,7 +47,7 @@ class Api::V1::UsersController < ApplicationController
 			}
 			render json: { logged_in: true, super_admin_bundle: super_admin_bundle }, status: :ok
 		else
-			render json: @current_user.errors.full_messages, status: :unprocessable_entity
+			render json: "Error @current_user", status: :unprocessable_entity
 		end
 	end
 
