@@ -63,12 +63,12 @@ class NavigationBridge extends Component {
     });
   }
   setUserObject(user_in_app_state, screen) {
-    console.log('setUserObject user_in_app_state', user_in_app_state, screen);
+    // console.log('setUserObject user_in_app_state', user_in_app_state, screen);
     localStorage.setItem('currentScreen', screen);
     this.setState({ user_in_app_state: user_in_app_state, screen: screen });
   }  
   navigateScreen(screen) {
-    console.log('navigateScreen screen', screen);
+    // console.log('navigateScreen screen', screen);
     localStorage.setItem('currentScreen', screen);
     this.setState({ screen: screen });
   }

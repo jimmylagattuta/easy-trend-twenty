@@ -92,7 +92,7 @@ class UserHome extends Component{
 		// this.props.loginUser(values);
 	}
 	render() {
-		console.log('UserHome props state', this.props, this.state);
+		// console.log('UserHome props state', this.props, this.state);
 		// old code that worked
 		// console.log('this.props UserHome render ~>', this.props);
 		// console.log('this.state UserHome render ~>', this.state);

@@ -141,7 +141,7 @@ class Navbar extends Component {
 		);
 	}
 	renderSettingsButton() {
-		console.log('Navbar renderSettingsButton props', this.props);
+		// console.log('Navbar renderSettingsButton props', this.props);
 		let screen = '';
 		if (this.props.screen && this.props.screen.screen) {
 			screen = this.props.screen.screen;
@@ -231,7 +231,7 @@ class Navbar extends Component {
 		} 
 	}
 	render() {
-		console.log('Navbar props, state ~>', this.props, this.state);
+		// console.log('Navbar props, state ~>', this.props, this.state);
 		// console.log('this.state Navbar ~>', this.state);
 		// console.log('navigator', navigator);
 		if (this.state.redirect) {

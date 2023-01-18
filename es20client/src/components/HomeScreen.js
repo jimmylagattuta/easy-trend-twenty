@@ -14,7 +14,7 @@ class HomeScreen extends Component {
     // 	return unescape(document.cookie.split('=')[1]);
 	// }
 	renderUserMessage() {
-		console.log('renderUserMessage props', this.props);
+		// console.log('renderUserMessage props', this.props);
 		return (
 			<div className="App">
 				Welcome User: {this.props.user_in_app_state.user.first_name} with Email: {this.props.user_in_app_state.user.email}
@@ -22,7 +22,7 @@ class HomeScreen extends Component {
 		);
 	}
 	render() {
-		console.log('HomeScreen props, ', this.props);
+		// console.log('HomeScreen props, ', this.props);
 		// console.log('this.state HomeScreen', this.state);
 		// console.log('this.props.user_in_app_state', this.props.user_in_app_state);
 		if (this.props.user_in_app_state.logged_in) {
