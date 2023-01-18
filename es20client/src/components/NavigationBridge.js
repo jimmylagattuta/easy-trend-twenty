@@ -31,7 +31,7 @@ class NavigationBridge extends Component {
     // console.log('NavigationBridge handleEvent. this.state', this.state);
   } 
   componentDidMount() {
-    console.log('componentDidMount props state NOT YET RUNNING 4:04PM01/15/23(infinite loop userhome)', this.props, this.state);
+    // console.log('componentDidMount props state NOT YET RUNNING 4:04PM01/15/23(infinite loop userhome)', this.props, this.state);
     const screenToken = localStorage.getItem('currentScreen');
     fetch("api/v1/logged_in", {
       credentials: "same-origin",
@@ -67,12 +67,12 @@ class NavigationBridge extends Component {
     this.setState({ user_in_app_state: user_in_app_state, screen: screen });
   }  
   navigateScreen(screen) {
-    console.log('XXXnavigateScreen screen', screen);
+    // console.log('XXXnavigateScreen screen', screen);
     localStorage.setItem('currentScreen', screen);
     this.setState({ screen: screen });
   }
   setScreen(screen) {
-    console.log('XXXsetScreen screen', screen);
+    // console.log('XXXsetScreen screen', screen);
     localStorage.setItem('currentScreen', screen);
     this.setState({ screen: screen});
   }
