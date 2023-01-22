@@ -22,8 +22,7 @@ class NavigationBridge extends Component {
               logged_in: false,
               user_in_app_state: null
            },
-           screen: "homescreen",
-           products: null
+           screen: "homescreen"
         }  
       this.handleEvent = this.handleEvent.bind(this);  
   }
@@ -63,22 +62,27 @@ class NavigationBridge extends Component {
         // setAuthenticated(true);
       }
     }).then((res) => {
-      fetch("api/v1/all_products", {
-        credentials: "same-origin",
-      }).then((res) => {
+      fetch("api/v1/new_products", {
+        method: "POST",
+        credentials: 'same-origin',
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(jsonValues),
+      })
+      .then((res) => {
         if (res.ok) {
           res.json().then((response) => {
-            console.log('response all_products', response);
-            this.setState({ products: response });
+            console.log('response new_products', response);
           });
         } else {
-          console.log('res not ok all_products', res);
+          console.log('res not ok new_products', res);
         }
       })
       .catch((err) => {
-        console.log('error logged_in or all_products', err);
-      })
-    });
+        console.log('error new_products', err);
+      });
+    })
   }
   setUserObject(user_in_app_state, screen) {
     // console.log('setUserObject user_in_app_state', user_in_app_state, screen);
@@ -108,7 +112,7 @@ class NavigationBridge extends Component {
             />
             <Route 
               path="/productshome" 
-              render= { (props) => <ProductsHome user_in_app_state={this.state.user_in_app_state} products={this.state.products} /> }
+              render= { (props) => <ProductsHome user_in_app_state={this.state.user_in_app_state} /> }
             />            
             <Route 
               path="/careershome" 
