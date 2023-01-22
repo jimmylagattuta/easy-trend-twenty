@@ -10,6 +10,7 @@ import UserHome from './UserHome';
 import SettingsHome from './settings/SettingsHome';
 import Navbar from './Navbar/Navbar';
 import NavigateToScreen from './helpers/NavigateToScreen';
+import jsonValues from './jsonValues';
 import './App.css';
 
 class NavigationBridge extends Component {
@@ -21,7 +22,8 @@ class NavigationBridge extends Component {
               logged_in: false,
               user_in_app_state: null
            },
-           screen: "homescreen"
+           screen: "homescreen",
+           products: null
         }  
       this.handleEvent = this.handleEvent.bind(this);  
   }
@@ -60,6 +62,22 @@ class NavigationBridge extends Component {
         // reimplement
         // setAuthenticated(true);
       }
+    }).then((res) => {
+      fetch("api/v1/all_products", {
+        credentials: "same-origin",
+      }).then((res) => {
+        if (res.ok) {
+          res.json().then((response) => {
+            console.log('response all_products', response);
+            this.setState({ products: response });
+          });
+        } else {
+          console.log('res not ok all_products', res);
+        }
+      })
+      .catch((err) => {
+        console.log('error logged_in or all_products', err);
+      })
     });
   }
   setUserObject(user_in_app_state, screen) {
@@ -90,7 +108,7 @@ class NavigationBridge extends Component {
             />
             <Route 
               path="/productshome" 
-              render= { (props) => <ProductsHome user_in_app_state={this.state.user_in_app_state} /> }
+              render= { (props) => <ProductsHome user_in_app_state={this.state.user_in_app_state} products={this.state.products} /> }
             />            
             <Route 
               path="/careershome" 
