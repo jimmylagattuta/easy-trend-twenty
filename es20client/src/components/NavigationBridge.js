@@ -23,7 +23,8 @@ class NavigationBridge extends Component {
               user_in_app_state: null
            },
            screen: "homescreen",
-           products: null
+           products: null,
+           cart: []
         }  
       this.handleEvent = this.handleEvent.bind(this);  
   }
@@ -95,20 +96,24 @@ class NavigationBridge extends Component {
     localStorage.setItem('currentScreen', screen);
     this.setState({ screen: screen});
   }
+  addToCart(item) {
+    console.log('addToCart', item);
+    this.setState({ cart: [...this.state.cart, item ] });
+  }
   render() {  
     console.log('NavigationBridge props state', this.props, this.state);
     return (
       <div>
           <div className="App">
-            <NavbarComponent screen={this.state.screen} setScreen={this.setScreen.bind(this)} user_in_app_state={this.state.user_in_app_state} setUserObject={this.setUserObject.bind(this)} navigateScreen={this.navigateScreen.bind(this)} />
+            <NavbarComponent screen={this.state.screen} setScreen={this.setScreen.bind(this)} user_in_app_state={this.state.user_in_app_state} setUserObject={this.setUserObject.bind(this)} navigateScreen={this.navigateScreen.bind(this)} cart={this.state.cart} addToCart={this.addToCart.bind(this)} />
             <h1>(...under construction...)</h1>
             <Route 
               path="/homescreen" 
-              render= { (props) => <HomeScreen user_in_app_state={this.state.user_in_app_state} products={this.state.products} /> }
+              render= { (props) => <HomeScreen user_in_app_state={this.state.user_in_app_state} products={this.state.products} addToCart={this.addToCart.bind(this)} /> }
             />
             <Route 
               path="/productshome" 
-              render= { (props) => <ProductsHome user_in_app_state={this.state.user_in_app_state} products={this.state.products} /> }
+              render= { (props) => <ProductsHome user_in_app_state={this.state.user_in_app_state} products={this.state.products} addToCart={this.addToCart.bind(this)} /> }
             />            
             <Route 
               path="/careershome" 

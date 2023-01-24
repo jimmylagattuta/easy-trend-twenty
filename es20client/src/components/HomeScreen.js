@@ -56,14 +56,14 @@ class HomeScreen extends Component {
 			return(
 			<div className="App">
 				{this.renderUserMessage()}
-				<ProductsHelper products={this.props.products} />
+				<ProductsHelper products={this.props.products} addToCart={this.props.addToCart.bind(this)} />
 			</div>
 			);
 		}
 		return (
 			<div className="App">
 				<h1>Home Headquarters</h1>
-				<ProductsHelper products={this.props.products} />
+				<ProductsHelper products={this.props.products} addToCart={this.props.addToCart.bind(this)} />
 
 			</div>
 		);

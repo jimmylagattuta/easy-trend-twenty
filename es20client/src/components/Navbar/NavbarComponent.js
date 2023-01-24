@@ -54,9 +54,15 @@ class Navbar extends Component {
 		}
 	}
 	renderCartNav() {
-		return (
-			<div id="cart-div"><i class="fab fa-opencart"></i><p className="p-cart">{this.state.cart.length}</p></div>
-		);	
+		if (this.props.cart) {
+			return (
+				<div id="cart-div"><i class="fab fa-opencart"></i><p id="cart-length" className="p-cart">{this.props.cart.length}</p></div>
+			);	
+		} else {
+			return (
+				<div id="cart-div"><i class="fab fa-opencart"></i><p id="cart-length" className="p-cart">{0}</p></div>
+			);	
+		}
 	}
 	renderNavHome() {
 		return (
@@ -243,7 +249,7 @@ class Navbar extends Component {
 		} 
 	}
 	render() {
-		// console.log('Navbar props, state ~>', this.props, this.state);
+		console.log('Navbar props, state ~>', this.props, this.state);
 		// console.log('this.state Navbar ~>', this.state);
 		// console.log('navigator', navigator);
 		if (this.state.redirect) {
