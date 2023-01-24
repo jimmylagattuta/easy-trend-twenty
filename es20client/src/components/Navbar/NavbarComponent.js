@@ -256,7 +256,7 @@ class Navbar extends Component {
 			return <Redirect to="/homescreen" />;
 		}
 		return (
-			<div>
+			<div className="navbar-div-top">
 				{this.renderNavTrack()}
 			</div>
 		);

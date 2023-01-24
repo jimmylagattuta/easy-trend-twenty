@@ -1,3 +1,8 @@
+.navbar-div-top {
+	position: sticky;
+  top: 0;
+}
+
 .p-cart {
 	font-size: 15px;
 	padding-left: 8px;
