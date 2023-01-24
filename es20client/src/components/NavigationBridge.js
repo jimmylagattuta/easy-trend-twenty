@@ -8,7 +8,7 @@ import CareersHome from './CareersHome';
 import ContactUsHome from './ContactUsHome';
 import UserHome from './UserHome';
 import SettingsHome from './settings/SettingsHome';
-import Navbar from './Navbar/Navbar';
+import NavbarComponent from './Navbar/NavbarComponent';
 import NavigateToScreen from './helpers/NavigateToScreen';
 import jsonValues from './jsonValues';
 import './App.css';
@@ -100,11 +100,11 @@ class NavigationBridge extends Component {
     return (
       <div>
           <div className="App">
-            <Navbar screen={this.state.screen} setScreen={this.setScreen.bind(this)} user_in_app_state={this.state.user_in_app_state} setUserObject={this.setUserObject.bind(this)} navigateScreen={this.navigateScreen.bind(this)} />
+            <NavbarComponent screen={this.state.screen} setScreen={this.setScreen.bind(this)} user_in_app_state={this.state.user_in_app_state} setUserObject={this.setUserObject.bind(this)} navigateScreen={this.navigateScreen.bind(this)} />
             <h1>(...under construction...)</h1>
             <Route 
               path="/homescreen" 
-              render= { (props) => <HomeScreen user_in_app_state={this.state.user_in_app_state} /> }
+              render= { (props) => <HomeScreen user_in_app_state={this.state.user_in_app_state} products={this.state.products} /> }
             />
             <Route 
               path="/productshome" 

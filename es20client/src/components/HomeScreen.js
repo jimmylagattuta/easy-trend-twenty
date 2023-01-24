@@ -3,7 +3,11 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import ItemList from './ItemList';
 import ItemDetail from './ItemDetail';
+import ProductsHelper from './ProductsHelper';
 import { fetchCookie } from '../actions';
+import {Row, Col, Container} from 'react-bootstrap';
+
+
 
 class HomeScreen extends Component {
 	// componentDidMount() {
@@ -13,6 +17,28 @@ class HomeScreen extends Component {
   	// getCSRFToken() {
     // 	return unescape(document.cookie.split('=')[1]);
 	// }
+	renderProducts() {
+		console.log('renderProducts', this.props);
+		if (this.props.products) {
+			return (
+				<Container>
+					<Row xs={1} md={3}>
+						{this.props.products.map((p, id) => (
+
+							<Col align="center" key={id}>
+								<h1>{p.id}</h1>
+							</Col>
+							
+
+						))}
+					</Row>
+				</Container>
+			);
+
+
+
+		}
+	}
 	renderUserMessage() {
 		// console.log('renderUserMessage props', this.props);
 		return (
@@ -30,12 +56,15 @@ class HomeScreen extends Component {
 			return(
 			<div className="App">
 				{this.renderUserMessage()}
+				<ProductsHelper products={this.props.products} />
 			</div>
 			);
 		}
 		return (
 			<div className="App">
 				<h1>Home Headquarters</h1>
+				<ProductsHelper products={this.props.products} />
+
 			</div>
 		);
 	}

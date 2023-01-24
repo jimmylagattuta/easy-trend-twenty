@@ -7,7 +7,7 @@ import ProductsHome from './components/ProductsHome';
 import CareersHome from './components/CareersHome';
 import ContactUsHome from './components/ContactUsHome';
 import UserHome from './components/UserHome';
-import Navbar from './components/Navbar/Navbar';
+import NavbarComponent from './components/Navbar/NavbarComponent';
 import NavigateToScreen from './components/helpers/NavigateToScreen';
 import NavigationBridge from './components/NavigationBridge';
 

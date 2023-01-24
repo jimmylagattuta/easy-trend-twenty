@@ -11,7 +11,7 @@ import Logo from './fakelogo.png';
 
 class Navbar extends Component {
 	state = {
-		clicked: false, popUpGo: false, redirect: false
+		clicked: false, popUpGo: false, redirect: false, cart: []
 
 	}
   	componentDidMount() {
@@ -53,25 +53,37 @@ class Navbar extends Component {
 			console.log('Operating System not Macitosh or Windows Signup Button');
 		}
 	}
+	renderCartNav() {
+		return (
+			<div id="cart-div"><i class="fab fa-opencart"></i><p className="p-cart">{this.state.cart.length}</p></div>
+		);	
+	}
 	renderNavHome() {
 		return (
 			<nav className="NavbarItems">
-				{this.renderEasyTrend()}
-				<div className="menu-icon" onClick={this.handleClick}>
-					<i className={this.state.clicked ? 'fas fa-times' : 'fas fa-bars'}></i>
+				<div className="nav-div-group">
+					{this.renderEasyTrend()}
+					<div className="menu-icon" onClick={this.handleClick}>
+						<i className={this.state.clicked ? 'fas fa-times' : 'fas fa-bars'}></i>
+					</div>
+					<ul className={this.state.clicked ? 'nav-menu active' : 'nav-menu'}>
+						{MenuItems.map((item, index) => {
+								return (
+									<li key={index}>
+										<Link to={item.linkTo}><a className={item.cName} href={item.url}>
+										{item.title}
+										</a></Link>
+									</li>
+								);
+						})}
+					</ul>
+					<Link to="/cart">
+						<h1 id="add-hover" className="menu-turn-white">
+							{this.renderCartNav()}
+						</h1>
+					</Link>
+					{this.renderSignupButton()}
 				</div>
-				<ul className={this.state.clicked ? 'nav-menu active' : 'nav-menu'}>
-					{MenuItems.map((item, index) => {
-						return (
-							<li key={index}>
-								<Link to={item.linkTo}><a className={item.cName} href={item.url}>
-								{item.title}
-								</a></Link>
-							</li>
-						);
-					})}
-				</ul>
-				{this.renderSignupButton()}
 			</nav>
 		);
 	}

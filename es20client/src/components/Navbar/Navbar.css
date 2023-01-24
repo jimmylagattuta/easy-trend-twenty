@@ -1,3 +1,25 @@
+.p-cart {
+	font-size: 15px;
+	padding: 10px;
+}
+
+.nav-div-group {
+	display: flex;
+	align-items: center;
+}
+
+#cart-div {
+		display: flex;
+		flex-direction: row;
+		opacity: 1;
+		transition: all 0.5s ease;
+		padding-right: 40px;
+}
+
+.cart-count {
+	font-size: 18px;
+}
+
 .popup-signout {
   margin: auto;
   padding-top: 15px;

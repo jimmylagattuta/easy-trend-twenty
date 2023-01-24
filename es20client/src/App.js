@@ -6,8 +6,9 @@ import HomeScreen from './components/HomeScreen';
 import ProductsHome from './components/ProductsHome';
 import CareersHome from './components/CareersHome';
 import ContactUsHome from './components/ContactUsHome';
+import { Container } from 'react-bootstrap';
 import UserHome from './components/UserHome';
-import Navbar from './components/Navbar/Navbar';
+import NavbarComponent from './components/Navbar/NavbarComponent';
 import NavigateToScreen from './components/helpers/NavigateToScreen';
 import NavigationBridge from './components/NavigationBridge';
 
@@ -18,11 +19,11 @@ import './components/App.css';
 class App extends Component {
   render() {  
     return (
-      <div>
+      <Container>
         <BrowserRouter>
           <NavigationBridge />
         </BrowserRouter>
-      </div>
+      </Container>
     );
   }
 }
