@@ -1,13 +1,5 @@
 export const MenuItems = [
 	{
-		title: 'Products(broken)',
-		url: '#',
-		cName: 'nav-links',
-		linkTo: '/productshome',
-		class: 'fas fa-glasses',
-		screen: 'productshome'
-	},
-	{
 		title: 'Careers',
 		url: '#',
 		cName: 'nav-links',

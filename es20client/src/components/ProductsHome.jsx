@@ -12,7 +12,7 @@ class ProductsHome extends Component{
 			return this.props.products.map((p) => {
 				count++;
 				return (
-					<Row >
+					<div>
 						<p>{p.title}</p>
 						<p>{p.category}</p>
 						<p>{p.rate}</p>
@@ -24,7 +24,7 @@ class ProductsHome extends Component{
 				          alt="Product"
 				          height="200"
 					    />
-					</Row>
+					</div>
 
 				);
 			});
@@ -33,7 +33,7 @@ class ProductsHome extends Component{
 	render() {
 		console.log('ProductsHome jsx props', this.props);
 		return (
-			<div className="App">
+			<div>
 
 				<ProductsHelper products={this.props.products} />
 			</div>

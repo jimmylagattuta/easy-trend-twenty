@@ -11,7 +11,7 @@ import Logo from './fakelogo.png';
 
 class Navbar extends Component {
 	state = {
-		clicked: false, popUpGo: false, redirect: false, cart: []
+		clicked: false, popUpGo: false, redirect: false
 
 	}
   	componentDidMount() {
@@ -56,7 +56,7 @@ class Navbar extends Component {
 	renderCartNav() {
 		if (this.props.cart) {
 			return (
-				<div id="cart-div"><i class="fab fa-opencart"></i><p id="cart-length" className="p-cart">{this.props.cart.length}</p></div>
+				<div id="cart-div"><i class="fab fa-opencart"></i><p id="cart-length" className="p-cart">{this.props.cart.cart_items.length}</p></div>
 			);	
 		} else {
 			return (
@@ -225,6 +225,11 @@ class Navbar extends Component {
 								);
 							}
 						})}
+						<Link to="/cart">
+							<h1 id="add-hover" className="menu-turn-white">
+								{this.renderCartNav()}
+							</h1>
+						</Link>
 						{this.renderSettingsButton()}
 					</ul>
 

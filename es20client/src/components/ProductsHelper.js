@@ -19,6 +19,7 @@ class ProductsHelper extends Component{
 				          height="160"
 					    />
 						<p>{p.description.slice(0, 100)}</p>
+						<p>Id){" "}{p.id}</p>
 						<Button onClick={() => this.props.addToCart(p)} id="add-hover-settings" className="make-row">
 							Add to Cart
 						</Button>

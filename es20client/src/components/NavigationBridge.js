@@ -41,12 +41,13 @@ class NavigationBridge extends Component {
     }).then((res) => {
       if (res.ok) {
         res.json().then((user) => {
-          // console.log('user ~>', user);
+          console.log('response logged_in ~>', user);
+          console.log('cart ~>', user.cart);
           // console.log('user.logged_in ~>', user.logged_in);
 
           // console.log('this.state is_logged_in? before', this.state);
           if (user.logged_in) {
-            this.setState({ user_in_app_state: user, screen: screenToken });
+            this.setState({ user_in_app_state: user, screen: screenToken, cart: user.cart });
             // console.log('this.state is_logged_in? after', this.state);
             // reimplement
             // console.log('setCurrentUser(user)');
@@ -98,7 +99,33 @@ class NavigationBridge extends Component {
   }
   addToCart(item) {
     console.log('addToCart', item);
-    this.setState({ cart: [...this.state.cart, item ] });
+    const values = {
+      // userObject: this.state.user_in_app_state,
+      cartItem: item
+    }
+    console.log('values ~~~>', values);
+    fetch("api/v1/add_to_cart", {
+        method: "POST",
+        credentials: 'same-origin',
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      }).then((res) => {
+        console.log('res add_to_cart', res);
+        if (res.ok) {
+          res.json().then((new_cart) => {
+            // console.log('setCurrentUser(user)');
+            console.log('api/v1/add_to_cart new_cart', new_cart);
+            this.setState({ cart: new_cart });
+          });
+        } else {
+          res.json().then((errors) => {
+            console.error('errors add_to_cart', errors);
+          });
+        }
+      });
+    // this.setState({ cart: [...this.state.cart, item ] });
   }
   render() {  
     console.log('NavigationBridge props state', this.props, this.state);
@@ -110,11 +137,7 @@ class NavigationBridge extends Component {
             <Route 
               path="/homescreen" 
               render= { (props) => <HomeScreen user_in_app_state={this.state.user_in_app_state} products={this.state.products} addToCart={this.addToCart.bind(this)} /> }
-            />
-            <Route 
-              path="/productshome" 
-              render= { (props) => <ProductsHome user_in_app_state={this.state.user_in_app_state} products={this.state.products} addToCart={this.addToCart.bind(this)} /> }
-            />            
+            />      
             <Route 
               path="/careershome" 
               render= { (props) => <CareersHome user_in_app_state={this.state.user_in_app_state} /> }

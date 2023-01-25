@@ -13,6 +13,8 @@ Rails.application.routes.draw do
       get "/logged_in", to: "sessions#is_logged_in?"
       get "/all_products", to: "products#all_products"
       post "/new_products", to: "products#new_products"
+      get "/get_cart", to: "orders#get_cart"
+      post "/add_to_cart", to: "orders#add_to_cart"
     end
 
   end

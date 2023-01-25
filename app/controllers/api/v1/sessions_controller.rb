@@ -20,10 +20,29 @@
     def is_logged_in?
 	    @current_user = User.find(session[:user_id] && cookies[:user_id]) if cookies[:user_id] && session[:user_id]
 	    if @current_user
-	      render json: {
-	        logged_in: true,
-	        user: @current_user
-	      }, status: :ok
+	    	carts = @current_user.carts
+	    	puts "*" * 100
+	    	puts "carts"
+	    	puts carts.inspect
+	    	puts "*" * 100
+	    	if carts.length > 0
+		    	cart = carts.where(status: "active")
+		    	puts "*" * 100
+	    		puts "~  cart  ~" * 10
+	    		puts cart.inspect
+	    		puts "*" * 100
+		      	render json: {
+		        	logged_in: true,
+		        	user: @current_user,
+		        	cart: cart
+		      	}, status: :ok
+		    else
+		      	render json: {
+		        	logged_in: true,
+		        	user: @current_user,
+		        	cart: []
+		      	}, status: :ok
+		    end
 	    else
 	      render json: {
 	        logged_in: false

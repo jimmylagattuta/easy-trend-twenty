@@ -73,7 +73,7 @@ class UserHome extends Component{
 	      if (res.ok) {
 	        res.json().then((user) => {
 	        	// console.log('setCurrentUser(user)');
-	        	// console.log('user', user);
+	        	console.log('user', user);
 	        	this.props.setUserObject(user, "homescreen");
 	        	this.setState({ redirect: true });
 	          // reimplement
