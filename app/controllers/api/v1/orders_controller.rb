@@ -51,22 +51,6 @@ class Api::V1::OrdersController < ApplicationController
 	    end
 
 
-	    # if @current_user
-		# 	if @current_user.carts
-		# 		cart = []
-		# 		if @current_user.carts.find_by(status: "active")
-		# 			# puts "cart found"
-		# 			cart = cart.push(@current_user.carts.find_by(status: "active"))
-		# 			shop_item_id = params["cartItem"]["id"]
-		# 			active_cart = @current_user.carts.find_by(status: "active")
-
-		# 			item = CartItem.create(user_id: @current_user.id, cart_id: active_cart.id,shop_item_id: shop_item_id, quantity: 1)
-		# 		else
-		# 			# puts "no active cart"
-		# 			cart = cart.push(Cart.create(user_id: @current_user.id, status: "active"))
-		# 			item = CartItem.create(user_id: @current_user.id, cart_id: cart.id,shop_item_id: sii, quantity: 1)
-		# 		end
-
 		# 		render json: { cart: cart }
 		# 	else
 		# 		puts "*" * 100
