@@ -54,7 +54,7 @@ class Navbar extends Component {
 		}
 	}
 	renderCartNav() {
-		if (this.props.cart) {
+		if (this.props.cart.cart_items) {
 			return (
 				<div id="cart-div"><i class="fab fa-opencart"></i><p id="cart-length" className="p-cart">{this.props.cart.cart_items.length}</p></div>
 			);	
