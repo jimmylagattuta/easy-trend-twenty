@@ -5,7 +5,14 @@
 		if user&.authenticate(params[:password])
 			session[:user_id] = {value: user.id, expires: 45.minutes}
 			cookies[:user_id] = {value: user.id, expires: 45.minutes}
-			render json: { logged_in: true, user: user }, status: :ok
+	    	carts = user.carts
+	    	if carts.length > 0
+		    	cart = carts.find_by(status: "active")
+			    cart_items_list = cart.cart_items.all
+				render json: { logged_in: true, user: user, cart: cart, cart_items: cart_items_list }, status: :ok
+			else
+				render json: { logged_in: true, user: user, cart: [], cart_items: [] }, status: :ok
+			end
 		else
 	        render json: {
 	        	logged_in: false
@@ -26,21 +33,28 @@
 	    	puts carts.inspect
 	    	puts "*" * 100
 	    	if carts.length > 0
-		    	cart = carts.where(status: "active")
+		    	cart = carts.find_by(status: "active")
 		    	puts "*" * 100
 	    		puts "~  cart  ~" * 10
 	    		puts cart.inspect
 	    		puts "*" * 100
+
+
+			    cart_items_list = cart.cart_items.all
+
+
 		      	render json: {
 		        	logged_in: true,
 		        	user: @current_user,
-		        	cart: cart
+		        	cart: cart,
+		        	cart_items: cart_items_list
 		      	}, status: :ok
 		    else
 		      	render json: {
 		        	logged_in: true,
 		        	user: @current_user,
-		        	cart: []
+		        	cart: [],
+		        	cart_items: [],
 		      	}, status: :ok
 		    end
 	    else

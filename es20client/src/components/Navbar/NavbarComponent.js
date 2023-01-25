@@ -3,6 +3,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { MenuItems } from "./MenuItems";
 import { Button } from "../Button";
 import { connect } from 'react-redux';
+import CartComponent from './CartComponent';
 import { signOutUser, logoutUser, fetchLoginStatus } from '../../actions';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
@@ -54,10 +55,20 @@ class Navbar extends Component {
 		}
 	}
 	renderCartNav() {
-		if (this.props.cart.cart_items) {
+		if (this.props.cart_items) {
 			return (
-				<div id="cart-div"><i class="fab fa-opencart"></i><p id="cart-length" className="p-cart">{this.props.cart.cart_items.length}</p></div>
-			);	
+				<div id="cart-div-component">
+					<div class="dropdown">
+					  <i class="fab fa-opencart"></i>
+					  <p id="cart-length" className="p-cart-component">
+						{this.props.cart_items.length}
+					  </p>
+					  <div class="dropdown-content">
+					  <p>Hello</p>
+					  </div>
+					</div>
+				</div>
+			);
 		} else {
 			return (
 				<div id="cart-div"><i class="fab fa-opencart"></i><p id="cart-length" className="p-cart">{0}</p></div>

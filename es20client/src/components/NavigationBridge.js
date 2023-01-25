@@ -24,7 +24,7 @@ class NavigationBridge extends Component {
            },
            screen: "homescreen",
            products: null,
-           cart: []
+           cart_items: []
         }  
       this.handleEvent = this.handleEvent.bind(this);  
   }
@@ -43,11 +43,13 @@ class NavigationBridge extends Component {
         res.json().then((user) => {
           console.log('response logged_in ~>', user);
           console.log('cart ~>', user.cart);
+          console.log('cart_items ~>', user.cart_items);
+
           // console.log('user.logged_in ~>', user.logged_in);
 
           // console.log('this.state is_logged_in? before', this.state);
           if (user.logged_in) {
-            this.setState({ user_in_app_state: user, screen: screenToken, cart: user.cart });
+            this.setState({ user_in_app_state: user, screen: screenToken, cart_items: user.cart_items });
             // console.log('this.state is_logged_in? after', this.state);
             // reimplement
             // console.log('setCurrentUser(user)');
@@ -82,10 +84,10 @@ class NavigationBridge extends Component {
       })
     });
   }
-  setUserObject(user_in_app_state, screen) {
+  setUserObject(user_in_app_state, screen, cart_items) {
     // console.log('setUserObject user_in_app_state', user_in_app_state, screen);
     localStorage.setItem('currentScreen', screen);
-    this.setState({ user_in_app_state: user_in_app_state, screen: screen });
+    this.setState({ user_in_app_state: user_in_app_state, screen: screen, cart_items: cart_items });
   }  
   navigateScreen(screen) {
     // console.log('navigateScreen screen', screen);
@@ -117,7 +119,7 @@ class NavigationBridge extends Component {
           res.json().then((new_cart) => {
             // console.log('setCurrentUser(user)');
             console.log('api/v1/add_to_cart new_cart', new_cart);
-            this.setState({ cart: new_cart });
+            this.setState({ cart_items: new_cart.cart_items });
           });
         } else {
           res.json().then((errors) => {
@@ -132,7 +134,7 @@ class NavigationBridge extends Component {
     return (
       <div>
           <div className="App">
-            <NavbarComponent screen={this.state.screen} setScreen={this.setScreen.bind(this)} user_in_app_state={this.state.user_in_app_state} setUserObject={this.setUserObject.bind(this)} navigateScreen={this.navigateScreen.bind(this)} cart={this.state.cart} addToCart={this.addToCart.bind(this)} />
+            <NavbarComponent screen={this.state.screen} setScreen={this.setScreen.bind(this)} user_in_app_state={this.state.user_in_app_state} setUserObject={this.setUserObject.bind(this)} navigateScreen={this.navigateScreen.bind(this)} cart_items={this.state.cart_items} addToCart={this.addToCart.bind(this)} />
             <h1>(...under construction...)</h1>
             <Route 
               path="/homescreen" 
