@@ -42,7 +42,7 @@ class UserHome extends Component{
 	      if (res.ok) {
 	        res.json().then((user) => {
 	        	// console.log('setCurrentUser(user)');
-	        	console.log('UserHome onSubmit response api/v1/signup user', user);
+	        	// console.log('UserHome onSubmit response api/v1/signup user', user);
 	        	this.props.setUserObject(user, "homescreen");
 	        	this.setState({ redirect: true });
 	          // reimplement
@@ -73,7 +73,7 @@ class UserHome extends Component{
 	      if (res.ok) {
 	        res.json().then((user) => {
 	        	// console.log('setCurrentUser(user)');
-	        	console.log('user', user);
+	        	// console.log('user', user);
 	        	this.props.setUserObject(user, "homescreen", user.cart_items);
 	        	this.setState({ redirect: true });
 	          // reimplement

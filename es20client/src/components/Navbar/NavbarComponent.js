@@ -12,8 +12,7 @@ import Logo from './fakelogo.png';
 
 class Navbar extends Component {
 	state = {
-		clicked: false, popUpGo: false, redirect: false
-
+		clicked: false, popUpGo: false, redirect: false, redirectSettings: false, redirectLogout: false
 	}
   	componentDidMount() {
   		// moving to higher component
@@ -94,11 +93,6 @@ class Navbar extends Component {
 								);
 						})}
 					</ul>
-					<Link to="/cart">
-						<h1 id="add-hover" className="menu-turn-white">
-							{this.renderCartNav()}
-						</h1>
-					</Link>
 					{this.renderSignupButton()}
 				</div>
 			</nav>
@@ -106,21 +100,26 @@ class Navbar extends Component {
 	}
 	handleLogout(setUserObject) {
   		fetch('api/v1/logout', {method: "DELETE"})
-  			.then(res => {
-        		if (res.ok) {
-        			const resetUserInAppState = {
-        				logged_in: false,
-        				user: null
-        			};
-          			setUserObject(resetUserInAppState, "homescreen");
-          			this.setState({ redirect: true });
-        		}
+  			.then(res => { 
+			        res.json().then((response) => {
+        				console.log('res not .ok ', response);
+        				const resetUserInAppState = {
+        					logged_in: false,
+        					user: null
+        				};
+          				this.setState({ redirectLogout: true });
+          				setUserObject(resetUserInAppState, "homescreen", []);
+          			})
+          			.catch((err) => {
+          				console.log('err', err);
+          			});
+
       		})
       		.then(() => {
-      			this.setState({ redirect: false });
+      			this.setState({ redirectLogout: false });
       		})
     		.catch((error) => {
-    			console.log('Navbar handleLogout error', error);
+    			// console.log('Navbar handleLogout error', error);
     		});
 	}
 	// reimplement popup signin renderPopup
@@ -145,8 +144,8 @@ class Navbar extends Component {
 			          <Button
 			            className="button"
 			            onClick={() => {
-			              console.log('Yes');
-			              handleLogout(setUserObject).bind(this);
+			              // console.log('Yes');
+			              handleLogout(setUserObject.bind(this));
 			              // set screen(ok) and redirect(automatic?)
 			              close();
 			            }}
@@ -156,7 +155,7 @@ class Navbar extends Component {
 			          <Button
 			            className="button"
 			            onClick={() => {
-			              console.log('No');
+			              // console.log('No');
 			              close();
 			            }}
 			          >
@@ -184,8 +183,13 @@ class Navbar extends Component {
 				</div>
 			);
 		} else {
+			console.log('we were here', this.props);
 			return (
-				<div onClick={() => this.props.setScreen('settingsscreen')} id="add-hover-settings" className="make-row">
+				<div onClick={() => {
+					this.props.setScreen('settingsscreen');
+					this.setState({ redirectSettings: true });
+				}
+				} id="add-hover-settings" className="make-row">
 						<Link to="/settingshome">
 							<h1 id="inner-element" className="user-settings-cog"><i class="fas fa-user-cog"></i></h1>
 						</Link>
@@ -197,56 +201,35 @@ class Navbar extends Component {
 		}
 	}
 	renderNavUser(user) {
-		if (user.consumer) {
-			return (
-				<nav className="NavbarItems">
-					{this.renderEasyTrend()}
-					<div className="menu-icon" onClick={this.handleClick}>
-						<i className={this.state.clicked ? 'fas fa-times' : 'fas fa-bars'}></i>
-					</div>
-					<ul className={this.state.clicked ? 'nav-menu active' : 'nav-menu'}>
-						{MenuItems.map((item, index) => {
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+		return (
+			<nav className="NavbarItems">
+				{this.renderEasyTrend()}
+				<div className="menu-icon" onClick={this.handleClick}>
+					<i className={this.state.clicked ? 'fas fa-times' : 'fas fa-bars'}></i>
+				</div>
+				<ul className={this.state.clicked ? 'nav-menu active' : 'nav-menu'}>
+					{MenuItems.map((item, index) => {
+						if (item.title === "Sign Up") {
+						} else {
 							return (
-								<li key={index}>
-									<Link to={item.linkTo}><a className={item.cName} href={item.url}>
-									{item.title}
-									</a></Link>
+								<li onClick={() => this.props.setScreen(item.screen)} key={index}>
+									<Link to={item.linkTo}><h1 id="add-hover" className="menu-turn-white"><i class={item.class}></i></h1></Link>
 								</li>
 							);
-						})}
-					</ul>
-					{this.renderPopup(this.handleLogout, this.props.setUserObject)}
-				</nav>
-			);
-		} else {
-			return (
-				<nav className="NavbarItems">
-					{this.renderEasyTrend()}
-					<div className="menu-icon" onClick={this.handleClick}>
-						<i className={this.state.clicked ? 'fas fa-times' : 'fas fa-bars'}></i>
-					</div>
-					<ul className={this.state.clicked ? 'nav-menu active' : 'nav-menu'}>
-						{MenuItems.map((item, index) => {
-							if (item.title === "Sign Up") {
-							} else {
-								return (
-									<li onClick={() => this.props.setScreen(item.screen)} key={index}>
-										<Link to={item.linkTo}><h1 id="add-hover" className="menu-turn-white"><i class={item.class}></i></h1></Link>
-									</li>
-								);
-							}
-						})}
-						<Link to="/cart">
-							<h1 id="add-hover" className="menu-turn-white">
-								{this.renderCartNav()}
-							</h1>
-						</Link>
-						{this.renderSettingsButton()}
-					</ul>
+						}
+					})}
+					<Link to="/cart">
+						<h1 id="add-hover" className="menu-turn-white">
+							{this.renderCartNav()}
+						</h1>
+					</Link>
+					{this.renderSettingsButton()}
+				</ul>
 
-				</nav>
-			);			
-		}
+			</nav>
+		);			
+		
 	}
     // ^ for Popup 'top left', 'top center', 'top right', 'right top', 'right center', 'right bottom', 'bottom left', 'bottom center', 'bottom right', 'left top', 'left center', 'left bottom', 'center center',
 	renderNavTrack() {
@@ -269,6 +252,18 @@ class Navbar extends Component {
 		// console.log('this.state Navbar ~>', this.state);
 		// console.log('navigator', navigator);
 		if (this.state.redirect) {
+			this.setState({ redirect: false });
+			return <Redirect to="/homescreen" />;
+		}
+		if (this.state.redirectSettings) {
+			this.setState({ redirectSettings: false });
+			return <Redirect to="/settingshome" />;
+		}
+		if (this.state.redirectLogout) {
+			console.log('redirectingLogout props', this.props);
+			console.log('redirectingLogout state', this.state);
+			this.setState({ redirectLogout: false });
+			// this is not necessary, redirect already goes to homescreen
 			return <Redirect to="/homescreen" />;
 		}
 		return (

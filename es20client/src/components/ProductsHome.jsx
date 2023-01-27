@@ -31,7 +31,7 @@ class ProductsHome extends Component{
 		}
 	}
 	render() {
-		console.log('ProductsHome jsx props', this.props);
+		// console.log('ProductsHome jsx props', this.props);
 		return (
 			<div>
 

@@ -18,7 +18,7 @@ class HomeScreen extends Component {
     // 	return unescape(document.cookie.split('=')[1]);
 	// }
 	renderProducts() {
-		console.log('renderProducts', this.props);
+		// console.log('renderProducts', this.props);
 		if (this.props.products) {
 			return (
 				<Container>

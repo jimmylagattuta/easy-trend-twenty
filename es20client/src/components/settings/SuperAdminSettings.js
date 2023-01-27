@@ -51,7 +51,7 @@ class SuperAdminSettings extends React.Component {
   }
 
   render() {
-    console.log('ItemList props', this.props);
+    console.log('SuperAdminSettings props', this.props);
     return <div className="ui relaxed divided list">SuperAdminSettings</div>;
   }
 }

@@ -34,7 +34,7 @@ class ProductsHelper extends Component{
 		}		
 	}
 	render() {
-		console.log('ProductsHelper jsx props', this.props);
+		// console.log('ProductsHelper jsx props', this.props);
 		return (
 			<div className="products-list">
 				{this.renderData(this.props.products)}

@@ -22,22 +22,22 @@
 	def destroy
 		session.delete :user_id
 		cookies.delete :user_id
-		render json: "Deleted", status: :ok
+		render json: { message: "Deleted"}, status: :ok
 	end
     def is_logged_in?
 	    @current_user = User.find(session[:user_id] && cookies[:user_id]) if cookies[:user_id] && session[:user_id]
 	    if @current_user
 	    	carts = @current_user.carts
-	    	puts "*" * 100
-	    	puts "carts"
-	    	puts carts.inspect
-	    	puts "*" * 100
+	    	# puts "*" * 100
+	    	# puts "carts"
+	    	# puts carts.inspect
+	    	# puts "*" * 100
 	    	if carts.length > 0
 		    	cart = carts.find_by(status: "active")
-		    	puts "*" * 100
-	    		puts "~  cart  ~" * 10
-	    		puts cart.inspect
-	    		puts "*" * 100
+		    	# puts "*" * 100
+	    		# puts "~  cart  ~" * 10
+	    		# puts cart.inspect
+	    		# puts "*" * 100
 
 
 			    cart_items_list = cart.cart_items.all

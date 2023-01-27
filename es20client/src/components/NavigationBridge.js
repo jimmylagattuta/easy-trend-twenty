@@ -7,7 +7,7 @@ import ProductsHome from './ProductsHome';
 import CareersHome from './CareersHome';
 import ContactUsHome from './ContactUsHome';
 import UserHome from './UserHome';
-import SettingsHome from './settings/SettingsHome';
+import SettingsUserHome from './SettingsUserHome';
 import NavbarComponent from './Navbar/NavbarComponent';
 import NavigateToScreen from './helpers/NavigateToScreen';
 import jsonValues from './jsonValues';
@@ -41,9 +41,9 @@ class NavigationBridge extends Component {
     }).then((res) => {
       if (res.ok) {
         res.json().then((user) => {
-          console.log('response logged_in ~>', user);
-          console.log('cart ~>', user.cart);
-          console.log('cart_items ~>', user.cart_items);
+          // console.log('response logged_in ~>', user);
+          // console.log('cart ~>', user.cart);
+          // console.log('cart_items ~>', user.cart_items);
 
           // console.log('user.logged_in ~>', user.logged_in);
 
@@ -72,20 +72,20 @@ class NavigationBridge extends Component {
       }).then((res) => {
         if (res.ok) {
           res.json().then((response) => {
-            console.log('response all_products', response);
+            // console.log('response all_products', response);
             this.setState({ products: response });
           });
         } else {
-          console.log('res not ok all_products', res);
+          // console.log('res not ok all_products', res);
         }
       })
       .catch((err) => {
-        console.log('error logged_in or all_products', err);
+        // console.log('error logged_in or all_products', err);
       })
     });
   }
   setUserObject(user_in_app_state, screen, cart_items) {
-    // console.log('setUserObject user_in_app_state', user_in_app_state, screen);
+    console.log('setUserObject user_in_app_state', user_in_app_state, screen, cart_items);
     localStorage.setItem('currentScreen', screen);
     this.setState({ user_in_app_state: user_in_app_state, screen: screen, cart_items: cart_items });
   }  
@@ -95,17 +95,19 @@ class NavigationBridge extends Component {
     this.setState({ screen: screen });
   }
   setScreen(screen) {
-    // console.log('XXXsetScreen screen', screen);
+
+    console.log('setScreen state', this.state);
+    console.log('setScreen screen', screen);
     localStorage.setItem('currentScreen', screen);
     this.setState({ screen: screen});
   }
   addToCart(item) {
-    console.log('addToCart', item);
+    // console.log('addToCart', item);
     const values = {
       // userObject: this.state.user_in_app_state,
       cartItem: item
     }
-    console.log('values ~~~>', values);
+    // console.log('values ~~~>', values);
     fetch("api/v1/add_to_cart", {
         method: "POST",
         credentials: 'same-origin',
@@ -114,16 +116,16 @@ class NavigationBridge extends Component {
         },
         body: JSON.stringify(values),
       }).then((res) => {
-        console.log('res add_to_cart', res);
+        // console.log('res add_to_cart', res);
         if (res.ok) {
           res.json().then((new_cart) => {
             // console.log('setCurrentUser(user)');
-            console.log('api/v1/add_to_cart new_cart', new_cart);
+            // console.log('api/v1/add_to_cart new_cart', new_cart);
             this.setState({ cart_items: new_cart.cart_items });
           });
         } else {
           res.json().then((errors) => {
-            console.error('errors add_to_cart', errors);
+            // console.error('errors add_to_cart', errors);
           });
         }
       });
@@ -150,7 +152,7 @@ class NavigationBridge extends Component {
             />
             <Route 
               path="/settingshome" 
-              render= { (props) => <SettingsHome user_in_app_state={this.state.user_in_app_state} /> }
+              render= { (props) => <SettingsUserHome user_in_app_state={this.state.user_in_app_state} setUserObject={this.setUserObject.bind(this)} /> }
             />
             <Route
               path="/userhome"
