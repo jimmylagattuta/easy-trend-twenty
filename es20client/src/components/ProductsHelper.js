@@ -16,7 +16,7 @@ class ProductsHelper extends Component{
 				        <img
 				          src={p.image}
 				          alt="Product"
-				          height="100"
+				          height="130"
 					    />
 						<p>{p.description.slice(0, 100)}</p>
 						<p>Id){" "}{p.id}</p>
