@@ -24,7 +24,9 @@ class NavigationBridge extends Component {
            },
            screen: "homescreen",
            products: null,
-           cart_items: []
+           cart_items: [],
+           cartItemsNoUser: []
+
         }  
       this.handleEvent = this.handleEvent.bind(this);  
   }
@@ -131,16 +133,19 @@ class NavigationBridge extends Component {
       });
     // this.setState({ cart: [...this.state.cart, item ] });
   }
+  addToCartNoUser(item) {
+    this.setState({ cartItemsNoUser: [...this.state.cartItemsNoUser, item] });
+  }
   render() {  
     console.log('NavigationBridge props state', this.props, this.state);
     return (
       <div>
           <div className="App">
-            <NavbarComponent screen={this.state.screen} setScreen={this.setScreen.bind(this)} user_in_app_state={this.state.user_in_app_state} setUserObject={this.setUserObject.bind(this)} navigateScreen={this.navigateScreen.bind(this)} cart_items={this.state.cart_items} addToCart={this.addToCart.bind(this)} />
+            <NavbarComponent screen={this.state.screen} setScreen={this.setScreen.bind(this)} user_in_app_state={this.state.user_in_app_state} setUserObject={this.setUserObject.bind(this)} navigateScreen={this.navigateScreen.bind(this)} cart_items={this.state.cart_items} addToCart={this.addToCart.bind(this)} cartItemsNoUser={this.state.cartItemsNoUser} addToCartNoUser={this.addToCartNoUser.bind(this)} />
             <h1>(...under construction...)</h1>
             <Route 
               path="/homescreen" 
-              render= { (props) => <HomeScreen user_in_app_state={this.state.user_in_app_state} products={this.state.products} addToCart={this.addToCart.bind(this)} /> }
+              render= { (props) => <HomeScreen user_in_app_state={this.state.user_in_app_state} products={this.state.products} addToCart={this.addToCart.bind(this)} cartItemsNoUser={this.state.cartItemsNoUser} addToCartNoUser={this.addToCartNoUser.bind(this)} /> }
             />      
             <Route 
               path="/careershome" 

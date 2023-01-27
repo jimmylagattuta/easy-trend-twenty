@@ -48,7 +48,7 @@ class HomeScreen extends Component {
 		);
 	}
 	render() {
-		// console.log('HomeScreen props, ', this.props);
+		console.log('HomeScreen props, ', this.props);
 		// console.log('this.state HomeScreen', this.state);
 		// console.log('this.props.user_in_app_state', this.props.user_in_app_state);
 		if (this.props.user_in_app_state.logged_in) {
@@ -56,14 +56,14 @@ class HomeScreen extends Component {
 			return(
 			<div className="App">
 				{this.renderUserMessage()}
-				<ProductsHelper products={this.props.products} addToCart={this.props.addToCart.bind(this)} />
+				<ProductsHelper products={this.props.products} addToCart={this.props.addToCart.bind(this)} loggedIn={true} />
 			</div>
 			);
 		}
 		return (
 			<div className="App">
 				<h1>Home Headquarters</h1>
-				<ProductsHelper products={this.props.products} addToCart={this.props.addToCart.bind(this)} />
+				<ProductsHelper products={this.props.products} addToCart={this.props.addToCart.bind(this)} loggedIn={false} addToCartNoUser={this.props.addToCartNoUser} />
 
 			</div>
 		);

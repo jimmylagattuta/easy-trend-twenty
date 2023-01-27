@@ -53,6 +53,27 @@ class Navbar extends Component {
 			console.log('Operating System not Macitosh or Windows Signup Button');
 		}
 	}
+	renderCartNavNoUser() {
+		if (this.props.cartItemsNoUser) {
+			return (
+				<div id="cart-div-component">
+					<div class="dropdown">
+					  <i class="fab fa-opencart"></i>
+					  <p id="cart-length" className="p-cart-component">
+						{this.props.cartItemsNoUser.length}
+					  </p>
+					  <div class="dropdown-content">
+					  <p>Hello</p>
+					  </div>
+					</div>
+				</div>
+			);
+		} else {
+			return (
+				<div id="cart-div"><i class="fab fa-opencart"></i><p id="cart-length" className="p-cart">{0}</p></div>
+			);	
+		}
+	}
 	renderCartNav() {
 		if (this.props.cart_items) {
 			return (
@@ -93,6 +114,11 @@ class Navbar extends Component {
 								);
 						})}
 					</ul>
+					<Link to="/cart">
+						<h1 id="add-hover" className="menu-turn-white">
+							{this.renderCartNavNoUser()}
+						</h1>
+					</Link>
 					{this.renderSignupButton()}
 				</div>
 			</nav>
@@ -248,7 +274,8 @@ class Navbar extends Component {
 		} 
 	}
 	render() {
-		console.log('Navbar props, state ~>', this.props, this.state);
+		console.log('Navbar props ~>', this.props);
+		console.log('Navbar state ~>', this.state);
 		// console.log('this.state Navbar ~>', this.state);
 		// console.log('navigator', navigator);
 		if (this.state.redirect) {

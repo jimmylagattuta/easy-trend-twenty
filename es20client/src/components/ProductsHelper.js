@@ -2,10 +2,26 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import {Row, Col, Container} from 'react-bootstrap';
 import { Button } from "./Button";
+import AddToCartHelper from './helpers/AddToCartHelper';
 
 import './ProductsHelper.css';
 // products will be fiilterable here, a more specific page than home
 class ProductsHelper extends Component{
+	state = { cartItemsNoUser: [] }
+	addToStateCart(p) {
+		this.setState({ cartItemsNoUser: [...this.state.cartItemsNoUser, p] });
+	}
+	renderAddToCartNoUser(p) {
+		if (!this.props.logged_in) {
+			return (
+				<Button onClick={() => this.props.addToCartNoUser(p)} id="add-hover-settings" className="make-row">
+					Add to Cart
+				</Button>
+			);
+		} else {
+			<AddToCartHelper addToCart={this.props.addToCart} loggedIn={this.props.loggedIn} p={p}  />
+		}
+	}
 	renderData(products) {
 		if (products) {
 			return products.map((p, id) => {
@@ -19,9 +35,7 @@ class ProductsHelper extends Component{
 				          height="130"
 					    />
 						<p id="product-description">{p.description.slice(0, 60)}</p>
-						<Button onClick={() => this.props.addToCart(p)} id="add-hover-settings" className="make-row">
-							Add to Cart
-						</Button>
+						{this.renderAddToCartNoUser(p)}
 					</div>
 				);
 			});
@@ -33,7 +47,8 @@ class ProductsHelper extends Component{
 		}		
 	}
 	render() {
-		// console.log('ProductsHelper jsx props', this.props);
+		console.log('ProductsHelper jsx props', this.props);
+		console.log('ProductsHelper jsx state', this.state);
 		return (
 			<div className="products-list">
 				{this.renderData(this.props.products)}
