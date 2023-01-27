@@ -11,7 +11,7 @@ class ProductsHelper extends Component{
 			return products.map((p, id) => {
 				return (
 					<div className="product-item" key={id}>
-						<p>{p.title.slice(0, 30)}</p>
+						<p id="product-title">{p.title.slice(0, 30)}</p>
 						<p>${p.price}</p>
 				        <img
 				          src={p.image}
@@ -19,7 +19,6 @@ class ProductsHelper extends Component{
 				          height="130"
 					    />
 						<p id="product-description">{p.description.slice(0, 60)}</p>
-						<p>Id){" "}{p.id}</p>
 						<Button onClick={() => this.props.addToCart(p)} id="add-hover-settings" className="make-row">
 							Add to Cart
 						</Button>
