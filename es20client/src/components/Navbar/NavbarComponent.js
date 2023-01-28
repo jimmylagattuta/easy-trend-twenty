@@ -127,6 +127,7 @@ class Navbar extends Component {
 					<Link id="show-cart" to="/cart">
 						<h1 id="add-hover" className="menu-turn-white">
 							{this.renderCartNavNoUser()}
+							<div id="space-div"></div>
 						</h1>
 					</Link>
 					{this.renderSignupButton()}

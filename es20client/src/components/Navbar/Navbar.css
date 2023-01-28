@@ -8,12 +8,18 @@
 	padding-bottom: 10px;
 }
 
+#space-div {
+	position: absolute;
+	width: 100px;
+	height: 40px;
+}
+
 #cart-div-component {
     display: flex;
     flex-direction: row;
     opacity: 1;
     transition: all 0.5s ease;
-    padding-right: 40px;
+/*    padding-right: 40px;*/
 }
 
 /* Dropdown Button */
@@ -56,8 +62,14 @@
 
 /* Show the dropdown menu on hover */
 /*.dropdown:hover .dropdown-content {display: block;}*/
-.nav-div-group:hover .dropdown-content {display: block; opacity: 10%; background-color: #ddd;}
-#show-cart:hover .dropdown-content {display: block; opacity: 15%; background-color: #ddd;}
+/*.nav-div-group:hover .dropdown-content {display: block; opacity: 10%; background-color: #ddd;}*/
+#show-cart:hover .dropdown-content {display: block; opacity: 60%; background-color: #ddd;}
+#space-div:hover .dropdown-content {display: block; background-color: #ddd;}
+
+
+/*This is runninghow you want it but you want it on 100% opacity to hover dropdown and 15% when near it*/
+/*#show-cart:hover .dropdown-content {display: block; opacity: 15%; background-color: #ddd;}*/
+
 
 /*shows cart dropdown when hover cart dropdown*/
 #cart-div-component:hover .dropdown-content {
