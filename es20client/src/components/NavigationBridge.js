@@ -142,7 +142,7 @@ class NavigationBridge extends Component {
       <div>
           <div className="App">
             <NavbarComponent screen={this.state.screen} setScreen={this.setScreen.bind(this)} user_in_app_state={this.state.user_in_app_state} setUserObject={this.setUserObject.bind(this)} navigateScreen={this.navigateScreen.bind(this)} cart_items={this.state.cart_items} addToCart={this.addToCart.bind(this)} cartItemsNoUser={this.state.cartItemsNoUser} addToCartNoUser={this.addToCartNoUser.bind(this)} />
-            <h1>(...under construction... fake products... fake debit card number: 0000 0000 0000 0000)</h1>
+            <h1>(...under construction... fake products)</h1>
             <Route 
               path="/homescreen" 
               render= { (props) => <HomeScreen user_in_app_state={this.state.user_in_app_state} products={this.state.products} addToCart={this.addToCart.bind(this)} cartItemsNoUser={this.state.cartItemsNoUser} addToCartNoUser={this.addToCartNoUser.bind(this)} /> }
