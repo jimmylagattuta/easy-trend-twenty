@@ -25,6 +25,13 @@
   position: relative;
   display: flex;
 }
+/*
+saved 1/27/23 6:31PM
+.dropdown {
+  position: relative;
+  display: flex;
+}
+*/
 
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
@@ -37,6 +44,18 @@
   margin-top: 60px;
 }
 
+/*
+saved 1/27/23 6:32PM
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  margin-top: 60px;
+}
+*/
 /* Links inside the dropdown */
 .dropdown-content a {
   color: black;
@@ -44,15 +63,58 @@
   text-decoration: none;
   display: block;
 }
+/*
+saved 1/27/23 6:33PM
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+*/
 
 /* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+	display: block;
+	background-color: #ddd;
+
+}
+h1#add-hover.menu-turn-white:hover .dropdown-content {
+	display: block;
+	background-color: #ddd;
+
+}
+.nav-div-group a #show-cart:hover .dropdown-content {
+	display: block;
+	background-color: #ddd;
+
+}
+#show-cart:hover .dropdown-content {
+	display: block;
+	background-color: #ddd;
+
+}
+/*
+saved 1/27/23 6:33PM
 .dropdown-content a:hover {background-color: #ddd;}
+*/
 
 /* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+	display: block;
+
+}
+/*
+saved 1/27/23 6:34PM
 .dropdown:hover .dropdown-content {display: block;}
+*/
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {background-color: #3e8e41;}
+/*
+saved 1/27/23 6:34PM
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+*/
 
 .navbar-div-top {
 	position: sticky;

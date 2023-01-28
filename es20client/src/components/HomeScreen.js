@@ -48,7 +48,7 @@ class HomeScreen extends Component {
 		);
 	}
 	render() {
-		console.log('HomeScreen props, ', this.props);
+		// console.log('HomeScreen props, ', this.props);
 		// console.log('this.state HomeScreen', this.state);
 		// console.log('this.props.user_in_app_state', this.props.user_in_app_state);
 		if (this.props.user_in_app_state.logged_in) {

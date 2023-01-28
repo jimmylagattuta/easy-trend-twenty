@@ -87,7 +87,7 @@ class NavigationBridge extends Component {
     });
   }
   setUserObject(user_in_app_state, screen, cart_items) {
-    console.log('setUserObject user_in_app_state', user_in_app_state, screen, cart_items);
+    // console.log('setUserObject user_in_app_state', user_in_app_state, screen, cart_items);
     localStorage.setItem('currentScreen', screen);
     this.setState({ user_in_app_state: user_in_app_state, screen: screen, cart_items: cart_items });
   }  
@@ -98,8 +98,8 @@ class NavigationBridge extends Component {
   }
   setScreen(screen) {
 
-    console.log('setScreen state', this.state);
-    console.log('setScreen screen', screen);
+    // console.log('setScreen state', this.state);
+    // console.log('setScreen screen', screen);
     localStorage.setItem('currentScreen', screen);
     this.setState({ screen: screen});
   }
@@ -137,12 +137,12 @@ class NavigationBridge extends Component {
     this.setState({ cartItemsNoUser: [...this.state.cartItemsNoUser, item] });
   }
   render() {  
-    console.log('NavigationBridge props state', this.props, this.state);
+    // console.log('NavigationBridge props state', this.props, this.state);
     return (
       <div>
           <div className="App">
             <NavbarComponent screen={this.state.screen} setScreen={this.setScreen.bind(this)} user_in_app_state={this.state.user_in_app_state} setUserObject={this.setUserObject.bind(this)} navigateScreen={this.navigateScreen.bind(this)} cart_items={this.state.cart_items} addToCart={this.addToCart.bind(this)} cartItemsNoUser={this.state.cartItemsNoUser} addToCartNoUser={this.addToCartNoUser.bind(this)} />
-            <h1>(...under construction...)</h1>
+            <h1>(...under construction... fake products... fake debit card number: 0000 0000 0000 0000)</h1>
             <Route 
               path="/homescreen" 
               render= { (props) => <HomeScreen user_in_app_state={this.state.user_in_app_state} products={this.state.products} addToCart={this.addToCart.bind(this)} cartItemsNoUser={this.state.cartItemsNoUser} addToCartNoUser={this.addToCartNoUser.bind(this)} /> }

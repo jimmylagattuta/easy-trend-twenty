@@ -54,7 +54,13 @@ class Navbar extends Component {
 		}
 	}
 	renderCartNavNoUser() {
-		if (this.props.cartItemsNoUser) {
+		console.log('renderCartNavNoUser props', this.props);
+		console.log('renderCartNavNoUser state', this.state);
+// removed 1/27/23 6:28
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+		// if (this.props.cartItemsNoUser.length) {
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+			console.log('this.props.cartItemsNoUser');
 			return (
 				<div id="cart-div-component">
 					<div class="dropdown">
@@ -63,16 +69,20 @@ class Navbar extends Component {
 						{this.props.cartItemsNoUser.length}
 					  </p>
 					  <div class="dropdown-content">
-					  <p>Hello</p>
+					  <p id="let-hover">Hello</p>
 					  </div>
 					</div>
 				</div>
 			);
-		} else {
-			return (
-				<div id="cart-div"><i class="fab fa-opencart"></i><p id="cart-length" className="p-cart">{0}</p></div>
-			);	
-		}
+// removed 1/27/23 6:27PM
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+		// } else {
+		// 	console.log('!this.props.cartItemsNoUser');
+		// 	return (
+		// 		<div id="cart-div"><i class="fab fa-opencart"></i><p id="cart-length" className="p-cart">{0}</p></div>
+		// 	);	
+		// }
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 	}
 	renderCartNav() {
 		if (this.props.cart_items) {
@@ -114,7 +124,7 @@ class Navbar extends Component {
 								);
 						})}
 					</ul>
-					<Link to="/cart">
+					<Link id="show-cart" to="/cart">
 						<h1 id="add-hover" className="menu-turn-white">
 							{this.renderCartNavNoUser()}
 						</h1>
@@ -137,7 +147,7 @@ class Navbar extends Component {
           				setUserObject(resetUserInAppState, "homescreen", []);
           			})
           			.catch((err) => {
-          				console.log('err', err);
+          				console.log('err handleLogout', err);
           			});
 
       		})
@@ -209,7 +219,7 @@ class Navbar extends Component {
 				</div>
 			);
 		} else {
-			console.log('we were here', this.props);
+			// console.log('we were here', this.props);
 			return (
 				<div onClick={() => {
 					this.props.setScreen('settingsscreen');
@@ -274,8 +284,8 @@ class Navbar extends Component {
 		} 
 	}
 	render() {
-		console.log('Navbar props ~>', this.props);
-		console.log('Navbar state ~>', this.state);
+		// console.log('Navbar props ~>', this.props);
+		// console.log('Navbar state ~>', this.state);
 		// console.log('this.state Navbar ~>', this.state);
 		// console.log('navigator', navigator);
 		if (this.state.redirect) {
