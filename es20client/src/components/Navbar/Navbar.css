@@ -6,6 +6,7 @@
 #show-cart {
 	padding-top: 20px;
 	padding-bottom: 10px;
+	cursor: default
 }
 
 #space-div {
@@ -21,7 +22,9 @@
     transition: all 0.5s ease;
 /*    padding-right: 40px;*/
 }
-
+.dropdown i {
+	cursor: pointer;
+}
 /* Dropdown Button */
 .dropbtn {
   background-color: #04AA6D;
@@ -64,7 +67,7 @@
 /*.dropdown:hover .dropdown-content {display: block;}*/
 /*.nav-div-group:hover .dropdown-content {display: block; opacity: 10%; background-color: #ddd;}*/
 /*#show-cart:hover .dropdown-content {display: block; opacity: 60%; background-color: #ddd;}*/
-#cart-div-component:hover .dropdown-content {display: block; background-color: #ddd;}
+#dropdown:hover .dropdown-content {display: block; background-color: #ddd;}
 
 
 /*This is runninghow you want it but you want it on 100% opacity to hover dropdown and 15% when near it*/
@@ -83,7 +86,7 @@
 */
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {background-color: #3e8e41;}
+/*.dropdown:hover .dropbtn {background-color: #3e8e41;}*/
 
 .navbar-div-top {
 	position: sticky;
@@ -130,13 +133,13 @@ p.account-holder {
 	color: white;
 }
 
-#add-hover:hover {
+/*#add-hover:hover {
 	color: #2e2ed1;
 }
 
 #add-hover-settings:hover #inner-element {
 	color: #2e2ed1;
-}
+}*/
 
 .make-row {
 	display: flex;
