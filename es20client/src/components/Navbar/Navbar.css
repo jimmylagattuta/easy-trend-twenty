@@ -63,8 +63,8 @@
 /* Show the dropdown menu on hover */
 /*.dropdown:hover .dropdown-content {display: block;}*/
 /*.nav-div-group:hover .dropdown-content {display: block; opacity: 10%; background-color: #ddd;}*/
-#show-cart:hover .dropdown-content {display: block; opacity: 60%; background-color: #ddd;}
-#space-div:hover .dropdown-content {display: block; background-color: #ddd;}
+/*#show-cart:hover .dropdown-content {display: block; opacity: 60%; background-color: #ddd;}*/
+#cart-div-component:hover .dropdown-content {display: block; background-color: #ddd;}
 
 
 /*This is runninghow you want it but you want it on 100% opacity to hover dropdown and 15% when near it*/
@@ -72,7 +72,7 @@
 
 
 /*shows cart dropdown when hover cart dropdown*/
-#cart-div-component:hover .dropdown-content {
+/*#cart-div-component:hover .dropdown-content {
 	display: block; 
 	opacity: 100%;
 	transition: opacity 0.2s;
@@ -80,7 +80,7 @@
 
   transition: ease-out 0.2s;
 }
-
+*/
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {background-color: #3e8e41;}
