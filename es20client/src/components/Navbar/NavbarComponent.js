@@ -88,6 +88,7 @@ class Navbar extends Component {
 		if (this.props.cart_items) {
 			return (
 				<div id="cart-div-component">
+					<div id="hover-helper"></div>
 					<div class="dropdown">
 					  <i class="fab fa-opencart"></i>
 					  <p id="cart-length" className="p-cart-component">
