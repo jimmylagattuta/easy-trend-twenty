@@ -57,7 +57,8 @@
 /*  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);*/
   z-index: 1;
 	/*  margin-top: 54px;*/
-	border-top: solid transparent 54px;
+	right: -28px;
+	border-top: solid transparent 51px;
 }
 
 /* Links inside the dropdown */

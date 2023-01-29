@@ -1,5 +1,5 @@
 .add-to-cart-mini-menu {
-	border-color: #cccccc;
+	border-color: #6e5efe;
 	border-style: double;
 	margin-left: 10px;
 	margin-right: 10px;
@@ -12,8 +12,10 @@
 	margin-top: 40px;
 	font-size: 20px;
 	color: #6e5efe;
-
-
+	padding-top: 5px;
+	padding-right: 10px;
+	padding-left: 10px;
+	padding-bottom: 10px;
 }
 
 .visible-mini-cart {
