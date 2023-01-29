@@ -54,13 +54,13 @@ class Navbar extends Component {
 		}
 	}
 	renderCartNavNoUser() {
-		console.log('renderCartNavNoUser props', this.props);
-		console.log('renderCartNavNoUser state', this.state);
-// removed 1/27/23 6:28
-// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-		// if (this.props.cartItemsNoUser.length) {
-// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-			console.log('this.props.cartItemsNoUser');
+		// console.log('renderCartNavNoUser props', this.props);
+		// console.log('renderCartNavNoUser state', this.state);
+		// removed 1/27/23 6:28
+		// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+			// if (this.props.cartItemsNoUser.length) {
+		// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+			// console.log('this.props.cartItemsNoUser');
 			return (
 				<div id="cart-div-component">
 					<div class="dropdown">
@@ -74,21 +74,20 @@ class Navbar extends Component {
 					</div>
 				</div>
 			);
-// removed 1/27/23 6:27PM
-// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-		// } else {
-		// 	console.log('!this.props.cartItemsNoUser');
-		// 	return (
-		// 		<div id="cart-div"><i class="fab fa-opencart"></i><p id="cart-length" className="p-cart">{0}</p></div>
-		// 	);	
-		// }
-// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+		// removed 1/27/23 6:27PM
+		// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+			// } else {
+			// 	console.log('!this.props.cartItemsNoUser');
+			// 	return (
+			// 		<div id="cart-div"><i class="fab fa-opencart"></i><p id="cart-length" className="p-cart">{0}</p></div>
+			// 	);	
+			// }
+		// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 	}
 	renderCartNav() {
 		if (this.props.cart_items) {
 			return (
 				<div id="cart-div-component">
-					<div id="hover-helper"></div>
 					<div class="dropdown">
 					  <i class="fab fa-opencart"></i>
 					  <p id="cart-length" className="p-cart-component">
@@ -239,7 +238,7 @@ class Navbar extends Component {
 		}
 	}
 	renderNavUser(user) {
-// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+		// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 		return (
 			<nav className="NavbarItems">
 				{this.renderEasyTrend()}
@@ -268,8 +267,8 @@ class Navbar extends Component {
 			</nav>
 		);			
 		
+	    // ^ for Popup 'top left', 'top center', 'top right', 'right top', 'right center', 'right bottom', 'bottom left', 'bottom center', 'bottom right', 'left top', 'left center', 'left bottom', 'center center',
 	}
-    // ^ for Popup 'top left', 'top center', 'top right', 'right top', 'right center', 'right bottom', 'bottom left', 'bottom center', 'bottom right', 'left top', 'left center', 'left bottom', 'center center',
 	renderNavTrack() {
 		if (this.props.user_in_app_state.logged_in) {
 			return (

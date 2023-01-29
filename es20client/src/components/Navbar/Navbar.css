@@ -38,6 +38,8 @@
 .dropdown {
   position: relative;
   display: flex;
+  margin-top: 54px;
+  border-bottom: 54px solid transparent;
 }
 
 /* Dropdown Content (Hidden by Default) */
@@ -68,7 +70,6 @@
 /*.nav-div-group:hover .dropdown-content {display: block; opacity: 10%; background-color: #ddd;}*/
 /*#show-cart:hover .dropdown-content {display: block; opacity: 60%; background-color: #ddd;}*/
 #dropdown:hover .dropdown-content {display: block; background-color: #ddd;}
-
 
 
 /*This is runninghow you want it but you want it on 100% opacity to hover dropdown and 15% when near it*/
