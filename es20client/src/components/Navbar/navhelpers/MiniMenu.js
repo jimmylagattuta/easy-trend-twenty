@@ -7,7 +7,7 @@ class MiniMenu extends Component {
 		return items.map((item) => {
 			console.log("item ~> ", item);
 			return (
-				<div className="item" key={item.name}>
+				<div className="add-to-cart-mini-menu" key={item.name}>
 					<div className="right floated content">
 						<button
 							className="ui button primary"
@@ -35,7 +35,7 @@ class MiniMenu extends Component {
 			return (
 				<div className="add-to-cart-mini-menu">
 					<p className="mini-menu-title">Add To Cart!</p>
-					<div className="visible-mini-nav"></div>
+					<div className="visible-mini-cart"></div>
 				</div>
 			);
 		}
