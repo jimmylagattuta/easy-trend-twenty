@@ -54,6 +54,19 @@ class Navbar extends Component {
 			console.log('Operating System not Macitosh or Windows Signup Button');
 		}
 	}
+	renderCheckout(cart_items) {
+		if (cart_items.length) {
+			return (
+				<Button
+					id="mini-nav-button-element"
+					// className="ui button primary"
+					onClick={() => console.log('Checkout Cart Screen')}
+				>
+					<p className="mini-menu-select">Checkout</p>
+				</Button>
+			);
+		}
+	}
 	renderCartNavNoUser() {
 		// console.log('renderCartNavNoUser props', this.props);
 		// console.log('renderCartNavNoUser state', this.state);
@@ -73,14 +86,8 @@ class Navbar extends Component {
 					  	<div className="cart-and-checkout">
 						  	<MiniMenu 
 						  		cartItemsNoUser={this.props.cartItemsNoUser}
-							  />
-							<button
-								id="mini-nav-button-element"
-								className="ui button primary"
-								onClick={() => console.log('Checkout Cart Screen')}
-							>
-								<p className="mini-menu-select">Checkout</p>
-							</button>
+							/>
+							{this.renderCheckout(this.props.cartItemsNoUser)}
 					  	</div>
 					  </div>
 					</div>
