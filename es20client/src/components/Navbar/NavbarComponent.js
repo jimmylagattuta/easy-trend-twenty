@@ -5,6 +5,7 @@ import { Button } from "../Button";
 import { connect } from 'react-redux';
 import CartComponent from './CartComponent';
 import { signOutUser, logoutUser, fetchLoginStatus } from '../../actions';
+import MiniMenu from './navhelpers/MiniMenu';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import './Navbar.css';
@@ -69,7 +70,9 @@ class Navbar extends Component {
 						{this.props.cartItemsNoUser.length}
 					  </p>
 					  <div class="dropdown-content">
-					  <p id="let-hover">Hello</p>
+						  <MiniMenu 
+						  	cartItemsNoUser={this.props.cartItemsNoUser}
+						  />
 					  </div>
 					</div>
 				</div>

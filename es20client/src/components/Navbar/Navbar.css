@@ -20,7 +20,7 @@
     flex-direction: row;
     opacity: 1;
     transition: all 0.5s ease;
-/*    padding-right: 40px;*/
+    padding-right: 40px;
 }
 .dropdown i {
 	cursor: pointer;
@@ -37,20 +37,27 @@
 /* The container <div> - needed to position the dropdown content */
 .dropdown {
   position: relative;
+	/*  display: inline-block;*/
   display: flex;
-  margin-top: 54px;
-  border-bottom: 54px solid transparent;
+
+	/* put this on div not with hover */
+
+	/*  border-bottom: 54px solid transparent;*/
+	/* ~ * ~ */
+
 }
+
 
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #f1f1f1;
+  background-color: transparent;
   min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+/*  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);*/
   z-index: 1;
-  margin-top: 54px;
+	/*  margin-top: 54px;*/
+	border-top: solid transparent 54px;
 }
 
 /* Links inside the dropdown */
@@ -69,8 +76,12 @@
 /*.dropdown:hover .dropdown-content {display: block;}*/
 /*.nav-div-group:hover .dropdown-content {display: block; opacity: 10%; background-color: #ddd;}*/
 /*#show-cart:hover .dropdown-content {display: block; opacity: 60%; background-color: #ddd;}*/
-#dropdown:hover .dropdown-content {display: block; background-color: #ddd;}
-
+/*#dropdown:hover > .dropdown-content,
+{
+	display: block; 
+	background-color: transparent;
+}
+*/
 
 /*This is runninghow you want it but you want it on 100% opacity to hover dropdown and 15% when near it*/
 /*#show-cart:hover .dropdown-content {display: block; opacity: 15%; background-color: #ddd;}*/
