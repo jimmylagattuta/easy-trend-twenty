@@ -1,3 +1,21 @@
+.cart-traits {
+	display: flex;
+}
+.right-floated-content {
+	display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+	justify-content: flex-start;
+}
+.mini-menu-select {
+	font-size: 16px;
+	color: white;
+	padding-top: 3px;
+	padding-right: 6px;
+	padding-left: 6px;
+	padding-bottom: 6px;
+}
+
 .add-to-cart-mini-menu {
 	border-color: #6e5efe;
 	border-style: double;
@@ -8,10 +26,24 @@
 	border-width: 9px thin;
     background-color: #493ffc;
     min-width: calc(100vw / 2);
+
+}
+.add-to-cart-mini-menu-cart-items {
+	border-color: #6e5efe;
+	border-style: double;
+	margin-left: 10px;
+	margin-right: 10px;
+	border-width: 9px thin;
+	background: linear-gradient(90deg, rgb(73,63,252,1) 0%, rgba(110, 94, 254) 100%);
+    min-width: calc(100vw / 2);
+    min-height: 173px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+	justify-content: flex-start;
 }
 
 .mini-menu-title {
-	margin-top: 40px;
 	font-size: 20px;
 	color: white;
 	padding-top: 5px;
@@ -20,6 +52,19 @@
 	padding-bottom: 10px;
 }
 
+
+.mini-menu-title-menu {
+	font-size: 20px;
+	color: white;
+	padding-top: 5px;
+	padding-right: 10px;
+	padding-left: 10px;
+	padding-bottom: 10px;
+}
+.visible-mini-cart-menu {
+	background-color: #ffe6f2;
+	display: block;
+}
 .visible-mini-cart {
 	background-color: #ffe6f2;
 	display: block;

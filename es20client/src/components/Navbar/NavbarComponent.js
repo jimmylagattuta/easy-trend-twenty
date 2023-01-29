@@ -70,9 +70,18 @@ class Navbar extends Component {
 						{this.props.cartItemsNoUser.length}
 					  </p>
 					  <div class="dropdown-content">
-						  <MiniMenu 
-						  	cartItemsNoUser={this.props.cartItemsNoUser}
-						  />
+					  	<div className="cart-and-checkout">
+						  	<MiniMenu 
+						  		cartItemsNoUser={this.props.cartItemsNoUser}
+							  />
+							<button
+								id="mini-nav-button-element"
+								className="ui button primary"
+								onClick={() => console.log('Checkout Cart Screen')}
+							>
+								<p className="mini-menu-select">Checkout</p>
+							</button>
+					  	</div>
 					  </div>
 					</div>
 				</div>
