@@ -1,4 +1,22 @@
 .add-to-cart-mini-menu {
+	border-color: #cccccc;
+	border-style: double;
+	margin-left: 10px;
+	margin-right: 10px;
+	justify-content: space-evenly;
+	align-items: center;
+	border-width: 9px thin;
+}
+
+.mini-menu-title {
+	margin-top: 40px;
 	font-size: 20px;
 	color: #6e5efe;
+
+
+}
+
+.visible-mini-cart {
+	background-color: #ffe6f2;
+	display: block;
 }

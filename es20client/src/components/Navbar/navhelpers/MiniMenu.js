@@ -35,6 +35,7 @@ class MiniMenu extends Component {
 			return (
 				<div className="add-to-cart-mini-menu">
 					<p className="mini-menu-title">Add To Cart!</p>
+					<div className="visible-mini-nav"></div>
 				</div>
 			);
 		}
