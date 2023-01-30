@@ -12,6 +12,7 @@ import './Navbar.css';
 import Logo from './fakelogo.png';
 
 class Navbar extends Component {
+	// changed all className to class 1/2923 7:49PM
 	state = {
 		clicked: false, popUpGo: false, redirect: false, redirectSettings: false, redirectLogout: false
 	}
@@ -77,15 +78,16 @@ class Navbar extends Component {
 			// console.log('this.props.cartItemsNoUser');
 			return (
 				<div id="cart-div-component">
-					<div class="dropdown">
-					  <i class="fab fa-opencart"></i>
+					<div className="dropdown">
+					  <i className="fab fa-opencart"></i>
 					  <p id="cart-length" className="p-cart-component">
 						{this.props.cartItemsNoUser.length}
 					  </p>
-					  <div class="dropdown-content">
+					  <div className="dropdown-content">
 					  	<div className="cart-and-checkout">
 						  	<MiniMenu 
 						  		cartItemsNoUser={this.props.cartItemsNoUser}
+						  		changeCartItemGuest={this.props.changeCartItemGuest}
 							/>
 							{this.renderCheckout(this.props.cartItemsNoUser)}
 					  	</div>
@@ -98,7 +100,7 @@ class Navbar extends Component {
 			// } else {
 			// 	console.log('!this.props.cartItemsNoUser');
 			// 	return (
-			// 		<div id="cart-div"><i class="fab fa-opencart"></i><p id="cart-length" className="p-cart">{0}</p></div>
+			// 		<div id="cart-div"><i className="fab fa-opencart"></i><p id="cart-length" className="p-cart">{0}</p></div>
 			// 	);	
 			// }
 		// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -107,12 +109,12 @@ class Navbar extends Component {
 		if (this.props.cart_items) {
 			return (
 				<div id="cart-div-component">
-					<div class="dropdown">
-					  <i class="fab fa-opencart"></i>
+					<div className="dropdown">
+					  <i className="fab fa-opencart"></i>
 					  <p id="cart-length" className="p-cart-component">
 						{this.props.cart_items.length}
 					  </p>
-					  <div class="dropdown-content">
+					  <div className="dropdown-content">
 					  <p>Hello</p>
 					  </div>
 					</div>
@@ -120,7 +122,7 @@ class Navbar extends Component {
 			);
 		} else {
 			return (
-				<div id="cart-div"><i class="fab fa-opencart"></i><p id="cart-length" className="p-cart">{0}</p></div>
+				<div id="cart-div"><i className="fab fa-opencart"></i><p id="cart-length" className="p-cart">{0}</p></div>
 			);	
 		}
 	}
@@ -143,12 +145,12 @@ class Navbar extends Component {
 								);
 						})}
 					</ul>
-					<Link id="show-cart" to="/cart">
+					<div id="show-cart" to="/cart">
 						<h1 id="add-hover" className="menu-turn-white">
 							{this.renderCartNavNoUser()}
 
 						</h1>
-					</Link>
+					</div>
 					{this.renderSignupButton()}
 				</div>
 			</nav>
@@ -247,7 +249,7 @@ class Navbar extends Component {
 				}
 				} id="add-hover-settings" className="make-row">
 						<Link to="/settingshome">
-							<h1 id="inner-element" className="user-settings-cog"><i class="fas fa-user-cog"></i></h1>
+							<h1 id="inner-element" className="user-settings-cog"><i className="fas fa-user-cog"></i></h1>
 						</Link>
 						<Link to="/settingshome">
 							<p id="inner-element" className="account-holder">{this.props.user_in_app_state.user.first_name}</p>
@@ -270,7 +272,7 @@ class Navbar extends Component {
 						} else {
 							return (
 								<li onClick={() => this.props.setScreen(item.screen)} key={index}>
-									<Link to={item.linkTo}><h1 id="add-hover" className="menu-turn-white"><i class={item.class}></i></h1></Link>
+									<Link to={item.linkTo}><h1 id="add-hover" className="menu-turn-white"><i className={item.class}></i></h1></Link>
 								</li>
 							);
 						}

@@ -8,16 +8,25 @@ import './ProductsHelper.css';
 // products will be fiilterable here, a more specific page than home
 class ProductsHelper extends Component{
 	state = { cartItemsNoUser: [] }
-	addToStateCart(p) {
-		this.setState({ cartItemsNoUser: [...this.state.cartItemsNoUser, p] });
-	}
+	// no longer active
+	// addToStateCart(p) {
+	// 	this.setState({ cartItemsNoUser: [...this.state.cartItemsNoUser, p] });
+	// }
 	renderAddToCartNoUser(p) {
+		// console.log('renderAddToCartNoUser', p);
+		const addCartBundle = {
+			productId: p.id,
+			quantity: 1,
+			product: p
+		};
 		if (!this.props.logged_in) {
+			// guest
 			return (
-				<Button onClick={() => this.props.addToCartNoUser(p)} id="add-hover-settings" className="make-row">
+				<Button onClick={() => this.props.addToCartNoUser(addCartBundle)} id="add-hover-settings" className="make-row">
 					Add to Cart
 				</Button>
 			);
+			// user
 		} else {
 			<AddToCartHelper addToCart={this.props.addToCart} loggedIn={this.props.loggedIn} p={p}  />
 		}

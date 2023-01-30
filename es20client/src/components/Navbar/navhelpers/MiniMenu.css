@@ -26,6 +26,7 @@ h2.mini-menu-title {
 	align-self: center;
 	background-color: transparent;
 	border: none;
+	margin: 5px;
 }
 #plus-minus {
 	font-size: 26px;
@@ -89,7 +90,7 @@ h2.mini-menu-title {
   transform: translateY(4px);
 }
 #button-minus:active {
-  background-color: red;
+  background-color: #F88379;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }

@@ -133,15 +133,54 @@ class NavigationBridge extends Component {
       });
     // this.setState({ cart: [...this.state.cart, item ] });
   }
-  addToCartNoUser(item) {
-    this.setState({ cartItemsNoUser: [...this.state.cartItemsNoUser, item] });
+  addToCartNoUser(addCartBundle) {
+    // console.log('addToCartNoUser from ProductHelpers MiniMenu addCartBundle', addCartBundle);
+    // check if product in cart, add one if there, add bundle if not
+
+    // not
+
+    // present
+  }
+  changeCartItemGuest(operation, cartItemBundle, cartItemId) {
+    console.log('changeCartItemGuest', operation, cartItemBundle);
+    if (operation === "+") {
+    // let updatedList = this.state.cartItemsNoUser.map(item => 
+    //   {
+    //     if (item.productId == cartItemId){
+    //       return {...item, quantity: item.quantity + 1}; //gets everything that was already in item, and updates "done"
+    //     }
+    //     return item; // else return unmodified item 
+    // });
+    // this.setState({ cartItemsNoUser: updatedList });
+
+    } else {
+      // check if the last one and render accordingly
+      // this.setState(prevState => ({
+      //     prevState.cartItemsNoUser[cartItemId];
+      //     cartItemsNoUser: {
+      //         ...prevState.cartItemsNoUser,
+      //         [prevState.cartItemsNoUser[cartItemId].quantity]: [prevState.cartItemsNoUser[cartItemId].quantity - 1
+      //     },
+      // }));
+    }
   }
   render() {  
-    // console.log('NavigationBridge props state', this.props, this.state);
+    console.log('NavigationBridge state', this.state);
     return (
       <div>
           <div className="App">
-            <NavbarComponent screen={this.state.screen} setScreen={this.setScreen.bind(this)} user_in_app_state={this.state.user_in_app_state} setUserObject={this.setUserObject.bind(this)} navigateScreen={this.navigateScreen.bind(this)} cart_items={this.state.cart_items} addToCart={this.addToCart.bind(this)} cartItemsNoUser={this.state.cartItemsNoUser} addToCartNoUser={this.addToCartNoUser.bind(this)} />
+            <NavbarComponent
+              screen={this.state.screen}
+              setScreen={this.setScreen.bind(this)}
+              user_in_app_state={this.state.user_in_app_state}
+              setUserObject={this.setUserObject.bind(this)}
+              navigateScreen={this.navigateScreen.bind(this)}
+              cart_items={this.state.cart_items}
+              addToCart={this.addToCart.bind(this)}
+              cartItemsNoUser={this.state.cartItemsNoUser}
+              addToCartNoUser={this.addToCartNoUser.bind(this)}
+              changeCartItemGuest={this.changeCartItemGuest.bind(this)}
+            />
             <h1>(...under construction... fake products)</h1>
             <Route 
               path="/homescreen" 

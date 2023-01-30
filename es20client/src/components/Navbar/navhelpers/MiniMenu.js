@@ -3,33 +3,40 @@ import './MiniMenu.css';
 
 class MiniMenu extends Component {
 	renderItems(items) {
-		console.log('renderItems/MiniMenu props', this.props);
-		return items.map((item) => {
-			console.log("item ~> ", item);
+		// console.log('renderItems/MiniMenu props', this.props);
+		return items.map((item, id) => {
+			// console.log("item ~> ", item);
+			const product = item.product;
 			return (
-				<div className="add-to-cart-mini-menu-cart-items" key={item.name}>
+				<div className="add-to-cart-mini-menu-cart-items" key={product.id}>
 					<div className="space-out-quantity-and-buttons">
 						<div className="cart-traits">
 					        <img
-					          src={item.image}
+					          src={product.image}
 					          alt="Product"
 					          height="60"
 						    />
-							<h2 className="mini-menu-title">{item.title.slice(0, 60)}</h2>
+							<h2 className="mini-menu-title">{product.title.slice(0, 60)}{" "}.{" "}.{" "}.</h2>
 						</div>
 						<div className="mini-nav-card">
 							<div className="row-container">
 								<div className="right-floated-content">
 									<button
 										id="mini-nav-button-element"
-										onClick={() => console.log('- Cart', item)}
+										onClick={() => {
+											console.log('- Cart', item)
+											this.props.changeCartItemGuest("-", item, id)
+										}}
 									>
 										<p id="button-minus" className="mini-menu-select">-</p>
 									</button>
 									<button
 										id="mini-nav-button-element"
 
-										onClick={() => console.log('+ Cart', item)}
+										onClick={() => {
+											console.log('+ Cart', item);
+											this.props.changeCartItemGuest("+", item, id);
+										}}
 									>
 										<p id="button-plus" className="mini-menu-select">+</p>
 										<p className="mini-menu-title">Quantity: {item.quantity}</p>
