@@ -11,15 +11,39 @@ class CartGuestHelper extends Component {
 		}
 
 	}
-	renderImageSize(image) {
+	renderImageSize(image, title) {
 		console.log('image.height', image.height);
-		return (
-	        <img
-	          src={image}
-	          alt="Product"
-	          width="140"
-		    />
-		);
+		const getMeta = (url, cb) => {
+		  const img = new Image();
+		  img.onload = () => cb(null, img);
+		  img.onerror = (err) => cb(err);
+		  img.src = url;
+		};
+		let imageHeight = null;
+		getMeta(image, (err, img) => {
+		  console.log(title);
+		  console.log(img.naturalWidth, img.naturalHeight);
+		  imageHeight = img.naturalHeight;
+		});
+		console.log('imageHeight', imageHeight);
+		  if (imageHeight < 481) {
+			return (
+		        <img
+		          src={image}
+		          alt="Product"
+		          width="240"
+			    />
+			);
+		  } else {
+		  	// doesn't run
+			return (
+		        <img
+		          src={image}
+		          alt="Product"
+		          width="140"
+			    />
+			);
+		  }
 	}
 	renderItems(items) {
 		console.log('renderItems/CartGuestHelper props', this.props);
@@ -30,7 +54,7 @@ class CartGuestHelper extends Component {
 				<div className="gc-add-to-cart-mini-menu-cart-items" key={product.id}>
 					<div className="gc-space-out-quantity-and-buttons">
 						<div className="gc-cart-traits">
-							{this.renderImageSize(product.image)}
+							{this.renderImageSize(product.image, product.title)}
 						    <div className="cart-attributes">
 								<h1 className="gc-mini-menu-title">{product.title}</h1>
 								<p className="gc-mini-menu-title">Rating: {product.rate}</p>
