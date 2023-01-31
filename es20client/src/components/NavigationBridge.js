@@ -10,6 +10,7 @@ import UserHome from './UserHome';
 import SettingsUserHome from './SettingsUserHome';
 import NavbarComponent from './Navbar/NavbarComponent';
 import NavigateToScreen from './helpers/NavigateToScreen';
+import CartGuestHelper from './helpers/CartGuestHelper';
 import jsonValues from './jsonValues';
 import './App.css';
 
@@ -136,9 +137,8 @@ class NavigationBridge extends Component {
   addToCartNoUser(item) {
     this.setState({ cartItemsNoUser: [...this.state.cartItemsNoUser, item] });
   }
-
   changeCartItemGuest(operation, cartItemBundle, cartItemId) {
-    console.log('changeCartItemGuest', operation, cartItemBundle);
+    // console.log('changeCartItemGuest', operation, cartItemBundle);
     if (operation === "+") {
       let updatedList = this.state.cartItemsNoUser.map((item, index) => 
         {
@@ -166,7 +166,6 @@ class NavigationBridge extends Component {
 
     }
   }
-
   render() {  
     console.log('NavigationBridge props state', this.props, this.state);
     return (
@@ -208,6 +207,17 @@ class NavigationBridge extends Component {
                                       navigateScreen={this.navigateScreen.bind(this)}
                                       user_in_app_state={this.state.user_in_app_state}
                                     />
+                      }
+            />
+            <Route 
+              path="/cartguest" 
+              render= { (props) => <CartGuestHelper
+                                      user_in_app_state={this.state.user_in_app_state}
+                                      setUserObject={this.setUserObject.bind(this)}
+                                      navigateScreen={this.navigateScreen.bind(this)}
+                                      cartItemsNoUser={this.state.cartItemsNoUser}
+                                      changeCartItemGuest={this.changeCartItemGuest.bind(this)}
+                                    /> 
                       }
             />
           </div>

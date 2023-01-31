@@ -14,7 +14,7 @@ import Logo from './fakelogo.png';
 class Navbar extends Component {
 	// changed all className to class 1/2923 7:49PM
 	state = {
-		clicked: false, popUpGo: false, redirect: false, redirectSettings: false, redirectLogout: false
+		clicked: false, popUpGo: false, redirect: false, redirectSettings: false, redirectLogout: false, redirectCartGuest: false
 	}
   	componentDidMount() {
   		// moving to higher component
@@ -61,7 +61,11 @@ class Navbar extends Component {
 				<Button
 					id="mini-nav-button-element"
 					// className="ui button primary"
-					onClick={() => console.log('Checkout Cart Screen')}
+					onClick={() => {
+						console.log('Checkout Cart Screen');
+						this.props.navigateScreen("guestcart");
+						this.setState({ redirectCartGuest: true });
+					}} 
 				>
 					<p className="mini-menu-select">Checkout</p>
 				</Button>
@@ -71,11 +75,6 @@ class Navbar extends Component {
 	renderCartNavNoUser() {
 		// console.log('renderCartNavNoUser props', this.props);
 		// console.log('renderCartNavNoUser state', this.state);
-		// removed 1/27/23 6:28
-		// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-			// if (this.props.cartItemsNoUser.length) {
-		// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-			// console.log('this.props.cartItemsNoUser');
 			return (
 				<div id="cart-div-component">
 					<div className="dropdown">
@@ -95,15 +94,6 @@ class Navbar extends Component {
 					</div>
 				</div>
 			);
-		// removed 1/27/23 6:27PM
-		// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-			// } else {
-			// 	console.log('!this.props.cartItemsNoUser');
-			// 	return (
-			// 		<div id="cart-div"><i className="fab fa-opencart"></i><p id="cart-length" className="p-cart">{0}</p></div>
-			// 	);	
-			// }
-		// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 	}
 	renderCartNav() {
 		if (this.props.cart_items) {
@@ -317,6 +307,10 @@ class Navbar extends Component {
 		if (this.state.redirectSettings) {
 			this.setState({ redirectSettings: false });
 			return <Redirect to="/settingshome" />;
+		}
+		if (this.state.redirectCartGuest) {
+			this.setState({ redirectCartGuest: false });
+			return <Redirect to="/cartguest" />;
 		}
 		if (this.state.redirectLogout) {
 			console.log('redirectingLogout props', this.props);
