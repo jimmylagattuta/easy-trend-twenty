@@ -140,13 +140,16 @@ class NavigationBridge extends Component {
     if (this.state.cartItemsNoUser.length === 0) {
       this.setState({ cartItemsNoUser: [...this.state.cartItemsNoUser, item] });
     } else {
-      let updatedList = this.state.cartItemsNoUser.map((item, index) => 
+      let updatedList = this.state.cartItemsNoUser.map((itemCart, index) => 
         {
-          if (index == cartItemId){
-            return {...item, quantity: item.quantity + 1}; //gets everything that was already in item, and updates "done"
+          if (index === cartItemId){
+            return {...itemCart, quantity: itemCart.quantity + 1}; //gets everything that was already in item, and updates "done"
+          } else {
+            return itemCart; // else return unmodified item 
           }
-          return item; // else return unmodified item 
       });
+      updatedList.push(item);
+      console.log('updatedList', updatedList);
       this.setState({ cartItemsNoUser: updatedList });
     }
 

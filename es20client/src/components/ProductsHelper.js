@@ -30,6 +30,10 @@ class ProductsHelper extends Component{
 					    	console.log('item renderAddToCartNoUser', item);
 					    	if (item.productId === p.id) {
 								this.props.addToCartNoUser(addCartBundle, index);
+					    	} else {
+					    		console.log('new item', addCartBundle);
+					    		console.log('index', index);
+					    		this.props.addToCartNoUser(addCartBundle, index + 1);
 					    	}
 					    });
 					} else {
