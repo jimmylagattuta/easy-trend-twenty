@@ -24,15 +24,15 @@ class ProductsHelper extends Component{
 
 			return (
 				<Button onClick={() => {
-					console.log('cart items', this.props);
+					// console.log('cart items', this.props);
 					if (this.props.cartItemsNoUser.length > 0) {
 					    let updatedList = this.props.cartItemsNoUser.map((item, index) => {
-					    	console.log('item renderAddToCartNoUser', item);
+					    	// console.log('item renderAddToCartNoUser', item);
 					    	if (item.productId === p.id) {
 								this.props.addToCartNoUser(addCartBundle, index);
 					    	} else {
-					    		console.log('new item', addCartBundle);
-					    		console.log('index', index);
+					    		// console.log('new item', addCartBundle);
+					    		// console.log('index', index);
 					    		this.props.addToCartNoUser(addCartBundle, index + 1);
 					    	}
 					    });
@@ -74,7 +74,7 @@ class ProductsHelper extends Component{
 		}		
 	}
 	render() {
-		console.log('ProductsHelper jsx props', this.props);
+		// console.log('ProductsHelper jsx props', this.props);
 		// console.log('ProductsHelper jsx state', this.state);
 		return (
 			<div className="products-list">

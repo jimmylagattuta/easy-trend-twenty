@@ -135,8 +135,8 @@ class NavigationBridge extends Component {
     // this.setState({ cart: [...this.state.cart, item ] });
   }
   addToCartNoUser(item, cartItemId) {
-    console.log('item', item);
-    console.log('cartItemId', cartItemId);
+    // console.log('item', item);
+    // console.log('cartItemId', cartItemId);
     if (this.state.cartItemsNoUser.length === 0) {
       this.setState({ cartItemsNoUser: [...this.state.cartItemsNoUser, item] });
     } else {
@@ -184,7 +184,7 @@ class NavigationBridge extends Component {
     }
   }
   render() {  
-    console.log('NavigationBridge props state', this.props, this.state);
+    // console.log('NavigationBridge props state', this.props, this.state);
     return (
       <div>
           <div className="App">
