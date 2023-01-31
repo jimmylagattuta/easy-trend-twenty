@@ -133,14 +133,10 @@ class NavigationBridge extends Component {
       });
     // this.setState({ cart: [...this.state.cart, item ] });
   }
-  addToCartNoUser(addCartBundle) {
-    // console.log('addToCartNoUser from ProductHelpers MiniMenu addCartBundle', addCartBundle);
-    // check if product in cart, add one if there, add bundle if not
-
-    // not
-
-    // present
+  addToCartNoUser(item) {
+    this.setState({ cartItemsNoUser: [...this.state.cartItemsNoUser, item] });
   }
+
   changeCartItemGuest(operation, cartItemBundle, cartItemId) {
     console.log('changeCartItemGuest', operation, cartItemBundle);
     if (operation === "+") {
@@ -164,8 +160,9 @@ class NavigationBridge extends Component {
       // }));
     }
   }
+
   render() {  
-    console.log('NavigationBridge state', this.state);
+    // console.log('NavigationBridge props state', this.props, this.state);
     return (
       <div>
           <div className="App">
