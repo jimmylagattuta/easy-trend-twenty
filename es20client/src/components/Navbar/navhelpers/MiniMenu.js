@@ -2,6 +2,17 @@ import React, { Component } from 'react';
 import './MiniMenu.css';
 
 class MiniMenu extends Component {
+
+	renderMinusSignCartItem(item) {
+		console.log('renderMinusSignCartItem');
+		console.log('item', item);
+		if (item.quantity === 1) {
+			return <p id="red-delete-button-minus" className="red-delete-button">Delete</p>;
+		} else {
+			return <p id="button-minus" className="mini-menu-select">-</p>;
+		}
+
+	}
 	renderItems(items) {
 		// console.log('renderItems/MiniMenu props', this.props);
 		return items.map((item, id) => {
@@ -25,10 +36,10 @@ class MiniMenu extends Component {
 										id="mini-nav-button-element"
 										onClick={() => {
 											console.log('- Cart', item)
-											this.props.changeCartItemGuest("-", item, id)
+											this.props.changeCartItemGuest("-", item, id);
 										}}
 									>
-										<p id="button-minus" className="mini-menu-select">-</p>
+										{this.renderMinusSignCartItem(item)}										
 									</button>
 									<button
 										id="mini-nav-button-element"

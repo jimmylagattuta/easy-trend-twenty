@@ -140,32 +140,30 @@ class NavigationBridge extends Component {
   changeCartItemGuest(operation, cartItemBundle, cartItemId) {
     console.log('changeCartItemGuest', operation, cartItemBundle);
     if (operation === "+") {
-    let updatedList = this.state.cartItemsNoUser.map((item, index) => 
-      {
-        console.log('item', item);
-        console.log('item.quantity', item.quantity);
-        console.log('item.quantity + 1', item.quantity + 1);
-        console.log('item.productId', item.productId);
-        console.log('cartItemId', cartItemId);
-
-        if (index == cartItemId){
-          return {...item, quantity: item.quantity + 1}; //gets everything that was already in item, and updates "done"
-        }
-        return item; // else return unmodified item 
-    });
-    console.log('updatedList', updatedList);
-
-    this.setState({ cartItemsNoUser: updatedList });
+      let updatedList = this.state.cartItemsNoUser.map((item, index) => 
+        {
+          if (index == cartItemId){
+            return {...item, quantity: item.quantity + 1}; //gets everything that was already in item, and updates "done"
+          }
+          return item; // else return unmodified item 
+      });
+      this.setState({ cartItemsNoUser: updatedList });
 
     } else {
-      // check if the last one and render accordingly
-      // this.setState(prevState => ({
-      //     prevState.cartItemsNoUser[cartItemId];
-      //     cartItemsNoUser: {
-      //         ...prevState.cartItemsNoUser,
-      //         [prevState.cartItemsNoUser[cartItemId].quantity]: [prevState.cartItemsNoUser[cartItemId].quantity - 1
-      //     },
-      // }));
+      if (cartItemBundle.quantity === 1) {
+        const filteredArray = this.state.cartItemsNoUser.filter((item, index) => index !== cartItemId);
+        this.setState({ cartItemsNoUser: filteredArray });
+      } else {
+        let updatedList = this.state.cartItemsNoUser.map((item, index) => 
+          {
+            if (index == cartItemId){
+              return {...item, quantity: item.quantity - 1}; //gets everything that was already in item, and updates "done"
+            }
+            return item; // else return unmodified item 
+        });
+        this.setState({ cartItemsNoUser: updatedList });
+      }
+
     }
   }
 

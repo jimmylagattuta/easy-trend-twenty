@@ -3,7 +3,8 @@ h2.mini-menu-title {
 }
 .space-out-quantity-and-buttons {
 	display: flex;
-	gap: calc(100vw / 5.5);
+  flex: 1;
+  justify-content: space-between;
 }
 .cart-traits {
 	display: flex;
@@ -66,6 +67,24 @@ h2.mini-menu-title {
 	border-radius: 15px;
 	box-shadow: 0 6px #999;
 }
+#red-delete-button-minus {
+	padding: 10xp;
+	background-color: red;
+	opacity: 75%;
+	height: 30px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 15px 10px;
+    font-size: 12px;
+	text-align: center;
+	cursor: pointer;
+	outline: none;
+	color: #fff;
+	border: none;
+	border-radius: 15px;
+	box-shadow: 0 6px #999;
+}
 #button-plus {
 	padding: 10xp;
 	background-color: green;
@@ -94,6 +113,11 @@ h2.mini-menu-title {
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
+#red-delete-button-minus:active {
+  background-color: #F88379;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
 .plus-minus-button {
 	padding: 4px 10px;
 	border-radius: 4px;
@@ -108,6 +132,17 @@ h2.mini-menu-title {
 .mini-menu-select {
 	font-size: 16px;
 	color: white;
+	padding-top: 3px;
+	padding-right: 6px;
+	padding-left: 6px;
+	padding-bottom: 6px;
+    align-items: flex-start;
+	justify-content: flex-start;
+}
+
+.red-delete-button {
+	font-size: 8px;
+	color: red;
 	padding-top: 3px;
 	padding-right: 6px;
 	padding-left: 6px;
