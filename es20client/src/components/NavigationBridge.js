@@ -140,14 +140,22 @@ class NavigationBridge extends Component {
   changeCartItemGuest(operation, cartItemBundle, cartItemId) {
     console.log('changeCartItemGuest', operation, cartItemBundle);
     if (operation === "+") {
-    // let updatedList = this.state.cartItemsNoUser.map(item => 
-    //   {
-    //     if (item.productId == cartItemId){
-    //       return {...item, quantity: item.quantity + 1}; //gets everything that was already in item, and updates "done"
-    //     }
-    //     return item; // else return unmodified item 
-    // });
-    // this.setState({ cartItemsNoUser: updatedList });
+    let updatedList = this.state.cartItemsNoUser.map((item, index) => 
+      {
+        console.log('item', item);
+        console.log('item.quantity', item.quantity);
+        console.log('item.quantity + 1', item.quantity + 1);
+        console.log('item.productId', item.productId);
+        console.log('cartItemId', cartItemId);
+
+        if (index == cartItemId){
+          return {...item, quantity: item.quantity + 1}; //gets everything that was already in item, and updates "done"
+        }
+        return item; // else return unmodified item 
+    });
+    console.log('updatedList', updatedList);
+
+    this.setState({ cartItemsNoUser: updatedList });
 
     } else {
       // check if the last one and render accordingly
@@ -162,7 +170,7 @@ class NavigationBridge extends Component {
   }
 
   render() {  
-    // console.log('NavigationBridge props state', this.props, this.state);
+    console.log('NavigationBridge props state', this.props, this.state);
     return (
       <div>
           <div className="App">
