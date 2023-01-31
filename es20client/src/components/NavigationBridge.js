@@ -134,8 +134,22 @@ class NavigationBridge extends Component {
       });
     // this.setState({ cart: [...this.state.cart, item ] });
   }
-  addToCartNoUser(item) {
-    this.setState({ cartItemsNoUser: [...this.state.cartItemsNoUser, item] });
+  addToCartNoUser(item, cartItemId) {
+    console.log('item', item);
+    console.log('cartItemId', cartItemId);
+    if (this.state.cartItemsNoUser.length === 0) {
+      this.setState({ cartItemsNoUser: [...this.state.cartItemsNoUser, item] });
+    } else {
+      let updatedList = this.state.cartItemsNoUser.map((item, index) => 
+        {
+          if (index == cartItemId){
+            return {...item, quantity: item.quantity + 1}; //gets everything that was already in item, and updates "done"
+          }
+          return item; // else return unmodified item 
+      });
+      this.setState({ cartItemsNoUser: updatedList });
+    }
+
   }
   changeCartItemGuest(operation, cartItemBundle, cartItemId) {
     // console.log('changeCartItemGuest', operation, cartItemBundle);
@@ -150,7 +164,7 @@ class NavigationBridge extends Component {
       this.setState({ cartItemsNoUser: updatedList });
 
     } else {
-      if (cartItemBundle.quantity === 1) {
+      if (cartItemBundle.quantity === 0) {
         const filteredArray = this.state.cartItemsNoUser.filter((item, index) => index !== cartItemId);
         this.setState({ cartItemsNoUser: filteredArray });
       } else {

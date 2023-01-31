@@ -63,7 +63,7 @@ class HomeScreen extends Component {
 		return (
 			<div className="App">
 				<h1>Home Headquarters</h1>
-				<ProductsHelper products={this.props.products} addToCart={this.props.addToCart.bind(this)} loggedIn={false} addToCartNoUser={this.props.addToCartNoUser} />
+				<ProductsHelper products={this.props.products} addToCart={this.props.addToCart.bind(this)} loggedIn={false} addToCartNoUser={this.props.addToCartNoUser} cartItemsNoUser={this.props.cartItemsNoUser} />
 
 			</div>
 		);

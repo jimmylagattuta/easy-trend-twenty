@@ -5,7 +5,7 @@
 
 .gc-add-to-cart-mini-menu-cart-items {
 /*	background: linear-gradient(90deg, rgb(73,63,252,1) 0%, rgba(110, 94, 254) 100%);*/
-    margin: 15px;
+    margin: 35px;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -35,26 +35,25 @@
 .gc-cart-traits {
 	display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
 	justify-content: center;
 	padding-left: 15px;
-	padding-top: 10px;
-	margin: 20px;
+	padding-top: 60px;
 }
 
 .gc-mini-menu-title {
 	font-size: 18px;
 	color: black;
-	padding-top: 2px;
+	padding-top: 5px;
 	padding-right: 10px;
 	padding-left: 60px;
-	padding-bottom: 2px;
+	padding-bottom: 10px;
 
 }
 
 .gc-row-container {
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
 }
 
 .gc-right-floated-content {
@@ -99,38 +98,12 @@
   transform: translateY(4px);
 }
 
-#gc-button-minus {
-	padding: 10xp;
-	background-color: red;
-	opacity: 95%;
-	height: 30px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	padding: 10px 10px;
-    font-size: 30px;
-	text-align: center;
-	cursor: pointer;
-	outline: none;
-	color: #fff;
-	border: none;
-	border-radius: 30px;
-	box-shadow: 0 6px #999;
-}
-
-#gc-button-minus:active {
-  background-color: #F88379;
-  box-shadow: 0 5px #666;
-  transform: translateY(4px);
-}
-
 .gc-mini-menu-select {
 	font-size: 16px;
 	color: black;
 	padding-top: 3px;
 	padding-right: 6px;
 	padding-left: 6px;
-	margin-left: 15px;
 	padding-bottom: 6px;
     align-items: flex-start;
 	justify-content: flex-start;
@@ -144,8 +117,8 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	padding: 16px 10px;
-    font-size: 14px;
+	padding: 20px 10px;
+    font-size: 30px;
 	text-align: center;
 	cursor: pointer;
 	outline: none;
@@ -173,6 +146,10 @@
 
 .gc-mini-nav-card {
 	display: flex;
-	margin: 10px;
 }
 
+#gc-button-minus {
+  background-color: #F88379;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}

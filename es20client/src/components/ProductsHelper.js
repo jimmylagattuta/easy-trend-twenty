@@ -21,8 +21,22 @@ class ProductsHelper extends Component{
 		};
 		if (!this.props.logged_in) {
 			// guest
+
 			return (
-				<Button onClick={() => this.props.addToCartNoUser(addCartBundle)} id="add-hover-settings" className="make-row">
+				<Button onClick={() => {
+					console.log('cart items', this.props);
+					if (this.props.cartItemsNoUser.length > 0) {
+					    let updatedList = this.props.cartItemsNoUser.map((item, index) => {
+					    	console.log('item renderAddToCartNoUser', item);
+					    	if (item.productId === p.id) {
+								this.props.addToCartNoUser(addCartBundle, index);
+					    	}
+					    });
+					} else {
+						this.props.addToCartNoUser(addCartBundle);
+					}
+				}}
+				id="add-hover-settings" className="make-row">
 					Add to Cart
 				</Button>
 			);
@@ -56,7 +70,7 @@ class ProductsHelper extends Component{
 		}		
 	}
 	render() {
-		// console.log('ProductsHelper jsx props', this.props);
+		console.log('ProductsHelper jsx props', this.props);
 		// console.log('ProductsHelper jsx state', this.state);
 		return (
 			<div className="products-list">
