@@ -59,9 +59,9 @@
 
 .gc-right-floated-content {
 	display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-	justify-content: flex-start;
+  flex-direction: row;
+  align-items: flex-start;
+	justify-content: space-between;
 	min-width: calc(100vw / 8);
 }
 

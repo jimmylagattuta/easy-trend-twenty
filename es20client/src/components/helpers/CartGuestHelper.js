@@ -75,7 +75,7 @@ class CartGuestHelper extends Component {
 									>
 										<p id="gc-button-plus">+</p>
 									</div>
-									<p className="gc-mini-menu-title">{item.quantity}</p>
+									<p>{item.quantity}</p>
 									<div
 										onClick={() => {
 											console.log('- Cart', item)
@@ -101,11 +101,15 @@ class CartGuestHelper extends Component {
 			);
 		});
 	}
+	renderStripeApi() {
+		console.log('Ready for Stripe API');
+	}
 	render() {
 		console.log('CartGuestHelper props', this.props);
 		return (
 			<div className="guest-cart">
 				{this.renderItems(this.props.cartItemsNoUser)}
+				{this.renderStripeApi()}
 			</div>
 		);
 	}

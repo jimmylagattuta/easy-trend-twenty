@@ -27,9 +27,19 @@ class ProductsHelper extends Component{
 					if (this.props.cartItemsNoUser.length > 0) {
 					    let updatedList = this.props.cartItemsNoUser.map((item, index) => {
 					    	if (item.productId === p.id) {
+					    		console.log('item.productId === p.id');
+					    		console.log('item.productId', item.productId);
+					    		console.log('p.id', p.id);
+					    		console.log('addCartBundle', addCartBundle);
+					    		console.log('index', index);
 								this.props.addToCartNoUser(addCartBundle, index);
 					    	} else {
-					    		this.props.addToCartNoUser(addCartBundle, index + 1);
+					    		console.log('item.productId !== p.id');
+					    		console.log('item.productId', item.productId);
+					    		console.log('p.id', p.id);
+					    		console.log('addCartBundle', addCartBundle);
+					    		console.log('index', index);
+					    		this.props.addToCartNoUser(addCartBundle);
 					    	}
 					    });
 					} else {

@@ -14,7 +14,7 @@ class MiniMenu extends Component {
 
 	}
 	renderItems(items) {
-		// console.log('renderItems/MiniMenu props', this.props);
+		console.log('renderItems/MiniMenu props', this.props);
 		return items.map((item, id) => {
 			// console.log("item ~> ", item);
 			const product = item.product;
