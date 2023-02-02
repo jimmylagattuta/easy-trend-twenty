@@ -135,7 +135,8 @@ class NavigationBridge extends Component {
     // this.setState({ cart: [...this.state.cart, item ] });
   }
   addToCartNoUser(item, cartItemId) {
-    // console.log('item', item);
+    console.log('item NavigationBrideg addToCartNoUser', item);
+    console.log('cartItemId NavigationBrideg addToCartNoUser', cartItemId);
     if (this.state.cartItemsNoUser.length === 0) {
       console.log("a) + 1 ", item.product.title);
       this.setState({ cartItemsNoUser: [...this.state.cartItemsNoUser, item] });
@@ -164,7 +165,7 @@ class NavigationBridge extends Component {
 
   }
   changeCartItemGuest(operation, cartItemBundle, cartItemId) {
-    // console.log('changeCartItemGuest', operation, cartItemBundle);
+    console.log('changeCartItemGuest', operation, cartItemBundle);
     if (operation === "+") {
       let updatedList = this.state.cartItemsNoUser.map((item, index) => 
         {

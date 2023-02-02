@@ -80,7 +80,7 @@ class CartGuestHelper extends Component {
 									<p id="quantity-cart-guest-p">{item.quantity}</p>
 									<div
 										onClick={() => {
-											// console.log('- Cart', item);
+											// console.log('- Cart CartGuestHelper', item);
 											this.props.changeCartItemGuest("-", item, id);
 										}}
 									>

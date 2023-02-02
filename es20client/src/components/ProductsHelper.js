@@ -9,7 +9,7 @@ import './ProductsHelper.css';
 class ProductsHelper extends Component{
 	state = { cartItemsNoUser: [] }
 	renderAddToCartNoUser(p) {
-		// console.log('renderAddToCartNoUser', p);
+		console.log('renderAddToCartNoUser', p);
 		const addCartBundle = {
 			productId: p.id,
 			quantity: 1,
