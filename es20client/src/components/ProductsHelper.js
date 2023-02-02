@@ -8,10 +8,6 @@ import './ProductsHelper.css';
 // products will be fiilterable here, a more specific page than home
 class ProductsHelper extends Component{
 	state = { cartItemsNoUser: [] }
-	// no longer active
-	// addToStateCart(p) {
-	// 	this.setState({ cartItemsNoUser: [...this.state.cartItemsNoUser, p] });
-	// }
 	renderAddToCartNoUser(p) {
 		// console.log('renderAddToCartNoUser', p);
 		const addCartBundle = {
@@ -27,18 +23,19 @@ class ProductsHelper extends Component{
 					if (this.props.cartItemsNoUser.length > 0) {
 					    let updatedList = this.props.cartItemsNoUser.map((item, index) => {
 					    	if (item.productId === p.id) {
-					    		console.log('item.productId === p.id');
-					    		console.log('item.productId', item.productId);
-					    		console.log('p.id', p.id);
-					    		console.log('addCartBundle', addCartBundle);
-					    		console.log('index', index);
+					    		// console.log('item.productId === p.id');
+					    		// console.log('item.productId', item.productId);
+					    		// console.log('p.id', p.id);
+					    		// console.log('addCartBundle', addCartBundle);
+					    		// console.log('index', index);
 								this.props.addToCartNoUser(addCartBundle, index);
 					    	} else {
-					    		console.log('item.productId !== p.id');
-					    		console.log('item.productId', item.productId);
-					    		console.log('p.id', p.id);
-					    		console.log('addCartBundle', addCartBundle);
-					    		console.log('index', index);
+					    		// console.log('item.productId !== p.id');
+					    		// console.log('item.productId', item.productId);
+					    		// console.log('p.id', p.id);
+					    		// console.log('addCartBundle', addCartBundle);
+					    		// // looks ok
+					    		// console.log('index', index);
 					    		this.props.addToCartNoUser(addCartBundle);
 					    	}
 					    });

@@ -73,8 +73,8 @@ class Navbar extends Component {
 		}
 	}
 	renderCartNavNoUser() {
-		// console.log('renderCartNavNoUser props', this.props);
-		// console.log('renderCartNavNoUser state', this.state);
+		console.log('renderCartNavNoUser props', this.props);
+		console.log('renderCartNavNoUser state', this.state);
 			return (
 				<div id="cart-div-component">
 					<div className="dropdown">
