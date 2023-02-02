@@ -99,7 +99,7 @@ class CartGuestHelper extends Component {
 		console.log('Ready for Stripe API');
 		return (
 			<div>
-				<h1>Click for StripeAPI Popup Checkout Screen</h1>
+				<h1>(...Will be Button for StripeAPI(debit/credit)...)</h1>
 			</div>
 		);
 	}

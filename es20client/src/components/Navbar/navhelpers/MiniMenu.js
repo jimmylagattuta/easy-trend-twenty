@@ -16,7 +16,7 @@ class MiniMenu extends Component {
 	renderItems(items) {
 		// console.log('renderItems/MiniMenu props', this.props);
 		return items.map((item, id) => {
-			console.log("item Mini Menu~> ", item);
+			// console.log("item Mini Menu~> ", item);
 			const product = item.product;
 			return (
 				<div className="add-to-cart-mini-menu-cart-items" key={product.id}>
@@ -35,8 +35,8 @@ class MiniMenu extends Component {
 									<button
 										id="mini-nav-button-element"
 										onClick={() => {
-											console.log('- Cart MiniMenu', item);
-											console.log('id', id);
+											// console.log('- Cart MiniMenu', item);
+											// console.log('id', id);
 											this.props.changeCartItemGuest("-", item, id);
 										}}
 									>
@@ -64,7 +64,7 @@ class MiniMenu extends Component {
 	}
 	render() {
 		if (this.props.cartItemsNoUser.length > 0) {
-			console.log('MiniMenu has rendered');
+			// console.log('MiniMenu has rendered');
 			return (
 				<div>
 					{this.renderItems(this.props.cartItemsNoUser)}

@@ -135,10 +135,10 @@ class NavigationBridge extends Component {
     // this.setState({ cart: [...this.state.cart, item ] });
   }
   addToCartNoUser(item, cartItemId) {
-    console.log('item NavigationBrideg addToCartNoUser', item);
-    console.log('cartItemId NavigationBrideg addToCartNoUser', cartItemId);
+    // console.log('item NavigationBrideg addToCartNoUser', item);
+    // console.log('cartItemId NavigationBrideg addToCartNoUser', cartItemId);
     if (this.state.cartItemsNoUser.length === 0) {
-      console.log("a) + 1 ", item.product.title);
+      // console.log("a) + 1 ", item.product.title);
       this.setState({ cartItemsNoUser: [...this.state.cartItemsNoUser, item] });
     } else {
       let found = false;
@@ -165,7 +165,7 @@ class NavigationBridge extends Component {
 
   }
   changeCartItemGuest(operation, cartItemBundle, cartItemId) {
-    console.log('changeCartItemGuest', operation, cartItemBundle);
+    // console.log('changeCartItemGuest', operation, cartItemBundle);
     if (operation === "+") {
       let updatedList = this.state.cartItemsNoUser.map((item, index) => 
         {
@@ -181,18 +181,23 @@ class NavigationBridge extends Component {
         const filteredArray = this.state.cartItemsNoUser.filter((item, index) => index !== cartItemId);
         this.setState({ cartItemsNoUser: filteredArray });
       } else {
-        let updatedList = this.state.cartItemsNoUser.map((item, index) => 
+      let found = false;
+        let updatedList = this.state.cartItemsNoUser.map((itemC, index) => 
           {
-            if (item.quantity === 1) {
-
-            } else {
-
-              if (index === cartItemId){
-                return {...item, quantity: item.quantity - 1}; //gets everything that was already in item, and updates "done"
-              }
-              return item; // else return unmodified item 
-            }
+          if (index == cartItemId || cartItemBundle.productId == itemC.productId){
+            // console.log('adding 1 to a cart item');
+            found = true;
+            return {...itemC, quantity: itemC.quantity - 1}; //gets everything that was already in itemC, and updates "done"
+          } else {
+            // console.log('returning cart item unchanged');
+            return {...itemC}; 
+            
+          } 
         });
+        if (!found) {
+          // console.log('adding item not in cart');
+          updatedList.push(cartItemBundle);
+        }
         this.setState({ cartItemsNoUser: updatedList });
       }
 
