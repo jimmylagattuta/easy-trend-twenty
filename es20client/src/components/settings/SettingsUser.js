@@ -6,13 +6,13 @@ class SettingsUser extends React.Component {
 
 
   render() {
-    console.log('SettingsUser props', this.props);
+    // console.log('SettingsUser props', this.props);
     return <div className="ui relaxed divided list">SettingsUser</div>;
   }
 }
 
 const mapStateToProps = (state) => {
-  console.log('state ~>', state);
+  // console.log('state ~>', state);
   return { items: state.items };
 }
 

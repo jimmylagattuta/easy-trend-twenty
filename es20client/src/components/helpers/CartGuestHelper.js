@@ -12,7 +12,7 @@ class CartGuestHelper extends Component {
 
 	}
 	renderImageSize(image, title) {
-		console.log('image.height', image.height);
+		// console.log('image.height', image.height);
 		const getMeta = (url, cb) => {
 		  const img = new Image();
 		  img.onload = () => cb(null, img);
@@ -21,11 +21,11 @@ class CartGuestHelper extends Component {
 		};
 		let imageHeight = null;
 		getMeta(image, (err, img) => {
-		  console.log(title);
-		  console.log(img.naturalWidth, img.naturalHeight);
+		  // console.log(title);
+		  // console.log(img.naturalWidth, img.naturalHeight);
 		  imageHeight = img.naturalHeight;
 		});
-		console.log('imageHeight', imageHeight);
+		// console.log('imageHeight', imageHeight);
 		  if (imageHeight < 481) {
 			return (
 		        <img
@@ -46,7 +46,7 @@ class CartGuestHelper extends Component {
 		  }
 	}
 	renderItems(items) {
-		console.log('renderItems/CartGuestHelper props', this.props);
+		// console.log('renderItems/CartGuestHelper props', this.props);
 		return items.map((item, id) => {
 			const product = item.product;
 			return (
@@ -66,34 +66,28 @@ class CartGuestHelper extends Component {
 
 
 
+								<h2 className="gc-mini-menu-title">Price: ${product.price}</h2>
+								<h2 className="gc-mini-menu-title">Tax: ${(product.price) * (item.quantity)}</h2>
 								<div className="gc-right-floated-content">
 									<div
 										onClick={() => {
-											console.log('+ Cart', item);
+											// console.log('+ Cart', item);
 											this.props.changeCartItemGuest("+", item, id);
 										}}
 									>
 										<p id="gc-button-plus">+</p>
 									</div>
-									<p>{item.quantity}</p>
+									<p id="quantity-cart-guest-p">{item.quantity}</p>
 									<div
 										onClick={() => {
-											console.log('- Cart', item)
+											// console.log('- Cart', item);
 											this.props.changeCartItemGuest("-", item, id);
 										}}
 									>
 										{this.renderMinusSignCartItem(item)}										
 									</div>
 								</div>
-								<h2 className="gc-mini-menu-title">Price: ${product.price}</h2>
-								<h2 className="gc-mini-menu-title">Tax: ${(product.price) * (item.quantity)}</h2>
 								<h2 className="gc-mini-menu-title">Total: ${((product.price*item.quantity)*0.3) + (product.price*item.quantity)}</h2>
-
-
-
-
-
-
 							</div>
 						</div>
 					</div>
@@ -103,9 +97,14 @@ class CartGuestHelper extends Component {
 	}
 	renderStripeApi() {
 		console.log('Ready for Stripe API');
+		return (
+			<div>
+				<h1>Click for StripeAPI Popup Checkout Screen</h1>
+			</div>
+		);
 	}
 	render() {
-		console.log('CartGuestHelper props', this.props);
+		// console.log('CartGuestHelper props', this.props);
 		return (
 			<div className="guest-cart">
 				{this.renderItems(this.props.cartItemsNoUser)}

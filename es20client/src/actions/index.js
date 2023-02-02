@@ -7,7 +7,7 @@ import CSRFToken from './cookies';
 
 //Action creator
 export const selectItem = (item) => {
-  console.log('selectItem', item);
+  // console.log('selectItem', item);
 	//Return an action
 	return {
 		type: 'ITEM_SELECTED',
@@ -16,13 +16,13 @@ export const selectItem = (item) => {
 };
 
 export const fetchItems = () => async dispatch => {
-  console.log('fetchItems');
+  // console.log('fetchItems');
 		const response = await jsonPlaceholder.get('api/notes');
 		dispatch({ type: 'FETCH_ITEMS', payload: response })
 	};
 
 export const signUpUser = (values) => async dispatch => {
-		console.log('SignUpUser! values', values);
+		// console.log('SignUpUser! values', values);
 		const token = values.password;
 		const response = await signUp.post('/users', values,
 		{
@@ -34,7 +34,7 @@ export const signUpUser = (values) => async dispatch => {
 };
 
 export const signInUser = (values) => async dispatch => {
-		console.log('signInUser! values', values);
+		// console.log('signInUser! values', values);
 		const token = values.password;
 		const response = await signUp.post('/sessions/login', values,
 		{
@@ -46,7 +46,7 @@ export const signInUser = (values) => async dispatch => {
 };
 
 export const signOutUser = (values) => async dispatch => {
-		console.log('signOutUser! values', values);
+		// console.log('signOutUser! values', values);
 		const token = values.password;
 		const response = await signUp.post('/sessions/logout', values,
 		{
@@ -58,7 +58,7 @@ export const signOutUser = (values) => async dispatch => {
 };
 
 export const addUser = (data, cookie) => (dispatch) => {
-	console.log('addUser data cookie', data, cookie);
+	// console.log('addUser data cookie', data, cookie);
 	const userCreds = data;
 	// console.log('document', document);
   axios
@@ -82,7 +82,7 @@ if (response.data.status === 500) {
 };
 
 export const loginUser = (data) => (dispatch) => {
-	console.log('loginUser', data);
+	// console.log('loginUser', data);
   axios
     .post(
       'http://localhost:3000/api/v1/sessions/login',
@@ -95,7 +95,7 @@ export const loginUser = (data) => (dispatch) => {
 if (response.data.status === 401) {
         throw new Error(response.data.error)
       }
-    console.log('loginUser Dispatch before LOGIN_USER response ', response);
+    // console.log('loginUser Dispatch before LOGIN_USER response ', response);
 
 dispatch({type: 'LOGIN_USER', user: response.data.user.data.attributes});
       dispatch({ type: 'CLEAR_ERROR' });
@@ -106,7 +106,7 @@ dispatch({type: 'LOGIN_USER', user: response.data.user.data.attributes});
 };
 
 export const logoutUser = (data) => (dispatch) => {
-  console.log('logoutUser data', data);
+  // console.log('logoutUser data', data);
   axios
     .delete(
     	'http://localhost:3000/api/v1/sessions/logout',
@@ -120,7 +120,7 @@ export const logoutUser = (data) => (dispatch) => {
     );
 };
 export const fetchCookie = () => async (dispatch) => {
-  console.log('fetchCookie');
+  // console.log('fetchCookie');
 		await fetch('/api/v1/home/all_items',
 		    {   method: "GET", 
 		       'credentials': 'include',
@@ -140,7 +140,7 @@ export const fetchCookie = () => async (dispatch) => {
 }
 
 export const fetchLoginStatus = () => (dispatch) => {
-  console.log('fetchLoginStatus');
+  // console.log('fetchLoginStatus');
     fetch("/logged_in").then((res) => {
       if (res.ok) {
         res.json().then((user) => {
@@ -153,49 +153,3 @@ export const fetchLoginStatus = () => (dispatch) => {
       }
     })
 };
-
-// old axios call insidefetchLoginStatus()
-  // axios
-  //   .get(
-  //     'http://localhost:3000/api/v1/sessions/logged_in',
-  //     { withCredentials: true, crossDomain : true },
-  //     { headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'}}
-  // )
-  //   .then((response) => {
-  //     console.log('response', response);
-  //   dispatch({ type: 'FETCH_COOKIE', payload: response })
-
-  //     if (response.data.logged_in) {
-  //       dispatch({
-  //         type: 'LOGIN_USER',
-  //         user: response.data.user.data.attributes,
-  //       });
-  //       dispatch({ type: 'CLEAR_ERROR' });
-  //     }
-  //   })
-  //   .catch((error) =>
-  //     dispatch({ type: 'ADD_ERROR', error: 'Something went wrong. Try again.' })
-  //   );
-
-
-// export const fetchLoginStatus = () => (dispatch) => {
-//   axios
-//     .get(
-//     	// 'http://localhost:3000/api/v1/sessions/logged_in',
-//     	// "https://easytrendapi.herokuapp.com/api/v1/sessions/logged_in",
-//     	"https://easytrendapi.herokuapp.com/api/v1/home/all_items",
-//     	{ withCredentials: true })
-//     .then((response) => {
-//     	console.log('response', response);
-//       if (response.data.logged_in) {
-//         dispatch({
-//           type: 'LOGIN_USER',
-//           user: response.data.user,
-//         });
-//         dispatch({ type: 'CLEAR_ERROR' });
-//       }
-//     })
-//     .catch((error) =>
-//       dispatch({ type: 'ADD_ERROR', error: 'Something went wrong. Try again.' })
-//     );
-// };

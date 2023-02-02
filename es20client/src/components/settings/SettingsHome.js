@@ -20,7 +20,7 @@ class SettingsHome extends React.Component {
   handleEvent(){  
   } 
 	render() { 
-		console.log('SettingsHome props', this.props);
+		// console.log('SettingsHome props', this.props);
 		if (this.props.user_in_app_state.user) {
 			const rank = this.props.user_in_app_state.user;
 			if (rank.super_admin) {

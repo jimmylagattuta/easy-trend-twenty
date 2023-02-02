@@ -10,10 +10,10 @@ class SuperAdminSettings extends React.Component {
       }).then((res) => {
         if (res.ok) {
           res.json().then((super_get_bundle) => {
-            console.log('super_get_bundle ~>', super_get_bundle);
+            // console.log('super_get_bundle ~>', super_get_bundle);
           });
         } else {
-          console.log('super_get_bundle not ok res', res);
+          // console.log('super_get_bundle not ok res', res);
           // console.log('setAuthenticated(true)');
           // reimplement
           // setAuthenticated(true);
@@ -51,13 +51,13 @@ class SuperAdminSettings extends React.Component {
   }
 
   render() {
-    console.log('SuperAdminSettings props', this.props);
+    // console.log('SuperAdminSettings props', this.props);
     return <div className="ui relaxed divided list">SuperAdminSettings</div>;
   }
 }
 
 const mapStateToProps = (state) => {
-  console.log('state ~>', state);
+  // console.log('state ~>', state);
   return { items: state.items };
 }
 

@@ -14,7 +14,7 @@ class MiniMenu extends Component {
 
 	}
 	renderItems(items) {
-		console.log('renderItems/MiniMenu props', this.props);
+		// console.log('renderItems/MiniMenu props', this.props);
 		return items.map((item, id) => {
 			// console.log("item ~> ", item);
 			const product = item.product;
@@ -35,7 +35,7 @@ class MiniMenu extends Component {
 									<button
 										id="mini-nav-button-element"
 										onClick={() => {
-											console.log('- Cart', item)
+											// console.log('- Cart', item);
 											this.props.changeCartItemGuest("-", item, id);
 										}}
 									>
@@ -45,7 +45,7 @@ class MiniMenu extends Component {
 										id="mini-nav-button-element"
 
 										onClick={() => {
-											console.log('+ Cart', item);
+											// console.log('+ Cart', item);
 											this.props.changeCartItemGuest("+", item, id);
 										}}
 									>

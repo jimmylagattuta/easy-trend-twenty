@@ -1,3 +1,11 @@
+.gc-mini-cart-nav {
+	display: flex;
+}
+
+#quantity-cart-guest-p {
+	font-size: 25px;
+}
+
 .guest-cart-buttons {
 	display: flex;
 	flex-direction: row;
@@ -55,13 +63,16 @@
 .gc-row-container {
 	display: flex;
 	flex-direction: column;
+	justify-content: space-between;
+	margin-top: 35px;
+	margin-bottom: 35px;
 }
 
 .gc-right-floated-content {
 	display: flex;
   flex-direction: row;
   align-items: flex-start;
-	justify-content: space-between;
+	justify-content: space-evenly;
 	min-width: calc(100vw / 8);
 }
 

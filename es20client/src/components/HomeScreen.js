@@ -10,13 +10,6 @@ import {Row, Col, Container} from 'react-bootstrap';
 
 
 class HomeScreen extends Component {
-	// componentDidMount() {
-    // 	this.props.fetchCookie();
-    // 	console.log('this.getCSRFToken()', this.getCSRFToken());
-  	// }
-  	// getCSRFToken() {
-    // 	return unescape(document.cookie.split('=')[1]);
-	// }
 	renderProducts() {
 		// console.log('renderProducts', this.props);
 		if (this.props.products) {

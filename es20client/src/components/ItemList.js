@@ -35,13 +35,13 @@ class ItemList extends React.Component {
 	}
 
 	render() {
-		console.log('ItemList props', this.props);
+		// console.log('ItemList props', this.props);
 		return <div className="ui relaxed divided list">{this.renderList()}</div>;
 	}
 }
 
 const mapStateToProps = (state) => {
-	console.log('state ~>', state);
+	// console.log('state ~>', state);
 	return { items: state.items };
 }
 

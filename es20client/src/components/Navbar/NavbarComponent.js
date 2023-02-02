@@ -62,7 +62,7 @@ class Navbar extends Component {
 					id="mini-nav-button-element"
 					// className="ui button primary"
 					onClick={() => {
-						console.log('Checkout Cart Screen');
+						// console.log('Checkout Cart Screen');
 						this.props.navigateScreen("guestcart");
 						this.setState({ redirectCartGuest: true });
 					}} 
@@ -73,8 +73,8 @@ class Navbar extends Component {
 		}
 	}
 	renderCartNavNoUser() {
-		console.log('renderCartNavNoUser props', this.props);
-		console.log('renderCartNavNoUser state', this.state);
+		// console.log('renderCartNavNoUser props', this.props);
+		// console.log('renderCartNavNoUser state', this.state);
 			return (
 				<div id="cart-div-component">
 					<div className="dropdown">
@@ -150,7 +150,7 @@ class Navbar extends Component {
   		fetch('api/v1/logout', {method: "DELETE"})
   			.then(res => { 
 			        res.json().then((response) => {
-        				console.log('res not .ok ', response);
+        				// console.log('res not .ok ', response);
         				const resetUserInAppState = {
         					logged_in: false,
         					user: null
@@ -313,8 +313,8 @@ class Navbar extends Component {
 			return <Redirect to="/cartguest" />;
 		}
 		if (this.state.redirectLogout) {
-			console.log('redirectingLogout props', this.props);
-			console.log('redirectingLogout state', this.state);
+			// console.log('redirectingLogout props', this.props);
+			// console.log('redirectingLogout state', this.state);
 			this.setState({ redirectLogout: false });
 			// this is not necessary, redirect already goes to homescreen
 			return <Redirect to="/homescreen" />;

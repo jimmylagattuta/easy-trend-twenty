@@ -17,7 +17,7 @@ import errorReducer from './errorReducer';
 
 
 const selectedItemReducer = (selectedItem=null, action) => {
-	console.log('selectedItemReducer');
+	// console.log('selectedItemReducer');
 	if (action.type === 'ITEM_SELECTED') {
 		return action.payload;
 	}

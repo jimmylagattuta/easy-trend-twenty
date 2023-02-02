@@ -14,7 +14,7 @@ class Navbar extends Component {
 	}
 
 	handleClick = () => {
-		console.log('clicked');
+		// console.log('clicked');
 		this.setState({ clicked: !this.state.clicked });
 	}
 	renderNavHome() {
@@ -70,8 +70,8 @@ class Navbar extends Component {
 	}
 	  // ^ for Popup 'top left', 'top center', 'top right', 'right top', 'right center', 'right bottom', 'bottom left', 'bottom center', 'bottom right', 'left top', 'left center', 'left bottom', 'center center',
 	render() {
-		console.log('this.props Navbar ~>', this.props);
-		console.log('this.state Navbar ~>', this.state);
+		// console.log('this.props Navbar ~>', this.props);
+		// console.log('this.state Navbar ~>', this.state);
 		if (!this.props.user_object) {
 			return (
 				<div>
