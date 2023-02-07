@@ -6,13 +6,13 @@ class AddToCartHelper extends Component {
 		// console.log('AddToCartHelper', this.props);
 		if (this.props.loggedIn) {
 			return (
-				<Button onClick={() => this.props.addToCart(this.props.p)} id="add-hover-settings" className="make-row">
+				<Button onClick={() => this.props.addToCart(this.props.p.product)} id="add-hover-settings" className="make-row">
 					Add to Cart
 				</Button>
 			);
 		} else {
 			return (
-				<Button onClick={() => this.props.addToCart(this.props.p)} id="add-hover-settings" className="make-row">
+				<Button onClick={() => this.props.addToCart(this.props.p.product)} id="add-hover-settings" className="make-row">
 					Add to Cart
 				</Button>
 			);

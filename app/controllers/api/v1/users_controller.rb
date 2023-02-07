@@ -35,11 +35,20 @@ class Api::V1::UsersController < ApplicationController
 	    @current_user = User.find(session[:user_id] && cookies[:user_id]) if cookies[:user_id] && session[:user_id]
 	    if @current_user
 			products = Product.all
+		    cart_with_products_add = []
+		    products.each do |item|
+		    	x = {
+		    		productId: item.id,
+		    		quantity: item.quantity,
+		    		product: item,
+		    	}
+		    	cart_with_products_add.push(x)
+		    end
 			consumers = User.where(consumer: true)
 			employees = User.where(employee: true)
 			admins = User.where(admin: true)
 			super_admin_bundle = {
-				products: products,
+				products: cart_with_products_add,
 				consumers: consumers,
 				employees: employees,
 				admins: admins

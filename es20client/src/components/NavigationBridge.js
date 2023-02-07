@@ -44,7 +44,7 @@ class NavigationBridge extends Component {
     }).then((res) => {
       if (res.ok) {
         res.json().then((user) => {
-          // console.log('response logged_in ~>', user);
+          console.log('response logged_in ~>', user);
           // console.log('cart ~>', user.cart);
           // console.log('cart_items ~>', user.cart_items);
 
@@ -105,7 +105,9 @@ class NavigationBridge extends Component {
     this.setState({ screen: screen});
   }
   addToCart(item) {
-    // console.log('addToCart', item);
+    console.log('addToCart', item);
+    console.log('NavigationBridge state', this.state);
+    console.log('NavigationBridge props', this.props);
     const values = {
       // userObject: this.state.user_in_app_state,
       cartItem: item
@@ -123,7 +125,7 @@ class NavigationBridge extends Component {
         if (res.ok) {
           res.json().then((new_cart) => {
             // console.log('setCurrentUser(user)');
-            // console.log('api/v1/add_to_cart new_cart', new_cart);
+            console.log('api/v1/add_to_cart new_cart', new_cart);
             this.setState({ cart_items: new_cart.cart_items });
           });
         } else {
@@ -203,6 +205,45 @@ class NavigationBridge extends Component {
 
     }
   }
+    changeCartItemUser(operation, cartItemBundle, cartItemId) {
+    // console.log('changeCartItemGuest', operation, cartItemBundle);
+    if (operation === "+") {
+      let updatedList = this.state.cart_items.map((item, index) => 
+        {
+          if (index == cartItemId){
+            return {...item, quantity: item.quantity + 1}; //gets everything that was already in item, and updates "done"
+          }
+          return item; // else return unmodified item 
+      });
+      this.setState({ cart_items: updatedList });
+
+    } else {
+      if (cartItemBundle.quantity === 1) {
+        const filteredArray = this.state.cart_items.filter((item, index) => index !== cartItemId);
+        this.setState({ cart_items: filteredArray });
+      } else {
+      let found = false;
+        let updatedList = this.state.cart_items.map((itemC, index) => 
+          {
+          if (index == cartItemId || cartItemBundle.productId == itemC.productId){
+            // console.log('adding 1 to a cart item');
+            found = true;
+            return {...itemC, quantity: itemC.quantity - 1}; //gets everything that was already in itemC, and updates "done"
+          } else {
+            // console.log('returning cart item unchanged');
+            return {...itemC}; 
+            
+          } 
+        });
+        if (!found) {
+          // console.log('adding item not in cart');
+          updatedList.push(cartItemBundle);
+        }
+        this.setState({ cart_items: updatedList });
+      }
+
+    }
+  }
   render() {  
     console.log('NavigationBridge props state', this.props, this.state);
     return (
@@ -214,11 +255,12 @@ class NavigationBridge extends Component {
               user_in_app_state={this.state.user_in_app_state}
               setUserObject={this.setUserObject.bind(this)}
               navigateScreen={this.navigateScreen.bind(this)}
-              cart_items={this.state.cart_items}
               addToCart={this.addToCart.bind(this)}
               cartItemsNoUser={this.state.cartItemsNoUser}
               addToCartNoUser={this.addToCartNoUser.bind(this)}
               changeCartItemGuest={this.changeCartItemGuest.bind(this)}
+              changeCartItemUser={this.changeCartItemUser.bind(this)}
+              cart_items={this.state.cart_items}
             />
             <h1>(...under construction... fake products)</h1>
             <Route 

@@ -3,12 +3,23 @@ class Api::V1::ProductsController < ApplicationController
 
 	def all_products
 		products = Product.all
+	    cart_with_products_add = []
+	    products.each do |item|
+	    	x = {
+	    		productId: item.id,
+	    		quantity: item.quantity,
+	    		product: item,
+	    	}
+	    	cart_with_products_add.push(x)
+	    end
 
-		render json: products, status: :ok
+		render json: cart_with_products_add, status: :ok
 	end
 
 	def new_products
-		params["_json"].each do |item|
+		require "json"
+		file = File.open "/easy-trend-twenty/jsonValues.json"
+		file.each do |item|
 			x = Product.create(title: item["title"], quantity: item["quantity"], price: item["price"], category: item["category"], description: item["description"], image: item["image"], rate: item["rating"]["rate"], quantity: item["rating"]["count"])
 			if x.save
 				puts "*" * 100

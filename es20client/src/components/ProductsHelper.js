@@ -11,18 +11,19 @@ class ProductsHelper extends Component{
 	renderAddToCartNoUser(p) {
 		// console.log('renderAddToCartNoUser', p);
 		const addCartBundle = {
-			productId: p.id,
+			productId: p.product.id,
 			quantity: 1,
-			product: p
+			product: p.product
 		};
-		if (!this.props.logged_in) {
+		if (!this.props.loggedIn) {
 			// guest
+			console.log('guest');
 
 			return (
 				<Button onClick={() => {
 					if (this.props.cartItemsNoUser.length > 0) {
 					    let updatedList = this.props.cartItemsNoUser.map((item, index) => {
-					    	if (item.productId === p.id) {
+					    	if (item.productId === p.product.id) {
 					    		// console.log('item.productId === p.id');
 					    		// console.log('item.productId', item.productId);
 					    		// console.log('p.id', p.id);
@@ -49,22 +50,25 @@ class ProductsHelper extends Component{
 			);
 			// user
 		} else {
-			<AddToCartHelper addToCart={this.props.addToCart} loggedIn={this.props.loggedIn} p={p}  />
+			console.log('user');
+			return <AddToCartHelper addToCart={this.props.addToCart} loggedIn={this.props.loggedIn} p={p}  />;
 		}
 	}
 	renderData(products) {
 		if (products) {
 			return products.map((p, id) => {
+				// console.log('p', p);
+				// console.log('id', id);
 				return (
 					<div className="product-item" key={id}>
-						<p id="product-title">{p.title.slice(0, 30)}</p>
-						<p>${p.price}</p>
+						<p id="product-title">{p.product.title.slice(0, 30)}</p>
+						<p>${p.product.price}</p>
 				        <img
-				          src={p.image}
+				          src={p.product.image}
 				          alt="Product"
 				          height="130"
 					    />
-						<p id="product-description">{p.description.slice(0, 60)}</p>
+						<p id="product-description">{p.product.description.slice(0, 60)}</p>
 						{this.renderAddToCartNoUser(p)}
 					</div>
 				);
@@ -77,7 +81,7 @@ class ProductsHelper extends Component{
 		}		
 	}
 	render() {
-		// console.log('ProductsHelper jsx props', this.props);
+		console.log('ProductsHelper jsx props', this.props);
 		// console.log('ProductsHelper jsx state', this.state);
 		return (
 			<div className="products-list">
