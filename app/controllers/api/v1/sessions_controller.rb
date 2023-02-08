@@ -9,7 +9,20 @@
 	    	if carts.length > 0
 		    	cart = carts.find_by(status: "active")
 			    cart_items_list = cart.cart_items.all
-				render json: { logged_in: true, user: user, cart: cart, cart_items: cart_items_list }, status: :ok
+			    cart_with_products_add = []
+			    cart_items_list.each do |item|
+			    	x = {
+			    		productId: item.product_id,
+			    		quantity: item.quantity,
+			    		product: item.product,
+			    		new_cart_item: new_cart_item,
+			    		update_cart: update_cart
+			    	}
+			    	cart_with_products_add.push(x)
+			    end
+
+
+				render json: { logged_in: true, user: user, cart: cart, cart_items: cart_with_products_add }, status: :ok
 			else
 				render json: { logged_in: true, user: user, cart: [], cart_items: [] }, status: :ok
 			end

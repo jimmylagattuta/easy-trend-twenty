@@ -65,6 +65,8 @@ class NavigationBridge extends Component {
           }
         });
       } else {
+          console.log('response logged_in other ~>', res);
+
         // console.log('setAuthenticated(true)');
         // reimplement
         // setAuthenticated(true);

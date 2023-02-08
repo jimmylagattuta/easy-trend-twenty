@@ -22,10 +22,35 @@ class Api::V1::OrdersController < ApplicationController
 	    	# puts "1) update_cart.cart_items"
 	    	# puts update_cart.cart_items.inspect
 	    	new_cart_item = nil
-	    	if CartItem.find_by(user_id: @current_user.id, product_id: params['product_id'])
-	    		x = CartItem.find_by(user_id: @current_user.id, product_id: params_product_id)
+	    	# this was not found as a cart item already associated to the user
+	    	# puts "cart_items"
+	    	# puts update_cart.cart_items.all.inspect
+	    	puts "*" * 100
+	    	puts "params"
+	    	puts params.inspect
+	    	puts "params['cartItem']['id']id"
+	    	puts params["cartItem"]["id"]
+	    	cartItemProductId = params["cartItem"]["id"]
+	    	puts "*" * 100
+	    	# puts "update_cart.cart_items.where(product_id: params['product_id'])"
+	    	# puts update_cart.cart_items.where(product_id: params['product_id'])
+
+	    	# puts "update_cart.cart_items.find_by(product_id: params['product_id'])"
+	    	# puts update_cart.cart_items.find_by(product_id: params['product_id'])
+	    	if update_cart.cart_items.find_by(product_id: cartItemProductId)
+	    		puts "*" * 100
+	    		puts "cart item found!"
+	    		puts "*" * 100
+	    		x = CartItem.find_by(product_id: cartItemProductId)
 	    		x.quantity = x.quantity + 1
 	    		x.save
+	    		if x.save
+	    			puts "saved"
+	    		else
+	    			puts "error adding 1 to cart item"
+	    			puts x.errors.full_messages
+	    			# product has already been taken
+	    		end
 	    		cart_items_list = update_cart.cart_items.all
 			    cart_with_products_add = []
 			    puts "*" * 100
@@ -45,9 +70,9 @@ class Api::V1::OrdersController < ApplicationController
 			    	cart_items: cart_with_products_add
 			    }
 				render json: bundle, status: :ok
-    			puts "error add 1 to cart item"
-    			puts x.errors.full_messages
+    			# see comment above
 	    	else
+	    		puts "cart item not found"
 		    	new_cart_item = CartItem.new(user_id: @current_user.id, cart_id: update_cart.id, product_id: params_product_id, quantity: 1)
 		    	if new_cart_item.save
 		    		# puts "saved"
@@ -101,29 +126,5 @@ class Api::V1::OrdersController < ApplicationController
 		    puts new_cart_item.errors.full_messages
 			render json: bundle, status: :ok
 	    end
-
-
-		# 		render json: { cart: cart }
-		# 	else
-		# 		puts "*" * 100
-		# 		puts "add_to_cart, first cart"
-		# 		puts "params"
-		# 		puts params.inspect
-		# 		puts "*" * 100
-		# 		cart = []
-		# 		if @current_user.carts.find_by(status: "active")
-		# 			# puts "cart found"
-		# 			cart = @current_user.carts.find_by(status: "active")
-		# 			sii = params["cartItem"]["id"]
-		# 			item = CartItem.create(user_id: @current_user.id, cart_id: cart.id,shop_item_id: sii, quantity: 1)
-		# 		else
-		# 			# puts "no active cart"
-		# 			cart = Cart.create(user_id: @current_user.id, status: "active")
-		# 			item = CartItem.create(user_id: @current_user.id, cart_id: cart.id,shop_item_id: sii, quantity: 1)
-		# 		end
-
-		# 		render json: { cart: cart }
-		# 	end
-		# end
 	end
 end

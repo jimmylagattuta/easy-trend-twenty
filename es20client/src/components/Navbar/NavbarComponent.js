@@ -129,7 +129,7 @@ class Navbar extends Component {
 			);	
 		}
 	}
-	renderNavHome() {
+	renderNavHomeGuest() {
 		return (
 			<nav className="NavbarItems">
 				<div className="nav-div-group">
@@ -265,29 +265,30 @@ class Navbar extends Component {
 		// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 		return (
 			<nav className="NavbarItems">
-				{this.renderEasyTrend()}
-				<div className="menu-icon" onClick={this.handleClick}>
-					<i className={this.state.clicked ? 'fas fa-times' : 'fas fa-bars'}></i>
+				<div className="nav-div-group">
+					{this.renderEasyTrend()}
+					<div className="menu-icon" onClick={this.handleClick}>
+						<i className={this.state.clicked ? 'fas fa-times' : 'fas fa-bars'}></i>
+					</div>
+					<ul className={this.state.clicked ? 'nav-menu active' : 'nav-menu'}>
+						{MenuItems.map((item, index) => {
+							if (item.title === "Sign Up") {
+							} else {
+								return (
+									<li onClick={() => this.props.setScreen(item.screen)} key={index}>
+										<Link to={item.linkTo}><h1 id="add-hover" className="menu-turn-white"><i className={item.class}></i></h1></Link>
+									</li>
+								);
+							}
+						})}
+						<div id="show-cart">
+							<h1 id="add-hover" className="menu-turn-white">
+								{this.renderCartNav()}
+							</h1>
+						</div>
+						{this.renderSettingsButton()}
+					</ul>
 				</div>
-				<ul className={this.state.clicked ? 'nav-menu active' : 'nav-menu'}>
-					{MenuItems.map((item, index) => {
-						if (item.title === "Sign Up") {
-						} else {
-							return (
-								<li onClick={() => this.props.setScreen(item.screen)} key={index}>
-									<Link to={item.linkTo}><h1 id="add-hover" className="menu-turn-white"><i className={item.class}></i></h1></Link>
-								</li>
-							);
-						}
-					})}
-					<Link to="/cart">
-						<h1 id="add-hover" className="menu-turn-white">
-							{this.renderCartNav()}
-						</h1>
-					</Link>
-					{this.renderSettingsButton()}
-				</ul>
-
 			</nav>
 		);			
 		
@@ -303,7 +304,7 @@ class Navbar extends Component {
 		} else {
 			return (
 				<div>
-					{this.renderNavHome()}
+					{this.renderNavHomeGuest()}
 				</div>
 			);
 		} 
