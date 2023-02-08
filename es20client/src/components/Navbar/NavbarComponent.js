@@ -14,7 +14,7 @@ import Logo from './fakelogo.png';
 class Navbar extends Component {
 	// changed all className to class 1/2923 7:49PM
 	state = {
-		clicked: false, popUpGo: false, redirect: false, redirectSettings: false, redirectLogout: false, redirectCartGuest: false
+		clicked: false, popUpGo: false, redirect: false, redirectSettings: false, redirectLogout: false, redirectCartGuest: false, redirectCartUser: false
 	}
   	componentDidMount() {
   		// moving to higher component
@@ -55,16 +55,24 @@ class Navbar extends Component {
 			console.log('Operating System not Macitosh or Windows Signup Button');
 		}
 	}
+	sortCartRedirect() {
+		if (this.props.user_in_app_state.logged_in) {
+			this.props.navigateScreen("usercart");
+			this.setState({ redirectCartUser: true });
+		} else {
+			this.props.navigateScreen("guestcart");
+			this.setState({ redirectCartGuest: true });
+		}
+	}
 	renderCheckout(cart_items) {
-		if (cart_items.length) {
+		if (cart_items.length > 0) {
 			return (
 				<Button
 					id="mini-nav-button-element"
 					// className="ui button primary"
 					onClick={() => {
 						// console.log('Checkout Cart Screen');
-						this.props.navigateScreen("guestcart");
-						this.setState({ redirectCartGuest: true });
+						this.sortCartRedirect();
 					}} 
 				>
 					<p className="mini-menu-select">Checkout</p>
@@ -73,8 +81,8 @@ class Navbar extends Component {
 		}
 	}
 	renderCartNavNoUser() {
-		console.log('renderCartNavNoUser props', this.props);
-		console.log('renderCartNavNoUser state', this.state);
+		// console.log('renderCartNavNoUser props', this.props);
+		// console.log('renderCartNavNoUser state', this.state);
 			return (
 				<div id="cart-div-component">
 					<div className="dropdown">
@@ -116,7 +124,7 @@ class Navbar extends Component {
 						  		changeCartItemGuest={this.props.changeCartItemGuest}
 						  		changeCartItemUser={this.props.changeCartItemUser}
 							/>
-							{this.renderCheckout(this.props.cartItemsNoUser)}
+							{this.renderCheckout(this.props.cart_items)}
 					  	</div>
 					  </div>
 					</div>
@@ -310,8 +318,8 @@ class Navbar extends Component {
 		} 
 	}
 	render() {
-		// console.log('Navbar props ~>', this.props);
-		// console.log('Navbar state ~>', this.state);
+		console.log('Navbar props ~>', this.props);
+		console.log('Navbar state ~>', this.state);
 		// console.log('this.state Navbar ~>', this.state);
 		// console.log('navigator', navigator);
 		if (this.state.redirect) {
@@ -325,6 +333,10 @@ class Navbar extends Component {
 		if (this.state.redirectCartGuest) {
 			this.setState({ redirectCartGuest: false });
 			return <Redirect to="/cartguest" />;
+		}
+		if (this.state.redirectCartUser) {
+			this.setState({ redirectCartUser: false });
+			return <Redirect to="/cartuser" />;
 		}
 		if (this.state.redirectLogout) {
 			// console.log('redirectingLogout props', this.props);

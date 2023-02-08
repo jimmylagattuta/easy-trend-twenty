@@ -11,6 +11,8 @@ import SettingsUserHome from './SettingsUserHome';
 import NavbarComponent from './Navbar/NavbarComponent';
 import NavigateToScreen from './helpers/NavigateToScreen';
 import CartGuestHelper from './helpers/CartGuestHelper';
+import CartUserHelper from './helpers/CartUserHelper';
+
 import jsonValues from './jsonValues';
 import './App.css';
 
@@ -207,6 +209,7 @@ class NavigationBridge extends Component {
 
     }
   }
+
     changeCartItemUser(operation, cartItemBundle, cartItemId) {
     // console.log('changeCartItemGuest', operation, cartItemBundle);
     if (operation === "+") {
@@ -298,6 +301,17 @@ class NavigationBridge extends Component {
                                       navigateScreen={this.navigateScreen.bind(this)}
                                       cartItemsNoUser={this.state.cartItemsNoUser}
                                       changeCartItemGuest={this.changeCartItemGuest.bind(this)}
+                                    /> 
+                      }
+            />
+            <Route 
+              path="/cartuser" 
+              render= { (props) => <CartUserHelper
+                                      user_in_app_state={this.state.user_in_app_state}
+                                      setUserObject={this.setUserObject.bind(this)}
+                                      navigateScreen={this.navigateScreen.bind(this)}
+                                      cart_items={this.state.cart_items}
+                                      changeCartItemUser={this.changeCartItemUser.bind(this)}
                                     /> 
                       }
             />
