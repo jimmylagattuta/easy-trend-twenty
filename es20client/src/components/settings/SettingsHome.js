@@ -21,11 +21,11 @@ class SettingsHome extends React.Component {
   } 
 	render() { 
 		// console.log('SettingsHome props', this.props);
-		if (this.props.user_in_app_state.user) {
+		if (this.props.user_in_app_state.logged_in) {
 			const rank = this.props.user_in_app_state.user;
 			if (rank.super_admin) {
 				return (
-					<SuperAdminSettings user={this.props.user_in_app_state} />
+					<SuperAdminSettings user_in_app_state={this.props.user_in_app_state} />
 				);
 			}
 		}

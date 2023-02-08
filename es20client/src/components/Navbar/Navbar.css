@@ -150,8 +150,6 @@
 
 .popup-signout {
   margin: auto;
-  padding-top: 15px;
-  padding-left: 15px;
 }
 
 .menu-turn-white {
@@ -236,6 +234,7 @@ p.account-holder {
 	width: 70vw;
 	justify-content: end;
 	margin-right: 2rem;
+	align-items: center;
 }
 .nav-links {
 	color: white;

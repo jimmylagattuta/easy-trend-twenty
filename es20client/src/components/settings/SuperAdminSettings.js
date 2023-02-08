@@ -4,7 +4,8 @@ import { selectItem, fetchItems } from '../../actions';
 
 class SuperAdminSettings extends React.Component {
   componentDidMount() {
-    if (this.props.user.super_admin) {
+    console.log('SuperAdminSettings componentDidMount props', this.props);
+    if (this.props.user_in_app_state && this.props.user_in_app_state.super_admin) {
       fetch("api/v1/super_get", {
         credentials: "same-origin",
       }).then((res) => {
