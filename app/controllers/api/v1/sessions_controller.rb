@@ -15,8 +15,6 @@
 			    		productId: item.product_id,
 			    		quantity: item.quantity,
 			    		product: item.product,
-			    		new_cart_item: new_cart_item,
-			    		update_cart: update_cart
 			    	}
 			    	cart_with_products_add.push(x)
 			    end

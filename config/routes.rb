@@ -15,6 +15,7 @@ Rails.application.routes.draw do
       post "/new_products", to: "products#new_products"
       get "/get_cart", to: "orders#get_cart"
       post "/add_to_cart", to: "orders#add_to_cart"
+      post "/minus_from_cart", to: "orders#minus_from_cart"
     end
 
   end

@@ -109,9 +109,9 @@ class NavigationBridge extends Component {
     this.setState({ screen: screen});
   }
   addToCart(item) {
-    console.log('addToCart', item);
-    console.log('NavigationBridge state', this.state);
-    console.log('NavigationBridge props', this.props);
+    // console.log('addToCart', item);
+    // console.log('NavigationBridge state', this.state);
+    // console.log('NavigationBridge props', this.props);
     const values = {
       // userObject: this.state.user_in_app_state,
       cartItem: item
@@ -210,43 +210,64 @@ class NavigationBridge extends Component {
     }
   }
 
-    changeCartItemUser(operation, cartItemBundle, cartItemId) {
-    // console.log('changeCartItemGuest', operation, cartItemBundle);
+  changeCartItemUser(operation, cartItemBundle, cartItemId) {
+    console.log('changeCartItemUser', operation, cartItemBundle);
     if (operation === "+") {
-      let updatedList = this.state.cart_items.map((item, index) => 
-        {
-          if (index == cartItemId){
-            return {...item, quantity: item.quantity + 1}; //gets everything that was already in item, and updates "done"
+      const values = {
+        // userObject: this.state.user_in_app_state,
+        cartItem: cartItemBundle.product
+      }
+      // console.log('values ~~~>', values);
+      fetch("api/v1/add_to_cart", {
+          method: "POST",
+          credentials: 'same-origin',
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(values),
+        }).then((res) => {
+          // console.log('res add_to_cart', res);
+          if (res.ok) {
+            res.json().then((new_cart) => {
+              // console.log('setCurrentUser(user)');
+              console.log('api/v1/add_to_cart new_cart', new_cart);
+              this.setState({ cart_items: new_cart.cart_items });
+            });
+          } else {
+            res.json().then((errors) => {
+              // console.error('errors add_to_cart', errors);
+            });
           }
-          return item; // else return unmodified item 
-      });
-      this.setState({ cart_items: updatedList });
+        });
 
     } else {
-      if (cartItemBundle.quantity === 1) {
-        const filteredArray = this.state.cart_items.filter((item, index) => index !== cartItemId);
-        this.setState({ cart_items: filteredArray });
-      } else {
-      let found = false;
-        let updatedList = this.state.cart_items.map((itemC, index) => 
-          {
-          if (index == cartItemId || cartItemBundle.productId == itemC.productId){
-            // console.log('adding 1 to a cart item');
-            found = true;
-            return {...itemC, quantity: itemC.quantity - 1}; //gets everything that was already in itemC, and updates "done"
-          } else {
-            // console.log('returning cart item unchanged');
-            return {...itemC}; 
-            
-          } 
-        });
-        if (!found) {
-          // console.log('adding item not in cart');
-          updatedList.push(cartItemBundle);
-        }
-        this.setState({ cart_items: updatedList });
+      const values = {
+        // userObject: this.state.user_in_app_state,
+        cartItem: cartItemBundle.product
       }
-
+      // console.log('values ~~~>', values);
+      fetch("api/v1/minus_from_cart", {
+          method: "POST",
+          credentials: 'same-origin',
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(values),
+        }).then((res) => {
+          // console.log('res add_to_cart', res);
+          if (res.ok) {
+            res.json().then((new_cart) => {
+              // console.log('setCurrentUser(user)');
+              console.log('api/v1/minus_from_cart new_cart', new_cart);
+              this.setState({ cart_items: new_cart.cart_items });
+            });
+          } else {
+            res.json().then((errors) => {
+              // console.error('errors add_to_cart', errors);
+            });
+          }
+        });
+      
     }
   }
   render() {  
