@@ -28,8 +28,9 @@ class NavigationBridge extends Component {
            screen: "homescreen",
            products: null,
            cart_items: [],
-           cartItemsNoUser: []
-
+           cartItemsNoUser: [],
+           filteredProducts: [],
+           searchTerm: "Keyword"
         }  
       this.handleEvent = this.handleEvent.bind(this);  
   }
@@ -46,7 +47,7 @@ class NavigationBridge extends Component {
     }).then((res) => {
       if (res.ok) {
         res.json().then((user) => {
-          console.log('response logged_in ~>', user);
+          // console.log('response logged_in ~>', user);
           // console.log('cart ~>', user.cart);
           // console.log('cart_items ~>', user.cart_items);
 
@@ -67,7 +68,7 @@ class NavigationBridge extends Component {
           }
         });
       } else {
-          console.log('response logged_in other ~>', res);
+          // console.log('response logged_in other ~>', res);
 
         // console.log('setAuthenticated(true)');
         // reimplement
@@ -80,7 +81,7 @@ class NavigationBridge extends Component {
         if (res.ok) {
           res.json().then((response) => {
             // console.log('response all_products', response);
-            this.setState({ products: response });
+            this.setState({ products: response, filteredProducts: response });
           });
         } else {
           // console.log('res not ok all_products', res);
@@ -129,7 +130,7 @@ class NavigationBridge extends Component {
         if (res.ok) {
           res.json().then((new_cart) => {
             // console.log('setCurrentUser(user)');
-            console.log('api/v1/add_to_cart new_cart', new_cart);
+            // console.log('api/v1/add_to_cart new_cart', new_cart);
             this.setState({ cart_items: new_cart.cart_items });
           });
         } else {
@@ -211,7 +212,7 @@ class NavigationBridge extends Component {
   }
 
   changeCartItemUser(operation, cartItemBundle, cartItemId) {
-    console.log('changeCartItemUser', operation, cartItemBundle);
+    // console.log('changeCartItemUser', operation, cartItemBundle);
     if (operation === "+") {
       const values = {
         // userObject: this.state.user_in_app_state,
@@ -230,7 +231,7 @@ class NavigationBridge extends Component {
           if (res.ok) {
             res.json().then((new_cart) => {
               // console.log('setCurrentUser(user)');
-              console.log('api/v1/add_to_cart new_cart', new_cart);
+              // console.log('api/v1/add_to_cart new_cart', new_cart);
               this.setState({ cart_items: new_cart.cart_items });
             });
           } else {
@@ -258,7 +259,7 @@ class NavigationBridge extends Component {
           if (res.ok) {
             res.json().then((new_cart) => {
               // console.log('setCurrentUser(user)');
-              console.log('api/v1/minus_from_cart new_cart', new_cart);
+              // console.log('api/v1/minus_from_cart new_cart', new_cart);
               this.setState({ cart_items: new_cart.cart_items });
             });
           } else {
@@ -270,8 +271,51 @@ class NavigationBridge extends Component {
       
     }
   }
+  sortFilteredProducts(sort) {
+    console.log('sortFilteredProducts', sort);
+    console.log('this.state', this.state);
+    let searchTermConcat = "";
+    if (this.state.searchTerm === "Keyword") {
+        searchTermConcat = "" + sort;
+        console.log('searchTermConcat', searchTermConcat);
+        let newFilteredProducts = [];
+        this.state.filteredProducts.map((prod) => {
+          console.log('prod', prod);
+          let p = prod.product;
+            if (p.description.includes(searchTermConcat) || p.title.includes(searchTermConcat) || p.category.includes(searchTermConcat)) {
+              newFilteredProducts.push(prod);
+            }
+        });
+        this.setState({ filteredProducts: newFilteredProducts, searchTerm: searchTermConcat });
+    }
+    else if (sort === null) {
+        let newFilteredProducts = [];
+        this.state.products.map((prod) => {
+          console.log('prod', prod);
+          let p = prod.product;
+            const concatProduct = p.description + " " + p.title + " " + p.category;
+            const concatProductUpperCase = concatProduct.toUpperCase();
+            if (concatProductUpperCase.includes(sort.toUpperCase())) {
+              newFilteredProducts.push(prod);
+            }
+        });
+        this.setState({ filteredProducts: newFilteredProducts, searchTerm: searchTermConcat });
+    } else {
+        searchTermConcat = this.state.searchTerm + sort;
+        console.log('searchTermConcat', searchTermConcat);
+        let newFilteredProducts = [];
+        this.state.filteredProducts.map((prod) => {
+          console.log('prod', prod);
+          let p = prod.product;
+            if (p.description.includes(searchTermConcat) || p.title.includes(searchTermConcat) || p.category.includes(searchTermConcat)) {
+              newFilteredProducts.push(prod);
+            }
+        });
+        this.setState({ filteredProducts: newFilteredProducts, searchTerm: searchTermConcat });
+    }
+  }
   render() {  
-    console.log('NavigationBridge props state', this.props, this.state);
+    // console.log('NavigationBridge props state', this.props, this.state);
     return (
       <div>
           <div className="App">
@@ -291,7 +335,17 @@ class NavigationBridge extends Component {
             <h1>(...under construction... fake products)</h1>
             <Route 
               path="/homescreen" 
-              render= { (props) => <HomeScreen user_in_app_state={this.state.user_in_app_state} products={this.state.products} addToCart={this.addToCart.bind(this)} cartItemsNoUser={this.state.cartItemsNoUser} addToCartNoUser={this.addToCartNoUser.bind(this)} /> }
+              render= { (props) => <HomeScreen
+                                      user_in_app_state={this.state.user_in_app_state}
+                                      products={this.state.products}
+                                      addToCart={this.addToCart.bind(this)}
+                                      cartItemsNoUser={this.state.cartItemsNoUser}
+                                      addToCartNoUser={this.addToCartNoUser.bind(this)}
+                                      filteredProducts={this.state.filteredProducts}
+                                      sortFilteredProducts={this.sortFilteredProducts.bind(this)}
+                                      searchTerm={this.state.searchTerm}
+                                    /> 
+                      }
             />      
             <Route 
               path="/careershome" 

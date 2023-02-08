@@ -3,11 +3,15 @@ import { Link } from 'react-router-dom';
 import {Row, Col, Container} from 'react-bootstrap';
 import { Button } from "./Button";
 import AddToCartHelper from './helpers/AddToCartHelper';
+import KeywordFilter from './helpers/filterHelpers/KeywordFilter';
+import CheapestFilter from './helpers/filterHelpers/CheapestFilter';
+import RatingFilter from './helpers/filterHelpers/RatingFilter';
+import CategoryFilter from './helpers/filterHelpers/CategoryFilter';
 
 import './ProductsHelper.css';
 // products will be fiilterable here, a more specific page than home
 class ProductsHelper extends Component{
-	state = { cartItemsNoUser: [] }
+	state = { cartItemsNoUser: [], keyword: "" }
 	renderAddToCartNoUser(p) {
 		// console.log('renderAddToCartNoUser', p);
 		const addCartBundle = {
@@ -17,7 +21,7 @@ class ProductsHelper extends Component{
 		};
 		if (!this.props.loggedIn) {
 			// guest
-			console.log('guest');
+			// console.log('guest');
 
 			return (
 				<Button onClick={() => {
@@ -83,9 +87,22 @@ class ProductsHelper extends Component{
 	render() {
 		console.log('ProductsHelper jsx props', this.props);
 		// console.log('ProductsHelper jsx state', this.state);
+
 		return (
-			<div className="products-list">
-				{this.renderData(this.props.products)}
+			<div className="filter-product-div">
+				<div className="filter-div">
+					<KeywordFilter
+						filteredProducts={this.props.filteredProducts}
+						sortFilteredProducts={this.props.sortFilteredProducts}
+						searchTerm={this.props.searchTerm}
+					/>
+					<CheapestFilter filteredProducts={this.props.filteredProducts} />
+					<RatingFilter filteredProducts={this.props.filteredProducts} />
+					<CategoryFilter filteredProducts={this.props.filteredProducts} />
+				</div>
+				<div className="products-list">
+					{this.renderData(this.props.filteredProducts)}
+				</div>
 			</div>
 		);		
 	}

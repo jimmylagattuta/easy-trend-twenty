@@ -14,7 +14,7 @@ class MiniMenu extends Component {
 
 	}
 	renderItemsGuest(items) {
-		console.log('renderItemsGuest/MiniMenu props', this.props);
+		// console.log('renderItemsGuest/MiniMenu props', this.props);
 		return items.map((item, id) => {
 			// console.log("item Mini Menu~> ", item);
 			const product = item.product;
@@ -63,10 +63,10 @@ class MiniMenu extends Component {
 		});
 	}
 	renderItemsUser(items) {
-		console.log('renderItemsUser/MiniMenu props', this.props);
-		console.log('renderItemsUser/MiniMenu items', items);
+		// console.log('renderItemsUser/MiniMenu props', this.props);
+		// console.log('renderItemsUser/MiniMenu items', items);
 		return items.map((item, id) => {
-			console.log("item Mini Menu~> ", item);
+			// console.log("item Mini Menu~> ", item);
 			const product = item.product;
 			return (
 				<div className="add-to-cart-mini-menu-cart-items" key={product.id}>
@@ -113,23 +113,23 @@ class MiniMenu extends Component {
 		});
 	}
 	render() {
-		console.log('MiniMenu has rendered', this.props);
+		// console.log('MiniMenu has rendered', this.props);
 		if (this.props.cartItemsNoUser.length > 0) {
-			console.log('MiniMenu cartItemsNoUser!', this.props);
+			// console.log('MiniMenu cartItemsNoUser!', this.props);
 			return (
 				<div>
 					{this.renderItemsGuest(this.props.cartItemsNoUser)}
 				</div>
 			);
 		} else if (this.props.cart_items.length > 0) {
-			console.log('MiniMenu cart_items!', this.props);
+			// console.log('MiniMenu cart_items!', this.props);
 			return (
 				<div>
 					{this.renderItemsUser(this.props.cart_items)}
 				</div>
 			);
 		} else {		
-			console.log('MiniMenu Empty cart_items and cartItemsNoUser', this.props);
+			// console.log('MiniMenu Empty cart_items and cartItemsNoUser', this.props);
 			return (
 				<div className="add-to-cart-mini-menu">
 					<p className="mini-menu-title-menu">Add To Cart!</p>

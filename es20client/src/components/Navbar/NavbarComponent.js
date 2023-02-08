@@ -105,8 +105,8 @@ class Navbar extends Component {
 			);
 	}
 	renderCartNav() {
-		console.log('renderCartNav(User) props', this.props);
-		console.log('renderCartNav(User) state', this.state);
+		// console.log('renderCartNav(User) props', this.props);
+		// console.log('renderCartNav(User) state', this.state);
 		if (this.props.cart_items) {
 			// console.log('cart_items!', this.props);
 			return (
@@ -180,7 +180,7 @@ class Navbar extends Component {
           				setUserObject(resetUserInAppState, "homescreen", []);
           			})
           			.catch((err) => {
-          				console.log('err handleLogout', err);
+          				// console.log('err handleLogout', err);
           			});
 
       		})
@@ -318,8 +318,8 @@ class Navbar extends Component {
 		} 
 	}
 	render() {
-		console.log('Navbar props ~>', this.props);
-		console.log('Navbar state ~>', this.state);
+		// console.log('Navbar props ~>', this.props);
+		// console.log('Navbar state ~>', this.state);
 		// console.log('this.state Navbar ~>', this.state);
 		// console.log('navigator', navigator);
 		if (this.state.redirect) {

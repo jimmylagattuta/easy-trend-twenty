@@ -1,0 +1,14 @@
+.keyword-form {
+	font-size: 30px;
+}
+
+.filter-title {
+	font-size: 30px;
+}
+
+input {
+    font-family: sans-serif;
+    font-size: 30px;
+    line-height: 1.15;
+    margin: 0;
+}

@@ -1,3 +1,21 @@
+.filter-title {
+	padding-left: 15px;
+	padding-right: 15px;
+	font-size: 30px;
+}
+
+.filter-div {
+	display: flex;
+    margin-left: 65px;
+
+
+}
+
+.filter-product-div {
+	display: flex;
+    flex-direction: column;
+}
+
 #product-description {
 	font-size: 12px;
 }
