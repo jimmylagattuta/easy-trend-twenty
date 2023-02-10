@@ -3,7 +3,7 @@ import './RatingFilter.css';
 
 class RatingFilter extends Component {
 	render() {
-		console.log('RatingFilter Component props', this.props);
+		// console.log('RatingFilter Component props', this.props);
 		return (
 			<p className="filter-title">Rating(Best)</p>
 		);

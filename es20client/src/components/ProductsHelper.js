@@ -54,7 +54,7 @@ class ProductsHelper extends Component{
 			);
 			// user
 		} else {
-			console.log('user');
+			// console.log('user');
 			return <AddToCartHelper addToCart={this.props.addToCart} loggedIn={this.props.loggedIn} p={p}  />;
 		}
 	}
@@ -85,7 +85,7 @@ class ProductsHelper extends Component{
 		}		
 	}
 	render() {
-		console.log('ProductsHelper jsx props', this.props);
+		// console.log('ProductsHelper jsx props', this.props);
 		// console.log('ProductsHelper jsx state', this.state);
 
 		return (

@@ -12,7 +12,6 @@ import NavbarComponent from './Navbar/NavbarComponent';
 import NavigateToScreen from './helpers/NavigateToScreen';
 import CartGuestHelper from './helpers/CartGuestHelper';
 import CartUserHelper from './helpers/CartUserHelper';
-
 import jsonValues from './jsonValues';
 import './App.css';
 
@@ -30,7 +29,7 @@ class NavigationBridge extends Component {
            cart_items: [],
            cartItemsNoUser: [],
            filteredProducts: [],
-           searchTerm: "Keyword"
+           searchTerm: ""
         }  
       this.handleEvent = this.handleEvent.bind(this);  
   }
@@ -210,7 +209,6 @@ class NavigationBridge extends Component {
 
     }
   }
-
   changeCartItemUser(operation, cartItemBundle, cartItemId) {
     // console.log('changeCartItemUser', operation, cartItemBundle);
     if (operation === "+") {
@@ -271,47 +269,40 @@ class NavigationBridge extends Component {
       
     }
   }
-  sortFilteredProducts(sort) {
-    console.log('sortFilteredProducts', sort);
-    console.log('this.state', this.state);
+  sortFilteredProducts(user_filter_string, stateFilteredProducts) {
+    // console.log('sortFilteredProducts', user_filter_string);
+    // console.log('this.state', this.state);
     let searchTermConcat = "";
-    if (this.state.searchTerm === "Keyword") {
-        searchTermConcat = "" + sort;
-        console.log('searchTermConcat', searchTermConcat);
-        let newFilteredProducts = [];
-        this.state.filteredProducts.map((prod) => {
-          console.log('prod', prod);
-          let p = prod.product;
-            if (p.description.includes(searchTermConcat) || p.title.includes(searchTermConcat) || p.category.includes(searchTermConcat)) {
-              newFilteredProducts.push(prod);
-            }
-        });
-        this.setState({ filteredProducts: newFilteredProducts, searchTerm: searchTermConcat });
-    }
-    else if (sort === null) {
-        let newFilteredProducts = [];
-        this.state.products.map((prod) => {
-          console.log('prod', prod);
-          let p = prod.product;
-            const concatProduct = p.description + " " + p.title + " " + p.category;
-            const concatProductUpperCase = concatProduct.toUpperCase();
-            if (concatProductUpperCase.includes(sort.toUpperCase())) {
-              newFilteredProducts.push(prod);
-            }
-        });
-        this.setState({ filteredProducts: newFilteredProducts, searchTerm: searchTermConcat });
+    let newProducts = [];
+    if (user_filter_string.length < this.state.searchTerm.length) {
+      this.state.products.map((object) => {
+        // console.log('Products');
+        const stringConcat = object.product.title + object.product.description + object.product.category;
+        const stringConcatUpperCase = stringConcat.toUpperCase();
+        const sortUpperCase = user_filter_string.toUpperCase();
+        if (stringConcatUpperCase.includes(sortUpperCase)) {
+          newProducts.push(object);
+        }
+      });
+      this.setState({ filteredProducts: newProducts, searchTerm: user_filter_string });
     } else {
-        searchTermConcat = this.state.searchTerm + sort;
-        console.log('searchTermConcat', searchTermConcat);
-        let newFilteredProducts = [];
-        this.state.filteredProducts.map((prod) => {
-          console.log('prod', prod);
-          let p = prod.product;
-            if (p.description.includes(searchTermConcat) || p.title.includes(searchTermConcat) || p.category.includes(searchTermConcat)) {
-              newFilteredProducts.push(prod);
-            }
-        });
-        this.setState({ filteredProducts: newFilteredProducts, searchTerm: searchTermConcat });
+      stateFilteredProducts.map((object) => {
+        // console.log('filteredProducts');
+        const stringConcat = object.product.title + " " + object.product.description + " " + object.product.category;
+        // console.log('stringConcat', stringConcat);
+        const str = stringConcat.replace("'", "");
+        // console.log('str', str);
+        const stringConcatUpperCase = str.toUpperCase();
+        const sortUpperCase = user_filter_string.toUpperCase();
+        // console.log('object.product.title', object.product.title);
+        // console.log('user_filter_string', user_filter_string);
+        // console.log('stringConcatUpperCase.includes(sortUpperCase)', stringConcatUpperCase.includes(sortUpperCase));
+        if (stringConcatUpperCase.includes(sortUpperCase)) {
+          // console.log('2 object.product.title', object.product.title);
+          newProducts.push(object);
+        }
+      });
+      this.setState({ filteredProducts: newProducts, searchTerm: user_filter_string });
     }
   }
   render() {  

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Form, Field, useFormState } from 'react-final-form'
 import './KeywordFilter.css';
 
 class KeywordFilter extends Component {
@@ -86,31 +85,26 @@ class KeywordFilter extends Component {
 
 	}
 	onChangeSearchTerm(values) {
-		console.log('values', values);
+		// console.log('values', values);
 
 	}
 	// <Field type="checkbox" name="keyword" component="input" placeholder="Keyword" />
 	render() {
-		console.log('KeywordFilter Component props', this.props);
+	    const handleChange = (event) => {
+	    	// console.log('this.props KeywordFilter', this.props);
+	        this.props.sortFilteredProducts(event.target.value, this.props.filteredProducts);
+	    };
+
 		return (
 			<div className="keyword-filter-product-div">
 				<div className="keyword-filter-div">
-				<Form
-				    onSubmit={this.onChangeSearchTerm.bind(this)}
-				    render={({ handleSubmit }) => (
-				      <form onSubmit={handleSubmit}>
-				        <div>
-				          	<Field
-							    onChange={() => {
-							    	const formState = useFormState();
-							    	console.log('formState', formState);
-								    this.onChangeSearchTerm(formState);
-								}}
-				          		name="keyword" component="input" placeholder="Keyword" />
-				        </div>
-				      </form>
-				    )}
-				  />
+				    <form>
+				      <h1>Search Products:{" "}
+				        <input type="text" placeholder="Keyword"
+							onChange={handleChange}
+				        />
+				      </h1>
+				    </form>
 				</div>
 			</div>
 		);

@@ -3,7 +3,7 @@ import './CategoryFilter.css';
 
 class CategoryFilter extends Component {
 	render() {
-		console.log('CategoryFilter Component props', this.props);
+		// console.log('CategoryFilter Component props', this.props);
 		return (
 			<p className="filter-title">Category</p>
 		);
