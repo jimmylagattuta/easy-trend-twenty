@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link, Redirect, useHistory } from 'react-router-dom';
-import { Form, Field } from 'react-final-form'
+import { Form, Field } from 'react-final-form';
 import { signUpUser, signInUser, addUser, loginUser } from '../actions';
 import { connect } from 'react-redux';
 import './UserHome.css';

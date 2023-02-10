@@ -72,6 +72,9 @@ class HomeScreen extends Component {
 					addToCartNoUser={this.props.addToCartNoUser}
 					cartItemsNoUser={this.props.cartItemsNoUser}
 					searchTerm={this.props.searchTerm}
+					arrangeFilteredProducts={this.props.arrangeFilteredProducts}
+					category={this.props.category}
+					categorizeFilteredProducts={this.props.categorizeFilteredProducts}
 				/>
 
 			</div>

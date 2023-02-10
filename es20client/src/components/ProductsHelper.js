@@ -66,7 +66,7 @@ class ProductsHelper extends Component{
 				return (
 					<div className="product-item" key={id}>
 						<p id="product-title">{p.product.title.slice(0, 30)}</p>
-						<p>${p.product.price}</p>
+						<div className="price-rating-div"><p>${p.product.price}</p><p>Rating: {p.product.rate}</p></div>
 				        <img
 				          src={p.product.image}
 				          alt="Product"
@@ -96,9 +96,19 @@ class ProductsHelper extends Component{
 						sortFilteredProducts={this.props.sortFilteredProducts}
 						searchTerm={this.props.searchTerm}
 					/>
-					<CheapestFilter filteredProducts={this.props.filteredProducts} />
-					<RatingFilter filteredProducts={this.props.filteredProducts} />
-					<CategoryFilter filteredProducts={this.props.filteredProducts} />
+					<CategoryFilter
+						filteredProducts={this.props.filteredProducts}
+						category={this.props.category}
+						categorizeFilteredProducts={this.props.categorizeFilteredProducts}
+					/>
+					<CheapestFilter
+						filteredProducts={this.props.filteredProducts}
+						arrangeFilteredProducts={this.props.arrangeFilteredProducts}
+					/>
+					<RatingFilter
+						filteredProducts={this.props.filteredProducts}
+						arrangeFilteredProducts={this.props.arrangeFilteredProducts}
+					/>
 				</div>
 				<div className="products-list">
 					{this.renderData(this.props.filteredProducts)}

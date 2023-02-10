@@ -3,3 +3,17 @@
 	padding-right: 15px;
 	font-size: 30px;
 }
+
+.cheapest-div {
+	display: flex;
+	margin-left: 65px;
+}
+
+.cheapest-div input[type='checkbox'] {
+    font-family: sans-serif;
+    font-size: 40px;
+    line-height: 1.15;
+    margin: 0;
+    height: 20px;
+    width: 20px;
+}

@@ -29,7 +29,11 @@ class NavigationBridge extends Component {
            cart_items: [],
            cartItemsNoUser: [],
            filteredProducts: [],
-           searchTerm: ""
+           searchTerm: "",
+           cheapest: false,
+           top_rated: false,
+           categoryBoolean: false,
+           category: "None"
         }  
       this.handleEvent = this.handleEvent.bind(this);  
   }
@@ -305,6 +309,57 @@ class NavigationBridge extends Component {
       this.setState({ filteredProducts: newProducts, searchTerm: user_filter_string });
     }
   }
+  arrangeFilteredProducts(filter) {
+    // console.log('arrangeFilteredProducts');
+    if (filter === "cheapest") {
+      if (this.state.cheapest) {
+        const sorted = this.state.filteredProducts.sort((a, b) => {
+          // console.log('normal');
+            return a.product.id - b.product.id;
+        });
+        this.setState({ filteredProducts: sorted, cheapest: false });
+      } else {
+        const sorted = this.state.filteredProducts.sort((a, b) => {
+          // console.log('normal');
+            return a.product.price - b.product.price;
+        });
+        this.setState({ filteredProducts: sorted, cheapest: true });
+      }
+    } else {
+      if (this.state.top_rated) {
+        const sorted = this.state.filteredProducts.sort((a, b) => {
+          // console.log('normal');
+            return a.product.id - b.product.id;
+        });
+        this.setState({ filteredProducts: sorted, top_rated: false });
+      } else {
+        const sorted = this.state.filteredProducts.sort((a, b) => {
+          // console.log('top_rated');
+            return b.product.rate - a.product.rate;
+        });
+        this.setState({ filteredProducts: sorted, top_rated: true });
+      }
+    }
+  }
+  categorizeFilteredProducts(category, stateFilteredProducts) {
+    let newProducts = [];
+    if (category === "None") {
+      this.state.products.map((object) => {
+          newProducts.push(object);
+      });
+      this.setState({ filteredProducts: newProducts, category: "None" });
+    } else {
+      stateFilteredProducts.map((object) => {
+        // console.log('object', object);
+        const categoryLowerCase = category.toLowerCase();
+        // console.log('categoryLowerCase', categoryLowerCase);
+        if (object.product.category === categoryLowerCase) {
+          newProducts.push(object);
+        }
+      });
+      this.setState({ filteredProducts: newProducts, category: category });
+    }
+  }
   render() {  
     // console.log('NavigationBridge props state', this.props, this.state);
     return (
@@ -335,6 +390,9 @@ class NavigationBridge extends Component {
                                       filteredProducts={this.state.filteredProducts}
                                       sortFilteredProducts={this.sortFilteredProducts.bind(this)}
                                       searchTerm={this.state.searchTerm}
+                                      arrangeFilteredProducts={this.arrangeFilteredProducts.bind(this)}
+                                      categorizeFilteredProducts={this.categorizeFilteredProducts.bind(this)}
+                                      category={this.state.category}
                                     /> 
                       }
             />      
