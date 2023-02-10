@@ -20,7 +20,7 @@ class Api::V1::ProductsController < ApplicationController
 		require "json"
 		file = File.open "/easy-trend-twenty/jsonValues.json"
 		file.each do |item|
-			x = Product.create(title: item["title"], quantity: item["quantity"], price: item["price"], category: item["category"], description: item["description"], image: item["image"], rate: item["rating"]["rate"], quantity: item["rating"]["count"])
+			x = Product.create(title: item["title"], quantity: item["quantity"], price: item["price"], category: item["category"], description: item["description"], image: item["image"], rate: item["rating"]["rate"])
 			if x.save
 				puts "*" * 100
 				puts "ready"
