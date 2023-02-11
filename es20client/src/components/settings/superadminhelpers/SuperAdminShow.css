@@ -1,0 +1,14 @@
+#make-column {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.go-back-user {
+	display: flex;
+	margin-left: -264px;
+}
+
+.button-go-back {
+	width: 85px;
+}

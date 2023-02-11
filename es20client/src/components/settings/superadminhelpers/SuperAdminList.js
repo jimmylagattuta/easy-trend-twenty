@@ -5,15 +5,21 @@ import './SuperAdminList.css';
 
 class SuperAdminList extends Component {
 	renderUsers(users) {
-		console.log('renderProducts', this.props);
+		console.log('renderUsers', this.props);
 		if (this.props.users) {
 			return users.map((u, id) => {
 						return ( 
 							<div className="user-list">
 								<div className="super-admin-users-list" key={id}>
-									<p id="click-user">{u.first_name}{" "}{u.last_name}</p>
-									<p id="click-user">{u.email}{" "}</p>
-									<p id="click-user">ID:{" "}{u.id}</p>
+										<button onClick={() => this.props.chooseUser(u)}>
+											<p id="click-user">{u.first_name}{" "}{u.last_name}</p>
+										</button>
+										<button onClick={() => this.props.chooseUser(u)}>
+											<p id="click-user">{u.email}{" "}</p>
+										</button>
+										<button onClick={() => this.props.chooseUser(u)}>
+											<p id="click-user">ID:{" "}{u.id}</p>
+										</button>
 								</div>
 							</div>
 						)

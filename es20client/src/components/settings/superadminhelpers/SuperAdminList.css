@@ -1,3 +1,10 @@
+.make-row {
+	display: flex;
+	flex-direction: row;
+	align-items: baseline;
+	flex: 1;	
+}
+
 .inneruserdiv {
 	flex-direction: column;
 }
@@ -5,6 +12,7 @@
 .user-list {
 	display: flex;
 	flex-direction: column;
+  	align-self: stretch;
 	align-items: center;
 }
 
@@ -17,18 +25,18 @@
 
 }
 .super-admin-users-list:active * {
-  box-shadow: 0px 0px 0.5rem;
+  box-shadow: 0px 0px 0.2rem;
 
 
-  transform: translateY(4px);
+  transform: translateX(2.5px);
 }
 
 
 .super-admin-users-list p {
-	background: linear-gradient(90deg, #cfcdfe 0%, #e8e6ff 100%);
-
+	background: linear-gradient(90deg, #3e37fb 0%, #0b0080 100%);
+	color: white;
+	font-size: 20px;
   box-shadow: 10px 12px 0.5rem rgba(0,0,0,0.5);
-
 	padding: 4px;
 /*	display: flex;
 	flex: 1;
