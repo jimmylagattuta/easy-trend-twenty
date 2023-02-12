@@ -1,3 +1,11 @@
+.users-and-button {
+	display: flex;
+	align-items: baseline;
+	align-self: center;
+	flex-direction: column;
+	justify-content: center;
+}
+
 .make-row {
 	display: flex;
 	flex-direction: row;

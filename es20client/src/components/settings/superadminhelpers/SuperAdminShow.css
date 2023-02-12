@@ -1,3 +1,7 @@
+#red {
+	color: red;
+}
+
 #make-column {
 	display: flex;
 	flex-direction: column;

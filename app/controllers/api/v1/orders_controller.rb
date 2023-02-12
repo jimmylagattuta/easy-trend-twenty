@@ -25,35 +25,35 @@ class Api::V1::OrdersController < ApplicationController
 	    	# this was not found as a cart item already associated to the user
 	    	# puts "cart_items"
 	    	# puts update_cart.cart_items.all.inspect
-	    	puts "*" * 100
-	    	puts "params"
-	    	puts params.inspect
-	    	puts "params['cartItem']['id']id"
-	    	puts params["cartItem"]["id"]
+	    	# puts "*" * 100
+	    	# puts "params"
+	    	# puts params.inspect
+	    	# puts "params['cartItem']['id']id"
+	    	# puts params["cartItem"]["id"]
 	    	cartItemProductId = params["cartItem"]["id"]
-	    	puts "*" * 100
+	    	# puts "*" * 100
 	    	# puts "update_cart.cart_items.where(product_id: params['product_id'])"
 	    	# puts update_cart.cart_items.where(product_id: params['product_id'])
 
 	    	# puts "update_cart.cart_items.find_by(product_id: params['product_id'])"
 	    	# puts update_cart.cart_items.find_by(product_id: params['product_id'])
 	    	if update_cart.cart_items.find_by(product_id: cartItemProductId)
-	    		puts "*" * 100
-	    		puts "cart item found!"
-	    		puts "*" * 100
+	    		# puts "*" * 100
+	    		# puts "cart item found!"
+	    		# puts "*" * 100
 	    		x = CartItem.find_by(product_id: cartItemProductId)
 	    		x.quantity = x.quantity + 1
 	    		x.save
 	    		if x.save
-	    			puts "saved"
+	    			# puts "saved"
 	    		else
-	    			puts "error adding 1 to cart item"
-	    			puts x.errors.full_messages
+	    			# puts "error adding 1 to cart item"
+	    			# puts x.errors.full_messages
 	    			# product has already been taken
 	    		end
 	    		cart_items_list = update_cart.cart_items.all
 			    cart_with_products_add = []
-			    puts "*" * 100
+			    # puts "*" * 100
 			    cart_items_list.each do |item|
 			    	x = {
 			    		productId: item.product_id,
@@ -64,7 +64,7 @@ class Api::V1::OrdersController < ApplicationController
 			    	}
 			    	cart_with_products_add.push(x)
 			    end
-			    puts "*" * 100
+			    # puts "*" * 100
 			    bundle = {
 			    	cart: update_cart,
 			    	cart_items: cart_with_products_add
@@ -72,13 +72,13 @@ class Api::V1::OrdersController < ApplicationController
 				render json: bundle, status: :ok
     			# see comment above
 	    	else
-	    		puts "cart item not found"
+	    		# puts "cart item not found"
 		    	new_cart_item = CartItem.new(user_id: @current_user.id, cart_id: update_cart.id, product_id: params_product_id, quantity: 1)
 		    	if new_cart_item.save
 		    		# puts "saved"
 		    	else
-		    		puts "error new_cart_item 1"
-		    		puts new_cart_item.errors.full_messages
+		    		# puts "error new_cart_item 1"
+		    		# puts new_cart_item.errors.full_messages
 		    	end
 			    cart_items_list = update_cart.cart_items.all
 			    cart_with_products_add = []
@@ -122,8 +122,8 @@ class Api::V1::OrdersController < ApplicationController
 		    	cart: new_cart,
 		    	cart_items: cart_with_products_add
 		    }
-		    puts "new_cart_item 2 error"
-		    puts new_cart_item.errors.full_messages
+		    # puts "new_cart_item 2 error"
+		    # puts new_cart_item.errors.full_messages
 			render json: bundle, status: :ok
 	    end
 	end
@@ -142,22 +142,22 @@ class Api::V1::OrdersController < ApplicationController
 	    	# this was not found as a cart item already associated to the user
 	    	# puts "cart_items"
 	    	# puts update_cart.cart_items.all.inspect
-	    	puts "*" * 100
-	    	puts "params"
-	    	puts params.inspect
-	    	puts "params['cartItem']['id']id"
-	    	puts params["cartItem"]["id"]
+	    	# puts "*" * 100
+	    	# puts "params"
+	    	# puts params.inspect
+	    	# puts "params['cartItem']['id']id"
+	    	# puts params["cartItem"]["id"]
 	    	cartItemProductId = params["cartItem"]["id"]
-	    	puts "*" * 100
+	    	# puts "*" * 100
 	    	# puts "update_cart.cart_items.where(product_id: params['product_id'])"
 	    	# puts update_cart.cart_items.where(product_id: params['product_id'])
 
 	    	# puts "update_cart.cart_items.find_by(product_id: params['product_id'])"
 	    	# puts update_cart.cart_items.find_by(product_id: params['product_id'])
 	    	if update_cart.cart_items.find_by(product_id: cartItemProductId)
-	    		puts "*" * 100
-	    		puts "cart item found!"
-	    		puts "*" * 100
+	    		# puts "*" * 100
+	    		# puts "cart item found!"
+	    		# puts "*" * 100
 	    		x = CartItem.find_by(product_id: cartItemProductId)
 	    		if x.quantity == 1
 	    			x.delete
@@ -165,17 +165,17 @@ class Api::V1::OrdersController < ApplicationController
 		    		x.quantity = x.quantity - 1
 		    		x.save
 		    		if x.save
-		    			puts "saved"
+		    			# puts "saved"
 		    		else
-		    			puts "error minus 1 from cart item"
-		    			puts x.errors.full_messages
+		    			# puts "error minus 1 from cart item"
+		    			# puts x.errors.full_messages
 		    			# product has already been taken
 		    		end
 
 	    		end
 	    		cart_items_list = update_cart.cart_items.all
 			    cart_with_products_add = []
-			    puts "*" * 100
+			    # puts "*" * 100
 			    cart_items_list.each do |item|
 			    	x = {
 			    		productId: item.product_id,
@@ -186,21 +186,33 @@ class Api::V1::OrdersController < ApplicationController
 			    	}
 			    	cart_with_products_add.push(x)
 			    end
-			    puts "*" * 100
-			    bundle = {
-			    	cart: update_cart,
-			    	cart_items: cart_with_products_add
-			    }
+			    # puts "*" * 100
+			    bundle = nil
+			    if update_cart.cart_items.length > 0
+			    	# puts "cart has products"
+				    bundle = {
+				    	cart: update_cart,
+				    	cart_items: cart_with_products_add
+				    }
+			    else
+			    	# puts "Delete cart!"
+			    	update_cart.status = "inactive"
+			    	update_cart.save
+				    bundle = {
+				    	cart: [],
+				    	cart_items: []
+				    }
+			    end
 				render json: bundle, status: :ok
     			# see comment above
 	    	else
-	    		puts "cart item not found"
+	    		# puts "cart item not found"
 		    	new_cart_item = CartItem.new(user_id: @current_user.id, cart_id: update_cart.id, product_id: params_product_id, quantity: 1)
 		    	if new_cart_item.save
 		    		# puts "saved"
 		    	else
-		    		puts "error new_cart_item 1"
-		    		puts new_cart_item.errors.full_messages
+		    		# puts "error new_cart_item 1"
+		    		# puts new_cart_item.errors.full_messages
 		    	end
 			    cart_items_list = update_cart.cart_items.all
 			    cart_with_products_add = []
@@ -244,8 +256,8 @@ class Api::V1::OrdersController < ApplicationController
 		    	cart: new_cart,
 		    	cart_items: cart_with_products_add
 		    }
-		    puts "new_cart_item 2 error"
-		    puts new_cart_item.errors.full_messages
+		    # puts "new_cart_item 2 error"
+		    # puts new_cart_item.errors.full_messages
 			render json: bundle, status: :ok
 	    end
 	end

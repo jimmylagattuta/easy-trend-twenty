@@ -19,54 +19,64 @@ class SuperAdminSettings extends React.Component {
            employees: [],
            admins: [],
            grabSuperBundle: true,
-           superBundleUser: null
+           superBundleUser: null,
+           error: ""
         }  
 
   }
   componentDidMount() {
-    console.log('SuperAdminSettings componentDidMount props', this.props);
-      console.log('super get going');
-      if (this.state.superBundleUser) {
-        fetch("api/v1/super_post", {
-          credentials: "same-origin",
-        }).then((res) => {
-          if (res.ok) {
-            res.json().then((super_post_bundle) => {
-              console.log('super_post_bundle ~>', super_post_bundle);
-              this.setState({ consumers: super_post_bundle.super_admin_bundle.consumers, employees: super_post_bundle.super_admin_bundle.employees, admins: super_post_bundle.super_admin_bundle.admins, grabSuperBundle: false, superBundleUser: {} });
-            });
-          } else {
-            // console.log('super_get_bundle not ok res', res);
-            // console.log('setAuthenticated(true)');
-            // reimplement
-            // setAuthenticated(true);
-          }
-        }).catch((err) => {
-          console.log('error super_get', err);
-        })       
-      } else {
+    // console.log('SuperAdminSettings componentDidMount props', this.props);
+      // console.log('super get going');
+
         if (this.state.grabSuperBundle) {
           fetch("api/v1/super_get", {
             credentials: "same-origin",
           }).then((res) => {
             if (res.ok) {
               res.json().then((super_get_bundle) => {
-                console.log('super_get_bundle ~>', super_get_bundle);
-                this.setState({ consumers: super_get_bundle.super_admin_bundle.consumers, employees: super_get_bundle.super_admin_bundle.employees, admins: super_get_bundle.super_admin_bundle.admins, grabSuperBundle: false, superBundleUser: {} });
+                // console.log('super_get_bundle ~>', super_get_bundle);
+                this.setState({ consumers: super_get_bundle.super_admin_bundle.consumers, employees: super_get_bundle.super_admin_bundle.employees, admins: super_get_bundle.super_admin_bundle.admins, grabSuperBundle: false, superBundleUser: null });
               });
             } else {
-              console.log('super_post_bundle not ok res', res);
+              // console.log('super_post_bundle not ok res', res);
               // console.log('setAuthenticated(true)');
               // reimplement
               // setAuthenticated(true);
             }
           }).catch((err) => {
-            console.log('error super_post', err);
+            // console.log('error super_post', err);
           });
         }
 
-      }
 
+
+  }
+  componentDidUpdate() {
+    // console.log('SuperAdminSettings componentWillUpdate props', this.props);
+    // console.log('SuperAdminSettings componentWillUpdate state', this.state);
+      // console.log('willmount super post going');
+      // console.log('this.state.superBundleUser', this.state.superBundleUser);
+      if (this.state.superBundleUser) {
+        fetch("api/v1/super_post", {
+          method: "POST",
+          credentials: "same-origin",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(this.state.superBundleUser),
+        }).then((res) => {
+            res.json().then((super_post_bundle) => {
+              // console.log('super_post_bundle ~>', super_post_bundle);
+              if (super_post_bundle.error) {
+                this.setState({  grabSuperBundle: false, superBundleUser: null, error: super_post_bundle.error[0] });
+              } else {
+                this.setState({ consumers: super_post_bundle.super_admin_bundle.consumers, employees: super_post_bundle.super_admin_bundle.employees, admins: super_post_bundle.super_admin_bundle.admins, users: super_post_bundle.super_admin_bundle.users, user: super_post_bundle.super_admin_bundle.user, grabSuperBundle: false, superBundleUser: null, error: "" });
+              }
+            });
+        }).catch((err) => {
+          // console.log('error super_get', err);
+        })       
+      }
   }
   renderList() {
     // console.log('props', this.props);
@@ -95,10 +105,11 @@ class SuperAdminSettings extends React.Component {
     }
   }
   updateUser(user) {
-    this.setState({ grabSuperBundle: true, superBundleUser: user });
+    // console.log('user ready to update', user);
+    this.setState({ grabSuperBundle: true, superBundleUser: user, error: "" });
   }
   chooseHierarchy(hierarchy, hierarchies) {
-    console.log('chooseHierarchy hierarchy', hierarchy, hierarchies);
+    // console.log('chooseHierarchy hierarchy', hierarchy, hierarchies);
       // sort users for
     let newHierarchies = [];
     if (hierarchy === "Hierarchy") {
@@ -123,22 +134,23 @@ class SuperAdminSettings extends React.Component {
 
   }
   chooseUser(user) {
-    console.log('chooseUser user', user);
+    // console.log('chooseUser user', user);
     const array = [];
     array.push(user);
     this.setState({ user: array });
   }
   goBack(condition) {
-    console.log('goBack condition', condition);
+    // console.log('goBack condition', condition);
     if (condition === "user") {
-      this.setState({ user: [] });
+      this.setState({ user: [], users: [], hierarchy: "Hierarchy", hierarchies: ["Admin", "Employee", "Consumer"] });
     } else {
-      this.setState({ users: [] });
+      this.setState({ users: [], users:[], hierarchy: "Hierarchy", hierarchies: ["Admin", "Employee", "Consumer"] });
     }
   }
   renderSuperAdmin() {
-    console.log('this.state.user[0]', this.state.user[0]);
-    console.log('this.state.users[0]', this.state.users[0])
+    // console.log('this.state renderSuperAdmin', this.state);
+    // console.log('this.state.user[0]', this.state.user[0]);
+    // console.log('this.state.users[0]', this.state.users[0])
     if (this.state.user[0]) {
       return (
         <SuperAdminShow
@@ -146,6 +158,7 @@ class SuperAdminSettings extends React.Component {
           user={this.state.user}
           hierarchy={this.state.hierarchy}
           updateUser={this.updateUser.bind(this)}
+          error={this.state.error}
         />
       );
     } else if (this.state.users[0]) {
@@ -169,7 +182,8 @@ class SuperAdminSettings extends React.Component {
     }
   }
   render() {
-    console.log('SuperAdminSettings props', this.props);
+    // console.log('SuperAdminSettings props', this.props);
+    // console.log('SuperAdminSettings state', this.state);
       return (
           <div>
               {this.renderSuperAdmin()}

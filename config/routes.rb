@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       resources :notes, only: [:index]
       get "/me", to: "users#show"
       get "/super_get", to: "users#super_get"
+      post "/super_post", to: "users#super_post"
       post "/signup", to: "users#create"
       post "/login", to: "sessions#create"
       delete "/logout", to: "sessions#destroy"

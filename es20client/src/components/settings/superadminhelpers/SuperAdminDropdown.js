@@ -30,7 +30,7 @@ class SuperAdminDropdown extends Component {
 	}
 
 	render() {
-		console.log('SuperAdminDropdown props, ', this.props);
+		// console.log('SuperAdminDropdown props, ', this.props);
 	    const hierarchy = ["Admin", "Employee", "Consumer"];
 
 	    const defaultOption = this.props.hierarchy;
