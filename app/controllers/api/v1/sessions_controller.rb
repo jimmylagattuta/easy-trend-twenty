@@ -9,7 +9,7 @@
 	    	if carts.length > 0
 		    	cart = carts.find_by(status: "active")
 			    cart_items_list = nil
-			    if cart.length > 0
+			    if cart
 				    cart_items_list = cart.cart_items.all
 				else 
 					cart_items_list = []
