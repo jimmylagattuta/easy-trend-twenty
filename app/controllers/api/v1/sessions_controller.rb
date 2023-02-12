@@ -8,7 +8,7 @@
 	    	carts = user.carts
 	    	if carts.length > 0
 		    	cart = carts.find_by(status: "active")
-			    cart_items_list = cart.cart_items.all
+			    cart_items_list = cart.cart_items.all || []
 			    cart_with_products_add = []
 			    cart_items_list.each do |item|
 			    	x = {
