@@ -64,6 +64,7 @@ class HomeScreen extends Component {
 						filteredProducts={this.props.filteredProducts}
 						sortFilteredProducts={this.props.sortFilteredProducts}
 						searchTerm={this.props.searchTerm}
+						arrangeFilteredProducts={this.props.arrangeFilteredProducts}
 					/>
 				</div>
 				);
