@@ -297,6 +297,12 @@ class Navbar extends Component {
 			);
 		} else {
 			// console.log('did run?', this.props);
+
+
+			// you pushed settings over master after you broke the homescreen cheapest and rating filters
+
+
+
 			return (
 				<div onClick={() => {
 					this.props.setScreen('settingsscreen');
