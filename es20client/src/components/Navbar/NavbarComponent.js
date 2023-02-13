@@ -20,6 +20,37 @@ class Navbar extends Component {
   		// moving to higher component
     	// this.props.fetchLoginStatus();
   	}
+  	componentDidUpdate() {
+  		// console.log('componentDidUpdate', this.state);
+		if (this.state.redirect) {
+			// console.log('did run 2a?');
+			this.setState({ redirect: false });
+			return <Redirect to="/homescreen" />;
+		}
+		if (this.state.redirectSettings) {
+			// console.log('did run 2b?');
+			this.setState({ redirectSettings: false });
+			return <Redirect to="/settingshome" />;
+		}
+		if (this.state.redirectCartGuest) {
+			// console.log('did run 2c?');
+			this.setState({ redirectCartGuest: false });
+			return <Redirect to="/cartguest" />;
+		}
+		if (this.state.redirectCartUser) {
+			// console.log('did run 2d?');
+			this.setState({ redirectCartUser: false });
+			return <Redirect to="/cartuser" />;
+		}
+		if (this.state.redirectLogout) {
+			// console.log('did run 2e?');
+			// console.log('redirectingLogout props', this.props);
+			// console.log('redirectingLogout state', this.state);
+			this.setState({ redirectLogout: false });
+			// this is not necessary, redirect already goes to homescreen
+			return <Redirect to="/homescreen" />;
+		}
+  	}
 	handleClick = () => {
 		// console.log('clicked');
 		this.setState({ clicked: !this.state.clicked });
@@ -28,9 +59,15 @@ class Navbar extends Component {
 		// console.log('renderEasyTrend');
 		const operatingSystem = navigator.appVersion;
 		if (operatingSystem.includes('Macintosh')) {
+			// console.log('running in operating system check 1');
 			return (
 				// <Link to="/homescreen"><h1 className="navbar-logo">Easy Trend 20<i className="fas fa-hat-wizard"></i></h1></Link>
-				<Link onClick={() => this.props.setScreen({ screen: "homescreen" })} to="/homescreen"><h1 id="add-hover" className="navbar-logo">Easy Trend 20<i className="fas fa-hat-wizard"></i></h1></Link>
+				<Link onClick={() => {
+					// console.log('running in operating system check 2');
+					this.props.setScreen({ screen: "homescreen" });
+					}}
+				to="/homescreen">
+			<h1 id="add-hover" className="navbar-logo">Easy Trend 20<i className="fas fa-hat-wizard"></i></h1></Link>
 			);
 		} else if (operatingSystem.includes('Windows')) {
 			return (
@@ -215,6 +252,7 @@ class Navbar extends Component {
 			            onClick={() => {
 			              // console.log('Yes');
 			              handleLogout(setUserObject.bind(this));
+			              this.props.setScreen('/homescreen')
 			              // set screen(ok) and redirect(automatic?)
 			              close();
 			            }}
@@ -237,22 +275,28 @@ class Navbar extends Component {
 			</div>
 		);
 	}
+	// found it
 	renderSettingsButton() {
 		// console.log('Navbar renderSettingsButton props', this.props);
 		let screen = '';
 		if (this.props.screen && this.props.screen.screen) {
+			// console.log('this.props.screen && this.props.screen.screen');
+			// console.log('this.props #', this.props);
 			screen = this.props.screen.screen;
 		} else {
+			// console.log('this.props.screen && this.props.screen.screen');
 			screen = this.props.screen;
 		}
 		if (screen === "settingsscreen") {
+			// console.log('settingsscreen');
+			
 			return (
 				<div>
 					{this.renderPopup(this.handleLogout.bind(this), this.props.setUserObject)}
 				</div>
 			);
 		} else {
-			// console.log('we were here', this.props);
+			// console.log('did run?', this.props);
 			return (
 				<div onClick={() => {
 					this.props.setScreen('settingsscreen');
@@ -283,7 +327,10 @@ class Navbar extends Component {
 							if (item.title === "Sign Up") {
 							} else {
 								return (
-									<li onClick={() => this.props.setScreen(item.screen)} key={index}>
+									<li key={index} onClick={() => {
+										// console.log('running also');
+										this.props.setScreen(item.screen);
+									}}>
 										<Link to={item.linkTo}><h1 id="add-hover" className="menu-turn-white"><i className={item.class}></i></h1></Link>
 									</li>
 								);
@@ -322,29 +369,7 @@ class Navbar extends Component {
 		// console.log('Navbar state ~>', this.state);
 		// console.log('this.state Navbar ~>', this.state);
 		// console.log('navigator', navigator);
-		if (this.state.redirect) {
-			this.setState({ redirect: false });
-			return <Redirect to="/homescreen" />;
-		}
-		if (this.state.redirectSettings) {
-			this.setState({ redirectSettings: false });
-			return <Redirect to="/settingshome" />;
-		}
-		if (this.state.redirectCartGuest) {
-			this.setState({ redirectCartGuest: false });
-			return <Redirect to="/cartguest" />;
-		}
-		if (this.state.redirectCartUser) {
-			this.setState({ redirectCartUser: false });
-			return <Redirect to="/cartuser" />;
-		}
-		if (this.state.redirectLogout) {
-			// console.log('redirectingLogout props', this.props);
-			// console.log('redirectingLogout state', this.state);
-			this.setState({ redirectLogout: false });
-			// this is not necessary, redirect already goes to homescreen
-			return <Redirect to="/homescreen" />;
-		}
+
 		return (
 			<div className="navbar-div-top">
 				{this.renderNavTrack()}

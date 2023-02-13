@@ -269,7 +269,7 @@ class SignInImport extends Component {
     						<input type="submit" value="User Page" />
 						</form>
 						<div onClick={this.logOut.bind(this)}>
-							<h3>Sign Out</h3>
+							<h3>Sign Out2</h3>
 						</div>
 					</div>
 				</div>

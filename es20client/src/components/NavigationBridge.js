@@ -393,6 +393,7 @@ class NavigationBridge extends Component {
                                       arrangeFilteredProducts={this.arrangeFilteredProducts.bind(this)}
                                       categorizeFilteredProducts={this.categorizeFilteredProducts.bind(this)}
                                       category={this.state.category}
+                                      screen={this.state.screen}
                                     /> 
                       }
             />      

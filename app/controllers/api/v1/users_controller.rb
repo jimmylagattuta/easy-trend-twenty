@@ -1,6 +1,25 @@
 class Api::V1::UsersController < ApplicationController
 	skip_before_action :authenticate_user
 
+	def change_password
+		# params check original password, if wrong send error right back
+		puts "*" * 100
+		puts "change_password"
+		puts "params"
+		puts params.inspect
+		puts "*" * 100
+	    @current_user = User.find(session[:user_id] && cookies[:user_id]) if cookies[:user_id] && session[:user_id]
+		if @current_user&.authenticate(params[:password])
+			puts "correct password"
+			@current_user.password_confirmation = params[:new_passsword]
+			@current_user.save
+		else
+			puts "error or incorrect password"
+		end
+
+		render json: { message: "Received" }
+	end
+
 	def show
 		if current_user
 			render json: { logged_in: true, user: current_user }, status: :ok
