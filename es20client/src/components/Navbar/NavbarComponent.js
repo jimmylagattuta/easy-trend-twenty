@@ -250,9 +250,10 @@ class Navbar extends Component {
 			          <Button
 			            className="button"
 			            onClick={() => {
-			              // console.log('Yes');
-			              handleLogout(setUserObject.bind(this));
-			              this.props.setScreen('/homescreen')
+			              console.log("Yes it's here");
+			              this.handleLogout(setUserObject.bind(this));
+			              this.props.setScreen('/homescreen');
+
 			              // set screen(ok) and redirect(automatic?)
 			              close();
 			            }}
