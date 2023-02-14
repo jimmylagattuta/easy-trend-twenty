@@ -21,7 +21,8 @@ class UserHome extends Component{
 	    this.state = {  
 	         data: 'www.javatpoint.com',
 	         user_email: '',
-	         redirect: false
+	         redirect: false,
+	         error: ""
 	      }  
 	    this.handleEvent = this.handleEvent.bind(this);  
 	}
@@ -73,9 +74,15 @@ class UserHome extends Component{
 	      if (res.ok) {
 	        res.json().then((user) => {
 	        	// console.log('setCurrentUser(user)');
-	        	// console.log('user', user);
-	        	this.props.setUserObject(user, "homescreen", user.cart_items);
-	        	this.setState({ redirect: true });
+		        	console.log('user', user);
+	        	if (user.logged_in) {
+		        	this.props.setUserObject(user, "homescreen", user.cart_items);
+		        	this.setState({ redirect: true, error: "" });
+
+	        	} else {
+		        	this.setState({ error: "Login Failed" });
+
+	        	}
 	          // reimplement
 	          // setCurrentUser(user);
 	        });
@@ -136,7 +143,7 @@ class UserHome extends Component{
 				    render={({ handleSubmit }) => (
 				      <form onSubmit={handleSubmit}>
 				        <h1>Sign In!</h1>
-				      
+					      	<p id="red">{this.state.error}</p>
 				        <div>
 				        	<label>Email or Username(case sensative)</label>
 				          	<Field name="email_or_username" component="input" placeholder="Email or Username" />

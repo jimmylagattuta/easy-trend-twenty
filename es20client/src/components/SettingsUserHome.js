@@ -17,7 +17,7 @@ class SettingsUserHome extends React.Component {
 			    	<StandardSettings user_in_app_state={this.props.user_in_app_state} setUserObject={this.props.setUserObject.bind(this)} />
 			    </div>
 			);
-		} else {
+		} else if (this.props.user_in_app_state.logged_in) {
 			// console.log('RegularUser');
 			// change to StandardSettings
 			return <StandardSettings user_in_app_state={this.props.user_in_app_state} setUserObject={this.props.setUserObject.bind(this)} />;

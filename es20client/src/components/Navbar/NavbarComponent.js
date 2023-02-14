@@ -43,7 +43,7 @@ class Navbar extends Component {
 			return <Redirect to="/cartuser" />;
 		}
 		if (this.state.redirectLogout) {
-			// console.log('did run 2e?');
+			console.log('did run 2e?');
 			// console.log('redirectingLogout props', this.props);
 			// console.log('redirectingLogout state', this.state);
 			this.setState({ redirectLogout: false });
@@ -208,16 +208,17 @@ class Navbar extends Component {
   		fetch('api/v1/logout', {method: "DELETE"})
   			.then(res => { 
 			        res.json().then((response) => {
-        				// console.log('res not .ok ', response);
+        				console.log('res not .ok ', response);
         				const resetUserInAppState = {
         					logged_in: false,
         					user: null
         				};
+        				
           				this.setState({ redirectLogout: true });
           				setUserObject(resetUserInAppState, "homescreen", []);
           			})
           			.catch((err) => {
-          				// console.log('err handleLogout', err);
+          				console.log('err handleLogout', err);
           			});
 
       		})

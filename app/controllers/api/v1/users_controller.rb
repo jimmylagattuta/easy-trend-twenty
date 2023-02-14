@@ -38,8 +38,8 @@ class Api::V1::UsersController < ApplicationController
 			user.super_admin = false
 			user.save
 			if user.save
-				session[:user_id] = {value: user.id, expires: 45.minutes}
-				cookies[:user_id] = {value: user.id, expires: 45.minutes}
+				session[:user_id] = {value: user.id, expires: 48.hours}
+				cookies[:user_id] = {value: user.id, expires: 48.hours}
 			else
 				render json: user.errors.full_messages, status: :unprocessable_entity
 			end
