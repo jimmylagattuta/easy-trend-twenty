@@ -21,15 +21,17 @@ class StandardSettings extends Component{
 	    this.state = {  
 	         data: 'www.javatpoint.com',
 	         user_email: '',
-	         redirect: false
+	         redirect: false,
+	         redirectChangePassword: false
 	      }  
 	    this.handleEvent = this.handleEvent.bind(this);  
 	}
+
 	handleEvent(){  
 	    // console.log('props! will convert to actions and reducers after signup login logout and is_logged_in?', this.props);  
 	}
 	onSubmitChangePassword(values) {
-		console.log('onSubmitChangePassword sign up!', values);
+		// console.log('onSubmitChangePassword sign up!', values);
 		fetch("api/v1/change_password", {
 	      method: "POST",
 	      credentials: 'same-origin',
@@ -40,18 +42,26 @@ class StandardSettings extends Component{
 	    }).then((res) => {
 	      if (res.ok) {
 	        res.json().then((user) => {
-	        	console.log('response api/v1/change_password', user);
+	        	// console.log('response api/v1/change_password', user);
+    			const resetUserInAppState = {
+					logged_in: false,
+					user: null
+				};
+  				this.props.redirectChangePassword();
+  				this.props.setUserObject(this.props.user_in_app_state, "homescreen", [], user.message);
 	        });
 	      } else {
 	        res.json().then((errors) => {
-	          console.error('error change_password!', errors);
+	          // console.error('error change_password!', errors);
 	        });
 	      }
+
+
 	    });
 	}
 
 	render() {
-		console.log('StandardSettings props state', this.props, this.state);
+		// console.log('StandardSettings props state', this.props, this.state);
 		return (
 			<div className="App">
 				<Form

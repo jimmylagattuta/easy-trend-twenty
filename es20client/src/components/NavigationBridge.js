@@ -33,7 +33,10 @@ class NavigationBridge extends Component {
            cheapest: false,
            top_rated: false,
            categoryBoolean: false,
-           category: "None"
+           category: "None",
+           passwordMessage: null,
+           redirectChangePassword: false,
+           visible: false
         }  
       this.handleEvent = this.handleEvent.bind(this);  
   }
@@ -42,6 +45,13 @@ class NavigationBridge extends Component {
     // console.log('NavigationBridge handleEvent. this.props', this.props);
     // console.log('NavigationBridge handleEvent. this.state', this.state);
   } 
+  componentDidUpdate() {
+    if (this.state.passwordMessage) {
+      setTimeout(() => {
+      this.setState({ passwordMessage: null });
+    }, "8000")
+    }
+  }
   componentDidMount() {
     // console.log('componentDidMount props state NOT YET RUNNING 4:04PM01/15/23(infinite loop userhome)', this.props, this.state);
     const screenToken = localStorage.getItem('currentScreen');
@@ -95,10 +105,19 @@ class NavigationBridge extends Component {
       })
     });
   }
-  setUserObject(user_in_app_state, screen, cart_items) {
-    console.log('setUserObject user_in_app_state', user_in_app_state, screen, cart_items);
+  setUserObject(user_in_app_state, screen, cart_items, message, redirectChangePassword) {
+    // console.log('setUserObject', user_in_app_state);
+    // console.log('screen', screen);
+    // console.log('cart_items', cart_items);
+    // console.log('message', message);
     localStorage.setItem('currentScreen', screen);
-    this.setState({ user_in_app_state: user_in_app_state, screen: screen, cart_items: cart_items });
+    if (message === "Received") {
+      this.setState({ user_in_app_state: user_in_app_state, screen: screen, cart_items: cart_items, passwordMessage: "Password Updated", redirectChangePassword: true, visible: true });
+
+    } else {
+      this.setState({ user_in_app_state: user_in_app_state, screen: screen, cart_items: cart_items });
+
+    }
   }  
   navigateScreen(screen) {
     // console.log('navigateScreen screen', screen);
@@ -360,6 +379,9 @@ class NavigationBridge extends Component {
       this.setState({ filteredProducts: newProducts, category: category });
     }
   }
+  triggerRedirectChangePassword() {
+    this.setState({ redirectChangePassword: false });
+  }
   render() {  
     // console.log('NavigationBridge props state', this.props, this.state);
     return (
@@ -377,8 +399,11 @@ class NavigationBridge extends Component {
               changeCartItemGuest={this.changeCartItemGuest.bind(this)}
               changeCartItemUser={this.changeCartItemUser.bind(this)}
               cart_items={this.state.cart_items}
+              redirectChangePassword={this.state.redirectChangePassword}
+              triggerRedirectChangePassword={this.triggerRedirectChangePassword.bind(this)}
             />
             <h1>(...under construction... fake products)</h1>
+            <div className={this.state.visible?'fadeIn':'fadeOut'}><p className="flashCss">{this.state.passwordMessage}</p></div>
             <Route 
               path="/homescreen" 
               render= { (props) => <HomeScreen
@@ -407,7 +432,7 @@ class NavigationBridge extends Component {
             />
             <Route 
               path="/settingshome" 
-              render= { (props) => <SettingsUserHome user_in_app_state={this.state.user_in_app_state} setUserObject={this.setUserObject.bind(this)} /> }
+              render= { (props) => <SettingsUserHome user_in_app_state={this.state.user_in_app_state} setUserObject={this.setUserObject.bind(this)} navigateScreen={this.navigateScreen.bind(this)} /> }
             />
             <Route
               path="/userhome"

@@ -42,36 +42,10 @@ class HomeScreen extends Component {
 		);
 	}
 	render() {
-		console.log('HomeScreen props, ', this.props);
+		// console.log('HomeScreen props, ', this.props);
 		// console.log('this.state HomeScreen', this.state);
 		// console.log('this.props.user_in_app_state', this.props.user_in_app_state);
-		if (this.props.user_in_app_state.logged_in) {
-			console.log('render user', this.props);
-			if (this.props.screen === 'settingsscreen') {
-				return (
-					<div>
-						<StandardSettings />
-					</div>
-				);
 
-			} else {
-				return(
-				<div className="App">
-					<ProductsHelper
-						products={this.props.products}
-						addToCart={this.props.addToCart.bind(this)}
-						loggedIn={true}
-						filteredProducts={this.props.filteredProducts}
-						sortFilteredProducts={this.props.sortFilteredProducts}
-						searchTerm={this.props.searchTerm}
-						arrangeFilteredProducts={this.props.arrangeFilteredProducts}
-					/>
-				</div>
-				);
-
-			}
-
-		}
 		return (
 			<div className="App">
 				<h1>Home Headquarters</h1>

@@ -21,7 +21,7 @@ class Navbar extends Component {
     	// this.props.fetchLoginStatus();
   	}
   	componentDidUpdate() {
-  		// console.log('componentDidUpdate', this.state);
+  		// console.log('componentDidUpdate ~>', this.props);
 		if (this.state.redirect) {
 			// console.log('did run 2a?');
 			this.setState({ redirect: false });
@@ -208,7 +208,7 @@ class Navbar extends Component {
   		fetch('api/v1/logout', {method: "DELETE"})
   			.then(res => { 
 			        res.json().then((response) => {
-        				console.log('res not .ok ', response);
+        				// console.log('res not .ok ', response);
         				const resetUserInAppState = {
         					logged_in: false,
         					user: null
@@ -218,7 +218,7 @@ class Navbar extends Component {
           				setUserObject(resetUserInAppState, "homescreen", []);
           			})
           			.catch((err) => {
-          				console.log('err handleLogout', err);
+          				// console.log('err handleLogout', err);
           			});
 
       		})
@@ -251,7 +251,7 @@ class Navbar extends Component {
 			          <Button
 			            className="button"
 			            onClick={() => {
-			              console.log("Yes it's here");
+			              // console.log("Yes it's here");
 			              this.handleLogout(setUserObject.bind(this));
 			              this.props.setScreen('/homescreen');
 

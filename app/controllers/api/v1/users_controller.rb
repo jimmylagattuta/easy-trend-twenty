@@ -11,8 +11,17 @@ class Api::V1::UsersController < ApplicationController
 	    @current_user = User.find(session[:user_id] && cookies[:user_id]) if cookies[:user_id] && session[:user_id]
 		if @current_user&.authenticate(params[:password])
 			puts "correct password"
-			@current_user.password_confirmation = params[:new_passsword]
-			@current_user.save
+			puts "params"
+			puts params.inspect
+			puts "params[:new_passsword]"
+			puts params[:new_passsword]
+			@current_user.password = params[:new_password]
+			@current_user.password_confirmation = params[:new_password]
+			if @current_user.save
+				puts @current_user.save
+			else
+				puts @current_user.errors.full_messages
+			end
 		else
 			puts "error or incorrect password"
 		end
