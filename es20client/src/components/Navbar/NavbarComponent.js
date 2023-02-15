@@ -43,7 +43,7 @@ class Navbar extends Component {
 			return <Redirect to="/cartuser" />;
 		}
 		if (this.state.redirectLogout) {
-			console.log('did run 2e?');
+			// console.log('did run 2e?');
 			// console.log('redirectingLogout props', this.props);
 			// console.log('redirectingLogout state', this.state);
 			this.setState({ redirectLogout: false });

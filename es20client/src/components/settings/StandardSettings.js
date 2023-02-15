@@ -32,11 +32,11 @@ class StandardSettings extends Component{
 	    // console.log('props! will convert to actions and reducers after signup login logout and is_logged_in?', this.props);  
 	}
 	onSubmitChangePassword(values) {
-		console.log('onSubmitChangePassword sign up!', values);
+		// console.log('onSubmitChangePassword sign up!', values);
 		const passwordOne = values.new_password;
 		const passwordTwo = values.new_password_confirmation;
 		if (passwordOne !== passwordTwo) {
-			console.log('passwordOne !== passwordTwo')
+			// console.log('passwordOne !== passwordTwo')
 			this.setState({ errorPassword: "Password Mismatch" });
 		} else {
 			this.setState({ errorPassword: null });
@@ -72,7 +72,7 @@ class StandardSettings extends Component{
 	}
 
 	render() {
-		console.log('StandardSettings props state', this.props, this.state);
+		// console.log('StandardSettings props state', this.props, this.state);
 		return (
 			<div className="App">
 				<Form

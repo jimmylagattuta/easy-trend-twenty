@@ -31,7 +31,7 @@ class UserHome extends Component{
 	    // console.log('props! will convert to actions and reducers after signup login logout and is_logged_in?', this.props);  
 	}
 	onSubmit(values) {
-		console.log('onSubmit sign up!', values);
+		// console.log('onSubmit sign up!', values);
 		const passwordOne = values.password;
 		const passwordTwo = values.password_confirmation;
 		if (passwordOne !== passwordTwo) {
@@ -108,7 +108,7 @@ class UserHome extends Component{
 		// this.props.loginUser(values);
 	}
 	render() {
-		console.log('UserHome props state', this.props, this.state);
+		// console.log('UserHome props state', this.props, this.state);
 		// old code that worked
 		// console.log('this.props UserHome render ~>', this.props);
 		// console.log('this.state UserHome render ~>', this.state);

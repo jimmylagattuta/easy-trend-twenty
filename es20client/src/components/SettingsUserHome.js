@@ -20,11 +20,11 @@ class SettingsUserHome extends React.Component {
 		}
 	}
 	redirectChangePassword() {
-		console.log('redirecting');
+		// console.log('redirecting');
 		this.props.history.push("/homescreen");
 	}
 	render() {
-		console.log('SettingsUserHome props', this.props);
+		// console.log('SettingsUserHome props', this.props);
 		if (this.props.user_in_app_state.logged_in && this.props.user_in_app_state.user.super_admin) {
 			// console.log('SuperAdmin');
 			return (
