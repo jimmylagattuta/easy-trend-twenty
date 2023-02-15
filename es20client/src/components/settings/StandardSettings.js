@@ -22,7 +22,8 @@ class StandardSettings extends Component{
 	         data: 'www.javatpoint.com',
 	         user_email: '',
 	         redirect: false,
-	         redirectChangePassword: false
+	         redirectChangePassword: false,
+	         errorPassword: null
 	      }  
 	    this.handleEvent = this.handleEvent.bind(this);  
 	}
@@ -31,37 +32,47 @@ class StandardSettings extends Component{
 	    // console.log('props! will convert to actions and reducers after signup login logout and is_logged_in?', this.props);  
 	}
 	onSubmitChangePassword(values) {
-		// console.log('onSubmitChangePassword sign up!', values);
-		fetch("api/v1/change_password", {
-	      method: "POST",
-	      credentials: 'same-origin',
-	      headers: {
-	        "Content-Type": "application/json",
-	      },
-	      body: JSON.stringify(values),
-	    }).then((res) => {
-	      if (res.ok) {
-	        res.json().then((user) => {
-	        	// console.log('response api/v1/change_password', user);
-    			const resetUserInAppState = {
-					logged_in: false,
-					user: null
-				};
-  				this.props.redirectChangePassword();
-  				this.props.setUserObject(this.props.user_in_app_state, "homescreen", [], user.message);
-	        });
-	      } else {
-	        res.json().then((errors) => {
-	          // console.error('error change_password!', errors);
-	        });
-	      }
+		console.log('onSubmitChangePassword sign up!', values);
+		const passwordOne = values.new_password;
+		const passwordTwo = values.new_password_confirmation;
+		if (passwordOne !== passwordTwo) {
+			console.log('passwordOne !== passwordTwo')
+			this.setState({ errorPassword: "Password Mismatch" });
+		} else {
+			this.setState({ errorPassword: null });
+			fetch("api/v1/change_password", {
+		      method: "POST",
+		      credentials: 'same-origin',
+		      headers: {
+		        "Content-Type": "application/json",
+		      },
+		      body: JSON.stringify(values),
+		    }).then((res) => {
+		      if (res.ok) {
+		        res.json().then((user) => {
+		        	// console.log('response api/v1/change_password', user);
+	    			const resetUserInAppState = {
+						logged_in: false,
+						user: null
+					};
+	  				this.props.redirectChangePassword();
+	  				this.props.setUserObject(this.props.user_in_app_state, "homescreen", [], user.message);
+		        });
+		      } else {
+		        res.json().then((errors) => {
+		          // console.error('error change_password!', errors);
+		        });
+		      }
 
 
-	    });
+		    });
+
+		}
+
 	}
 
 	render() {
-		// console.log('StandardSettings props state', this.props, this.state);
+		console.log('StandardSettings props state', this.props, this.state);
 		return (
 			<div className="App">
 				<Form
@@ -79,6 +90,7 @@ class StandardSettings extends Component{
 				          	<Field name="new_password" component="input" type="password" placeholder="New Password" />
 				        </div>
 				        <div>
+					        <p id="red">{this.state.errorPassword}</p>
 				        	<label>New Password Confirmation</label>
 				          	<Field name="new_password_confirmation" component="input" type="password" placeholder="New Password Confirmation" />
 				        </div>

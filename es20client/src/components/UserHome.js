@@ -22,7 +22,8 @@ class UserHome extends Component{
 	         data: 'www.javatpoint.com',
 	         user_email: '',
 	         redirect: false,
-	         error: ""
+	         error: "",
+	         errorPasswordMismatch: ""
 	      }  
 	    this.handleEvent = this.handleEvent.bind(this);  
 	}
@@ -30,31 +31,39 @@ class UserHome extends Component{
 	    // console.log('props! will convert to actions and reducers after signup login logout and is_logged_in?', this.props);  
 	}
 	onSubmit(values) {
-		// console.log('onSubmit sign up!', values);
-		fetch("api/v1/signup", {
-	      method: "POST",
-	      credentials: 'same-origin',
-	      headers: {
-	        "Content-Type": "application/json",
-	      },
-	      body: JSON.stringify(values),
-	    }).then((res) => {
-    	  // console.log('response', res);
-	      if (res.ok) {
-	        res.json().then((user) => {
-	        	// console.log('setCurrentUser(user)');
-	        	// console.log('UserHome onSubmit response api/v1/signup user', user);
-	        	this.props.setUserObject(user, "homescreen");
-	        	this.setState({ redirect: true });
-	          // reimplement
-	          // setCurrentUser(user);
-	        });
-	      } else {
-	        res.json().then((errors) => {
-	          // console.error('errors onSubmit SignUpUser!', errors);
-	        });
-	      }
-	    });
+		console.log('onSubmit sign up!', values);
+		const passwordOne = values.password;
+		const passwordTwo = values.password_confirmation;
+		if (passwordOne !== passwordTwo) {
+			this.setState({ errorPasswordMismatch: "Password Mismatch" });
+		} else {
+			this.setState({ errorPasswordMismatch: "" });
+			fetch("api/v1/signup", {
+		      method: "POST",
+		      credentials: 'same-origin',
+		      headers: {
+		        "Content-Type": "application/json",
+		      },
+		      body: JSON.stringify(values),
+		    }).then((res) => {
+	    	  // console.log('response', res);
+		      if (res.ok) {
+		        res.json().then((user) => {
+		        	// console.log('setCurrentUser(user)');
+		        	// console.log('UserHome onSubmit response api/v1/signup user', user);
+		        	this.props.setUserObject(user, "homescreen");
+		        	this.setState({ redirect: true });
+		          // reimplement
+		          // setCurrentUser(user);
+		        });
+		      } else {
+		        res.json().then((errors) => {
+		          // console.error('errors onSubmit SignUpUser!', errors);
+		        });
+		      }
+		    });
+
+		}
 		// bringing into component to design in uniform, will branch to refactor later
 		// this.props.addUser(values, this.props.cookie);
 
@@ -99,7 +108,7 @@ class UserHome extends Component{
 		// this.props.loginUser(values);
 	}
 	render() {
-		// console.log('UserHome props state', this.props, this.state);
+		console.log('UserHome props state', this.props, this.state);
 		// old code that worked
 		// console.log('this.props UserHome render ~>', this.props);
 		// console.log('this.state UserHome render ~>', this.state);
@@ -130,6 +139,7 @@ class UserHome extends Component{
 				        	<label>Password</label>
 				          	<Field name="password" component="input" type="password" placeholder="Password" />
 				        </div>
+				        <p id="red">{this.state.errorPasswordMismatch}</p>
 				        <div>
 				        	<label>Password Confirmation</label>
 				          	<Field name="password_confirmation" component="input" type="password" placeholder="Password Confirmation" />
