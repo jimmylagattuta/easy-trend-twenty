@@ -14,6 +14,7 @@ import NavigationBridge from './components/NavigationBridge';
 
 import './components/App.css';
   // "proxy": "https://easytrend20.herokuapp.com",
+  // "proxy": "https://sleepy-brook-50921.herokuapp.com",
   // "proxy": "http://localhost:3000",
 
 class App extends Component {
