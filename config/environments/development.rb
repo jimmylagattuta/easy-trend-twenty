@@ -16,7 +16,27 @@ Rails.application.configure do
 
   # Enable server timing
   config.server_timing = true
+  config.action_mailer.default_url_options = { host: "https://easytrend20.herokuapp.com" }
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              'smtp.easytrend20.herokuapp.com',
+    port:                 587,
+    domain:               'example.com',
+    user_name:            ENV["GMAIL_USERNAME"],
+    password:             ENV["GMAIL_PASSWORD"],
+    authentication:       'plain',
+    enable_starttls_auto: true,
+    open_timeout:         5,
+    read_timeout:         5 }
 
+
+
+
+
+config.action_mailer.raise_delivery.erros = true
+
+config.action_mailer.perform_caching = false
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
   if Rails.root.join("tmp/caching-dev.txt").exist?
