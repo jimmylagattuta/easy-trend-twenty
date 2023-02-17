@@ -22,7 +22,7 @@ Rails.application.configure do
 
 
 
-config.action_mailer.raise_delivery.erros = true
+config.action_mailer.raise_delivery.errors = true
 
 config.action_mailer.perform_caching = false
   # Code is not reloaded between requests.

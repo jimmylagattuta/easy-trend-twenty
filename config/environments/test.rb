@@ -25,7 +25,7 @@ Rails.application.configure do
 
 
 
-config.action_mailer.raise_delivery.erros = true
+config.action_mailer.raise_delivery.errors = true
 
 config.action_mailer.perform_caching = false
   # Turn false under Spring and add config.action_view.cache_template_loading = true.
