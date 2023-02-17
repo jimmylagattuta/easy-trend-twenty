@@ -1,3 +1,10 @@
+.sign-in-and-forgot-password {
+  display: flex;
+  justify-content: space-between;
+    max-width: calc(100vw / 4);
+
+}
+
 .signinsignup_top_left {
   left: 0%;
   position: fixed;

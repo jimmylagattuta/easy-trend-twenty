@@ -155,17 +155,30 @@ class UserHome extends Component{
 				        <h1>Sign In!</h1>
 					      	<p id="red">{this.state.error}</p>
 				        <div>
-				        	<label>Email or Username(case sensative)</label>
+				        	<label>Email or Username(case sensativo)</label>
 				          	<Field name="email_or_username" component="input" placeholder="Email or Username" />
 				        </div>
 				        <div>
 				        	<label>Password</label>
 				          	<Field name="password" component="input" type="password" placeholder="Password" />
 				        </div>
-				        <button type="submit">Submit</button>
+				        <div className="sign-in-and-forgot-password">
+					        <button type="submit" name="sign-in-button" onClick={() => {
+					        	this.handleSubmit();
+					        }}>Submit</button>
+				    	</div>
 				      </form>
 				    )}
 				  />
+				<Link onClick={() => {
+			        	console.log('Forgot Password');
+					}}
+					to="/forgotpassword"
+				>
+
+						<button>Forgot Password</button>
+
+				</Link>
 			</div>
 		);
 	}

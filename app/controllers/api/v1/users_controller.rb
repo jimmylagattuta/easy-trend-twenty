@@ -1,6 +1,20 @@
 class Api::V1::UsersController < ApplicationController
 	skip_before_action :authenticate_user
 
+	def forgot_password
+		puts "*" * 100
+		puts params.inspect
+		puts "*" * 100
+		if User.find_by(email: params["email_or_username"])
+			puts "forgot_password"
+			user = User.find_by(email: params["email_or_username"])
+			NotifierMailer.new_forgot_password(user)
+			render json: { message: "Found! Forgot Password Received" }
+		else
+			render json: { message: "Email not found" }
+		end
+	end
+
 	def change_password
 		# params check original password, if wrong send error right back
 		# puts "*" * 100

@@ -54,26 +54,34 @@
 	    		# puts "~  cart  ~" * 10
 	    		# puts cart.inspect
 	    		# puts "*" * 100
+	    		if cart && cart.length > 0
 
+				    cart_items_list = cart.cart_items.all
+				    cart_with_products_add = []
+				    puts "*" * 100
+				    cart_items_list.each do |item|
+				    	x = {
+				    		productId: item.product_id,
+				    		quantity: item.quantity,
+				    		product: item.product
+				    	}
+				    	cart_with_products_add.push(x)
+				    end
 
-			    cart_items_list = cart.cart_items.all
-			    cart_with_products_add = []
-			    puts "*" * 100
-			    cart_items_list.each do |item|
-			    	x = {
-			    		productId: item.product_id,
-			    		quantity: item.quantity,
-			    		product: item.product
-			    	}
-			    	cart_with_products_add.push(x)
-			    end
-
-		      	render json: {
-		        	logged_in: true,
-		        	user: @current_user,
-		        	cart: cart,
-		        	cart_items: cart_with_products_add
-		      	}, status: :ok
+			      	render json: {
+			        	logged_in: true,
+			        	user: @current_user,
+			        	cart: cart,
+			        	cart_items: cart_with_products_add
+			      	}, status: :ok
+			      else
+			      	render json: {
+			        	logged_in: true,
+			        	user: @current_user,
+			        	cart: cart,
+			        	cart_items: []
+			      	}, status: :ok
+			      end
 		    else
 		      	render json: {
 		        	logged_in: true,

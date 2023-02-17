@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :notes, only: [:index]
       post "/change_password", to: "users#change_password"
+      post "/forgot_password", to: "users#forgot_password"
       get "/me", to: "users#show"
       get "/super_get", to: "users#super_get"
       post "/super_post", to: "users#super_post"

@@ -12,6 +12,7 @@ import NavbarComponent from './Navbar/NavbarComponent';
 import NavigateToScreen from './helpers/NavigateToScreen';
 import CartGuestHelper from './helpers/CartGuestHelper';
 import CartUserHelper from './helpers/CartUserHelper';
+import ForgotPassword from './helpers/ForgotPassword';
 import jsonValues from './jsonValues';
 import './App.css';
 
@@ -382,6 +383,9 @@ class NavigationBridge extends Component {
   triggerRedirectChangePassword() {
     this.setState({ redirectChangePassword: false });
   }
+  sendForgotEmail(email) {
+    console.log('sendForgotEmail to ', email);
+  }
   render() {  
     // console.log('NavigationBridge props state', this.props, this.state);
     return (
@@ -463,6 +467,13 @@ class NavigationBridge extends Component {
                                       cart_items={this.state.cart_items}
                                       changeCartItemUser={this.changeCartItemUser.bind(this)}
                                     /> 
+                      }
+            />
+            <Route
+              path="/forgotpassword"
+              render= { (props) => <ForgotPassword
+                                      sendForgotEmail={this.sendForgotEmail.bind(this)}
+                                   />
                       }
             />
           </div>
