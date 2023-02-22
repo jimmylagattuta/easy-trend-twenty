@@ -8,7 +8,7 @@ class Api::V1::UsersController < ApplicationController
 		if User.find_by(email: params["email_or_username"])
 			puts "forgot_password"
 			user = User.find_by(email: params["email_or_username"])
-			NotifierMailer.new_forgot_password(user)
+			puts NotifierMailer.new_forgot_password(user)
 			render json: { message: "Found! Forgot Password Received" }
 		else
 			render json: { message: "Email not found" }
