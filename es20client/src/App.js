@@ -13,6 +13,7 @@ import NavigateToScreen from './components/helpers/NavigateToScreen';
 import NavigationBridge from './components/NavigationBridge';
 
 import './components/App.css';
+  // was in procfile
   // "proxy": "https://easytrend20.herokuapp.com",
   // "proxy": "https://sleepy-brook-50921.herokuapp.com",
   // "proxy": "http://localhost:3000",
