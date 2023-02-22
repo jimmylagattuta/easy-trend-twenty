@@ -6,6 +6,6 @@ class NotifierMailer < ApplicationMailer
 			to: user.email,
 			subject: "Forgot Password",
 		)
-		message.deliver_now
+		message.deliver
 	end
 end
