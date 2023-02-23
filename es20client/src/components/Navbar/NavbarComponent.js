@@ -97,7 +97,7 @@ class Navbar extends Component {
 			this.props.navigateScreen("usercart");
 			this.setState({ redirectCartUser: true });
 		} else {
-			this.props.navigateScreen("guestcart");
+			this.props.navigateScreen("cartguest");
 			this.setState({ redirectCartGuest: true });
 		}
 	}

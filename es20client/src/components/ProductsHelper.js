@@ -85,8 +85,8 @@ class ProductsHelper extends Component{
 		}		
 	}
 	render() {
-		console.log('ProductsHelper jsx props', this.props);
-		// console.log('ProductsHelper jsx state', this.state);
+		console.log('ProductsHelper props', this.props);
+		console.log('ProductsHelper state', this.state);
 
 		return (
 			<div className="filter-product-div">

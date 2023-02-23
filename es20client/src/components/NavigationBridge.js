@@ -121,7 +121,7 @@ class NavigationBridge extends Component {
     }
   }  
   navigateScreen(screen) {
-    // console.log('navigateScreen screen', screen);
+    console.log('navigateScreen screen', screen);
     localStorage.setItem('currentScreen', screen);
     this.setState({ screen: screen });
   }
@@ -387,7 +387,7 @@ class NavigationBridge extends Component {
     console.log('sendForgotEmail to ', email);
   }
   render() {  
-    // console.log('NavigationBridge props state', this.props, this.state);
+    console.log('NavigationBridge props state', this.props, this.state);
     return (
       <div>
           <div className="App">
