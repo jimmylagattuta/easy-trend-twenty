@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { MenuItems } from "./MenuItems";
-import { Button } from "../Button";
+import { Button } from "../cssComponents/Button";
 import { connect } from 'react-redux';
 import CartComponent from './CartComponent';
 import { signOutUser, logoutUser, fetchLoginStatus } from '../../actions';

@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter, Route, Link, withRouter, Redirect } from "react-router-dom";
-import SuperAdminSettings from './settings/SuperAdminSettings';
-import SettingsUser from './settings/SettingsUser';
-import StandardSettings from './settings/StandardSettings';
+import SuperAdminSettings from '../settings/SuperAdminSettings';
+import SettingsUser from '../settings/SettingsUser';
+import StandardSettings from '../settings/StandardSettings';
 
 
 class SettingsUserHome extends React.Component {

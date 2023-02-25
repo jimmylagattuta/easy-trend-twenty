@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import ItemList from './ItemList';
-import ItemDetail from './ItemDetail';
-import ProductsHelper from './ProductsHelper';
-import StandardSettings from './settings/StandardSettings';
-import { fetchCookie } from '../actions';
+import ItemList from '../homeScreenHelpers/ItemList';
+import ItemDetail from '../homeScreenHelpers/ItemDetail';
+import ProductsHelper from './../helpers/ProductsHelper';
+import { fetchCookie } from '../../actions';
 import {Row, Col, Container} from 'react-bootstrap';
 
 
@@ -42,7 +41,7 @@ class HomeScreen extends Component {
 		);
 	}
 	render() {
-		// console.log('HomeScreen props, ', this.props);
+		console.log('HomeScreen with ProductsHelper', this.props);
 		// console.log('this.state HomeScreen', this.state);
 		// console.log('this.props.user_in_app_state', this.props.user_in_app_state);
 

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import {Row, Col, Container} from 'react-bootstrap';
-import { Button } from "./Button";
-import AddToCartHelper from './helpers/AddToCartHelper';
-import KeywordFilter from './helpers/filterHelpers/KeywordFilter';
-import CheapestFilter from './helpers/filterHelpers/CheapestFilter';
-import RatingFilter from './helpers/filterHelpers/RatingFilter';
-import CategoryFilter from './helpers/filterHelpers/CategoryFilter';
+import { Button } from "../cssComponents/Button";
+import AddToCartHelper from './AddToCartHelper';
+import KeywordFilter from './filterHelpers/KeywordFilter';
+import CheapestFilter from './filterHelpers/CheapestFilter';
+import RatingFilter from './filterHelpers/RatingFilter';
+import CategoryFilter from './filterHelpers/CategoryFilter';
 
 import './ProductsHelper.css';
 // products will be fiilterable here, a more specific page than home
@@ -85,8 +85,8 @@ class ProductsHelper extends Component{
 		}		
 	}
 	render() {
-		console.log('ProductsHelper props', this.props);
-		console.log('ProductsHelper state', this.state);
+		// console.log('ProductsHelper props', this.props);
+		// console.log('ProductsHelper state', this.state);
 
 		return (
 			<div className="filter-product-div">

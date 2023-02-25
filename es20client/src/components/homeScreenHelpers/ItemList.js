@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { selectItem, fetchItems } from '../actions';
+import { selectItem, fetchItems } from '../../actions';
 
 class ItemList extends React.Component {
 	componentDidMount() {

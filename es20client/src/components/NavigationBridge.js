@@ -1,13 +1,11 @@
 import React, { Component, useState, useEffect } from "react";
 import { BrowserRouter, Route, Link, withRouter, Redirect } from "react-router-dom";
-import ItemList from './ItemList';
-import ItemDetail from './ItemDetail';
-import HomeScreen from './HomeScreen';
-import ProductsHome from './ProductsHome';
-import CareersHome from './CareersHome';
-import ContactUsHome from './ContactUsHome';
-import UserHome from './UserHome';
-import SettingsUserHome from './SettingsUserHome';
+import HomeScreen from './screens/HomeScreen';
+import ProductsHome from './screens/ProductsHome';
+import CareersHome from './screens/CareersHome';
+import ContactUsHome from './screens/ContactUsHome';
+import UserHome from './screens/UserHome';
+import SettingsUserHome from './screens/SettingsUserHome';
 import NavbarComponent from './Navbar/NavbarComponent';
 import NavigateToScreen from './helpers/NavigateToScreen';
 import CartGuestHelper from './helpers/CartGuestHelper';
@@ -387,7 +385,7 @@ class NavigationBridge extends Component {
     console.log('sendForgotEmail to ', email);
   }
   render() {  
-    console.log('NavigationBridge props state', this.props, this.state);
+    // console.log('NavigationBridge', this.props, this.state);
     return (
       <div>
           <div className="App">

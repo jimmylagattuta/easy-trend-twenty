@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import {Row, Col} from 'react-bootstrap';
-import ProductsHelper from './ProductsHome';
+import ProductsHelper from '../helpers/ProductsHelper';
 
 // products will be fiilterable here, a more specific page than home
 class ProductsHome extends Component{
@@ -31,7 +31,7 @@ class ProductsHome extends Component{
 		}
 	}
 	render() {
-		// console.log('ProductsHome jsx props', this.props);
+		console.log('ProductsHome with ProductsHelper inside', this.props);
 		return (
 			<div>
 
