@@ -1,13 +1,36 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './CartGuestHelper.css';
 class CartGuestHelper extends Component {
 	renderMinusSignCartItem(item) {
 		// console.log('renderMinusSignCartItem');
 		// console.log('item', item);
-		if (item.quantity === 1) {
-			return <p id="gc-red-delete-button-minus" className="gc-red-delete-button">Delete</p>;
+		const cartItemsNoUser = this.props.cartItemsNoUser;
+		if (cartItemsNoUser.length == 1) {
+			// console.log('cartItemsNoUser = 1');
+			if (item.quantity == 1) {
+				// console.log('item = 1');
+				return (
+					<Link to="/homescreen">
+						<p id="gc-red-delete-button-minus" className="gc-red-delete-button">
+							Delete
+						</p>
+					</Link>
+				);
+			} else {
+				// console.log('item > 1');
+				return <p id="gc-button-minus" className="gc-mini-menu-select">-</p>;
+			}
+
 		} else {
-			return <p id="gc-button-minus" className="gc-mini-menu-select">-</p>;
+			// console.log('cartItemsNoUser > 1');
+			if (item.quantity == 1) {
+				// console.log('item = 1');
+				return <p id="gc-red-delete-button-minus" className="gc-red-delete-button">Delete</p>;
+			} else {
+				// console.log('item > 1');
+				return <p id="gc-button-minus" className="gc-mini-menu-select">-</p>;
+			}
 		}
 
 	}

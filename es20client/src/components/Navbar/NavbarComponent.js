@@ -109,17 +109,37 @@ class Navbar extends Component {
 	}
 	sortCartRedirect() {
 		if (this.props.user_in_app_state.logged_in) {
-			// console.log('sending to usercart');
+			console.log('sending to usercart');
 			this.props.navigateScreen("cartuser");
 			this.setState({ redirectCartUser: true });
 		} else {
-			// console.log('sending to cartguest');
+			console.log('sending to cartguest');
 			this.props.navigateScreen("cartguest");
 			this.setState({ redirectCartGuest: true });
 		}
 	}
-	renderCheckout(cart_items) {
-		// console.log('renderCheckout');
+	renderCheckoutGuest(cartItemsNoUser) {
+		console.log('renderCheckoutGuest');
+		// console.log('cartItemsNoUser', cartItemsNoUser);
+		if (cartItemsNoUser.length > 0) {
+			return (
+				<Button
+					id="mini-nav-button-element"
+					// className="ui button primary"
+					onClick={() => {
+						// console.log('Checkout Cart Screen');
+						this.sortCartRedirect();
+					}} 
+				>
+					<Link to="/cartguest">
+						<p className="mini-menu-select">Checkout</p>
+					</Link>
+				</Button>
+			);
+		}
+	}
+	renderCheckoutUser(cart_items) {
+		console.log('renderCheckoutUser');
 		// console.log('cart_items', cart_items);
 		if (cart_items.length > 0) {
 			return (
@@ -138,9 +158,9 @@ class Navbar extends Component {
 			);
 		}
 	}
-	renderCartNavNoUser() {
-		// console.log('renderCartNavNoUser');
-		// console.log('renderCartNavNoUser state', this.state);
+	renderCartNavGuest() {
+		console.log('renderCartNavGuest');
+		// console.log('renderCartNavGuest state', this.state);
 			return (
 				<div id="cart-div-component">
 					<div className="dropdown">
@@ -154,16 +174,16 @@ class Navbar extends Component {
 						  		cartItemsNoUser={this.props.cartItemsNoUser}
 						  		changeCartItemGuest={this.props.changeCartItemGuest}
 							/>
-							{this.renderCheckout(this.props.cartItemsNoUser)}
+							{this.renderCheckoutGuest(this.props.cartItemsNoUser)}
 					  	</div>
 					  </div>
 					</div>
 				</div>
 			);
 	}
-	renderCartNav() {
-		// console.log('renderCartNav "User"');
-		// console.log('renderCartNav(User) state', this.state);
+	renderCartNavUser() {
+		console.log('renderCartNavUser "User"');
+		// console.log('renderCartNavUser(User) state', this.state);
 		if (this.props.cart_items) {
 			// console.log('cart_items!', this.props);
 			return (
@@ -179,7 +199,7 @@ class Navbar extends Component {
 						  		cart_items={this.props.cart_items}
 						  		changeCartItemUser={this.props.changeCartItemUser}
 							/>
-							{this.renderCheckout(this.props.cart_items)}
+							{this.renderCheckoutUser(this.props.cart_items)}
 					  	</div>
 					  </div>
 					</div>
@@ -220,7 +240,7 @@ class Navbar extends Component {
 					</ul>
 					<div id="show-cart" to="/cart">
 						<h1 id="add-hover" className="menu-turn-white">
-							{this.renderCartNavNoUser()}
+							{this.renderCartNavGuest()}
 
 						</h1>
 					</div>
@@ -371,7 +391,7 @@ class Navbar extends Component {
 						})}
 						<div id="show-cart">
 							<h1 id="add-hover" className="menu-turn-white">
-								{this.renderCartNav()}
+								{this.renderCartNavUser()}
 							</h1>
 						</div>
 						{this.renderSettingsButton()}
