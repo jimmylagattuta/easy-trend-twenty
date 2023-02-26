@@ -34,6 +34,7 @@ class NavigationBridge extends Component {
            category: "None",
            changePasswordMessege: null,
            forgotPasswordMessege: null,
+           forgotPasswordMessegeError: null,
            redirectChangePassword: false,
            visible: false
         }  
@@ -54,6 +55,11 @@ class NavigationBridge extends Component {
     if (this.state.forgotPasswordMessege) {
       setTimeout(() => {
       this.setState({ forgotPasswordMessege: null });
+    }, "8000")
+    }
+    if (this.state.forgotPasswordMessegeError) {
+      setTimeout(() => {
+      this.setState({ forgotPasswordMessegeError: null });
     }, "8000")
     }
     // no funcionado
@@ -419,13 +425,19 @@ class NavigationBridge extends Component {
     console.log('setForgotPasswordEmailMessege messege', messege);
     this.setState({ forgotPasswordMessege: messege });
   }
+  setForgotPasswordEmailMessegeError(messege) {
+    console.log('setForgotPasswordEmailMessegeError messege', messege);
+    this.setState({ forgotPasswordMessegeError: messege });
+  }
   renderFlashMesseges() {
     if (this.state.changePasswordMessege) {
       return <div className={this.state.visible?'fadeIn':'fadeOut'}><p className="flashCss">{this.state.changePasswordMessege}</p></div>;
     } else if (this.state.forgotPasswordMessege) {
       console.log('this.state.forgotPasswordMessege!');
       return <div className={this.state.visible?'fadeIn':'fadeOut'}><p className="flashCss">{this.state.forgotPasswordMessege}</p></div>;
-    }
+    } else if (this.state.forgotPasswordMessegeError) {
+      console.log('this.state.forgotPasswordMessegeError!');
+      return <div className={this.state.visible?'fadeIn':'fadeOut'}><p className="flashCssRed">{this.state.forgotPasswordMessegeError}</p></div>;
   }
   render() {  
     // console.log('NavigationBridge', this.props, this.state);
@@ -521,6 +533,8 @@ class NavigationBridge extends Component {
               render= { (props) => <ForgotPassword
                                       sendForgotEmail={this.sendForgotEmail.bind(this)}
                                       setForgotPasswordEmailMessege={this.setForgotPasswordEmailMessege.bind(this)}
+                                      setForgotPasswordEmailMessegeError={this.setForgotPasswordEmailMessegeError.bind(this)}
+
                                    />
                       }
             />

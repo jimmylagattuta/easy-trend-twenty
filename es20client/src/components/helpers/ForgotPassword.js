@@ -66,10 +66,16 @@ class ForgotPassword extends Component {
 								    	    console.log('values', values);
 								    	    form.reset();
 									    	this.props.setForgotPasswordEmailMessege("Check Your Email For Change Password Instructions.")
+								        })
+								        .catch((e) => {
+									    	this.props.setForgotPasswordEmailMessegeError("Email May Be Spelled Wrong Or Not Registered.")
+
 								        });
 								      } else {
 								        res.json().then((errors) => {
 								          // console.error('error forgot password', errors);
+									    	this.props.setForgotPasswordEmailMessegeError("Email May Be Spelled Wrong Or Not Registered.")
+								        	
 								        });
 								      }
 								    })
