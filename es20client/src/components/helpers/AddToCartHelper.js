@@ -7,13 +7,13 @@ class AddToCartHelper extends Component {
 		if (this.props.loggedIn) {
 			return (
 				<Button onClick={() => this.props.addToCart(this.props.p.product)} id="add-hover-settings" className="make-row">
-					Add 2 Cart
+					Add To Cart
 				</Button>
 			);
 		} else {
 			return (
 				<Button onClick={() => this.props.addToCart(this.props.p.product)} id="add-hover-settings" className="make-row">
-					Add 2 Cart
+					Add To Cart
 				</Button>
 			);
 		}

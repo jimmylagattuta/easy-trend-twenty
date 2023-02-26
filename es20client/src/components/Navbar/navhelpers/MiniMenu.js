@@ -113,29 +113,41 @@ class MiniMenu extends Component {
 		});
 	}
 	render() {
-		// console.log('MiniMenu has rendered', this.props);
-		if (this.props.cartItemsNoUser.length > 0) {
-			// console.log('MiniMenu cartItemsNoUser!', this.props);
-			return (
-				<div>
-					{this.renderItemsGuest(this.props.cartItemsNoUser)}
-				</div>
-			);
-		} else if (this.props.cart_items.length > 0) {
-			// console.log('MiniMenu cart_items!', this.props);
-			return (
-				<div>
-					{this.renderItemsUser(this.props.cart_items)}
-				</div>
-			);
-		} else {		
-			// console.log('MiniMenu Empty cart_items and cartItemsNoUser', this.props);
-			return (
-				<div className="add-to-cart-mini-menu">
-					<p className="mini-menu-title-menu">Add 2 Cart!</p>
-					<div className="visible-mini-cart-menu"></div>
-				</div>
-			);
+		// console.log('MiniMenu', this.props);
+		if (this.props.cartItemsNoUser) {
+			// console.log('MiniMenu guest');
+			if (this.props.cartItemsNoUser.length > 0) {
+				return (
+					<div>
+						{this.renderItemsGuest(this.props.cartItemsNoUser)}
+					</div>
+				);
+			} else {
+				return (
+					<div className="add-to-cart-mini-menu">
+						<p className="mini-menu-title-menu">Add To Cart</p>
+						<div className="visible-mini-cart-menu"></div>
+					</div>
+				);
+			}
+		} else {
+			// console.log('MiniMenu user');
+			if (this.props.cart_items.length > 0) {
+				// console.log('renderItemsUser');
+				return (
+					<div>
+						{this.renderItemsUser(this.props.cart_items)}
+					</div>
+				);
+			} else {
+				// console.log('No items');
+				return (
+					<div className="add-to-cart-mini-menu">
+						<p className="mini-menu-title-menu">Add To Cart</p>
+						<div className="visible-mini-cart-menu"></div>
+					</div>
+				);
+			}
 		}
 	}
 }

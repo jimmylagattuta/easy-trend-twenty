@@ -108,9 +108,9 @@ class NavigationBridge extends Component {
     // console.log('screen', screen);
     // console.log('cart_items', cart_items);
     // console.log('message', message);
-    console.log('a) setting screen ', screen);
+    // console.log('a) setting screen ', screen);
     localStorage.setItem('currentScreen', screen);
-    if (message === "Received") {
+    if (message == "Received") {
       this.setState({ user_in_app_state: user_in_app_state, screen: screen, cart_items: cart_items, passwordMessage: "Password Updated", redirectChangePassword: true, visible: true });
 
     } else {
@@ -132,7 +132,7 @@ class NavigationBridge extends Component {
     this.setState({ screen: screen});
   }
   historyRedirect(screen) {
-    console.log('historyRedirect', screen);
+    // console.log('historyRedirect', screen);
       // const history = useHistory();
       // history.push(screen);
     return <NavigateToScreen screen={"cartguest"} />;
@@ -172,7 +172,7 @@ class NavigationBridge extends Component {
   addToCartNoUser(item, cartItemId) {
     // console.log('item NavigationBrideg addToCartNoUser', item);
     // console.log('cartItemId NavigationBrideg addToCartNoUser', cartItemId);
-    if (this.state.cartItemsNoUser.length === 0) {
+    if (this.state.cartItemsNoUser.length == 0) {
       // console.log("a) + 1 ", item.product.title);
       this.setState({ cartItemsNoUser: [...this.state.cartItemsNoUser, item] });
     } else {
@@ -201,7 +201,7 @@ class NavigationBridge extends Component {
   }
   changeCartItemGuest(operation, cartItemBundle, cartItemId) {
     // console.log('changeCartItemGuest', operation, cartItemBundle);
-    if (operation === "+") {
+    if (operation == "+") {
       let updatedList = this.state.cartItemsNoUser.map((item, index) => 
         {
           if (index == cartItemId){
@@ -212,7 +212,7 @@ class NavigationBridge extends Component {
       this.setState({ cartItemsNoUser: updatedList });
 
     } else {
-      if (cartItemBundle.quantity === 1) {
+      if (cartItemBundle.quantity == 1) {
         const filteredArray = this.state.cartItemsNoUser.filter((item, index) => index !== cartItemId);
         this.setState({ cartItemsNoUser: filteredArray });
       } else {
@@ -240,7 +240,7 @@ class NavigationBridge extends Component {
   }
   changeCartItemUser(operation, cartItemBundle, cartItemId) {
     // console.log('changeCartItemUser', operation, cartItemBundle);
-    if (operation === "+") {
+    if (operation == "+") {
       const values = {
         // userObject: this.state.user_in_app_state,
         cartItem: cartItemBundle.product
@@ -336,7 +336,7 @@ class NavigationBridge extends Component {
   }
   arrangeFilteredProducts(filter) {
     // console.log('arrangeFilteredProducts');
-    if (filter === "cheapest") {
+    if (filter == "cheapest") {
       if (this.state.cheapest) {
         const sorted = this.state.filteredProducts.sort((a, b) => {
           // console.log('normal');
@@ -368,7 +368,7 @@ class NavigationBridge extends Component {
   }
   categorizeFilteredProducts(category, stateFilteredProducts) {
     let newProducts = [];
-    if (category === "None") {
+    if (category == "None") {
       this.state.products.map((object) => {
           newProducts.push(object);
       });
@@ -378,7 +378,7 @@ class NavigationBridge extends Component {
         // console.log('object', object);
         const categoryLowerCase = category.toLowerCase();
         // console.log('categoryLowerCase', categoryLowerCase);
-        if (object.product.category === categoryLowerCase) {
+        if (object.product.category == categoryLowerCase) {
           newProducts.push(object);
         }
       });
@@ -392,11 +392,11 @@ class NavigationBridge extends Component {
     console.log('sendForgotEmail to ', email);
   }
   render() {  
-    console.log('NavigationBridge', this.props, this.state);
+    // console.log('NavigationBridge', this.props, this.state);
     // console.log('this.props.screen', this.props.screen);
     const screenToken = localStorage.getItem('currentScreen');
     // localStorage.removeItem('currentScreen');
-    console.log('screenToken', screenToken);
+    // console.log('screenToken', screenToken);
     return (
       <div>
           <div className="App">

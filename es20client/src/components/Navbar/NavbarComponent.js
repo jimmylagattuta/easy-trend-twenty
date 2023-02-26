@@ -135,7 +135,7 @@ class Navbar extends Component {
 		}
 	}
 	renderCartNavNoUser() {
-		// console.log('renderCartNavNoUser props', this.props);
+		// console.log('renderCartNavNoUser');
 		// console.log('renderCartNavNoUser state', this.state);
 			return (
 				<div id="cart-div-component">
@@ -148,7 +148,6 @@ class Navbar extends Component {
 					  	<div className="cart-and-checkout">
 						  	<MiniMenu 
 						  		cartItemsNoUser={this.props.cartItemsNoUser}
-						  		cart_items={this.props.cart_items}
 						  		changeCartItemGuest={this.props.changeCartItemGuest}
 							/>
 							{this.renderCheckout(this.props.cartItemsNoUser)}
@@ -159,7 +158,7 @@ class Navbar extends Component {
 			);
 	}
 	renderCartNav() {
-		// console.log('renderCartNav(User) props', this.props);
+		console.log('renderCartNav "User"');
 		// console.log('renderCartNav(User) state', this.state);
 		if (this.props.cart_items) {
 			// console.log('cart_items!', this.props);
@@ -174,8 +173,6 @@ class Navbar extends Component {
 					  	<div className="cart-and-checkout">
 						  	<MiniMenu 
 						  		cart_items={this.props.cart_items}
-						  		cartItemsNoUser={this.props.cartItemsNoUser}
-						  		changeCartItemGuest={this.props.changeCartItemGuest}
 						  		changeCartItemUser={this.props.changeCartItemUser}
 							/>
 							{this.renderCheckout(this.props.cart_items)}
@@ -187,7 +184,14 @@ class Navbar extends Component {
 		} else {
 			// console.log('Empty cart', this.props);
 			return (
-				<div id="cart-div"><i className="fab fa-opencart"></i><p id="cart-length" className="p-cart">{0}</p></div>
+				<div id="cart-div">
+					<i className="fab fa-opencart">
+						
+					</i>
+					<p id="cart-length" className="p-cart">
+						{0}
+					</p>
+				</div>
 			);	
 		}
 	}

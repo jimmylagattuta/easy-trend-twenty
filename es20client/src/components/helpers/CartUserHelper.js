@@ -104,7 +104,7 @@ class CartUserHelper extends Component {
 		);
 	}
 	render() {
-		// console.log('CartUserHelper props', this.props);
+		console.log('CartUserHelper props', this.props);
 		return (
 			<div className="user-cart">
 				{this.renderItems(this.props.cart_items)}

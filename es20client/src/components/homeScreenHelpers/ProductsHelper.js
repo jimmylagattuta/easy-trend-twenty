@@ -19,7 +19,7 @@ class ProductsHelper extends Component{
 			quantity: 1,
 			product: p.product
 		};
-		if (!this.props.loggedIn) {
+		if (!this.props.user_in_app_state.logged_in) {
 			// guest
 			// console.log('guest');
 

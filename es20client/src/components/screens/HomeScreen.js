@@ -49,6 +49,7 @@ class HomeScreen extends Component {
 			<div className="App">
 				<h1>Home Headquarters</h1>
 				<ProductsHelper
+					user_in_app_state={this.props.user_in_app_state}
 					products={this.props.products}
 					addToCart={this.props.addToCart.bind(this)}
 					loggedIn={false}
