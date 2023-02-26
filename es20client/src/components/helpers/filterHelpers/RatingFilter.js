@@ -6,7 +6,7 @@ import './RatingFilter.css';
 class RatingFilter extends Component {
     onSubmit(values) {
       // console.log('values', values);
-      this.props.arrangeFilteredProducts("rating");
+      this.props.arrangeFilteredProducts("rating", this.props.filteredProducts);
     }
   render() {
     // console.log('RatingFilter Component props', this.props);

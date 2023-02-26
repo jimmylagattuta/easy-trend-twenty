@@ -23,11 +23,12 @@ class ForgotPassword extends Component {
     	  // console.log('response', res);
 	      if (res.ok) {
 	        res.json().then((response) => {
-	        	console.log('response forgot password', response);
+	        	// console.log('response forgot password', response);
+		    	this.props.setForgotPasswordEmailMessege("Check Your Email For Change Password Instructions.")
 	        });
 	      } else {
 	        res.json().then((errors) => {
-	          console.error('error forgot password', errors);
+	          // console.error('error forgot password', errors);
 	        });
 	      }
 	    })
@@ -50,9 +51,9 @@ class ForgotPassword extends Component {
 				          	<Field name="email_or_username" component="input" placeholder="Email" />
 				        </div>
 				        <div className="sign-in-and-forgot-password">
-					        <button type="submit" name="sign-in-button">
-					        	Submit
-					        </button>
+					        	<button type="submit" name="sign-in-button">
+					        		Submit
+					        	</button>
 				    	</div>
 				      </form>
 				    )}

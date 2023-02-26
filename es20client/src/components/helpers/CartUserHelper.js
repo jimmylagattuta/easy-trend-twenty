@@ -72,12 +72,11 @@ class CartUserHelper extends Component {
 		// console.log('renderItems/CartUserHelper props', this.props);
 		return items.map((item, id) => {
 			const product = item.product;
-			const formattedPrice = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(product.price);
-			let taxToFormat = ((product.price) * (item.quantity))*0.3;
-			const formattedTax = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(taxToFormat);
+			const formattedPrice = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(product.price * item.quantity);
+			let taxToFormat = (product.price) * 0.3;
+			const formattedTax = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(taxToFormat * item.quantity);
 			let totalToFormat = ((product.price*item.quantity)*0.3) + (product.price*item.quantity);
 			const formattedTotal = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(totalToFormat);
-
 
 			return (
 				<div className="gc-add-to-cart-mini-menu-cart-items" key={product.id}>
@@ -96,8 +95,8 @@ class CartUserHelper extends Component {
 
 
 {/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/}
-								<h2 className="gc-mini-menu-title">Price: {formattedPrice}</h2>
-								<h2 className="gc-mini-menu-title">Tax: {formattedTax}</h2>
+								<h2 className="gc-mini-menu-title">Price: {formattedPrice * item.quantity}</h2>
+								<h2 className="gc-mini-menu-title">Tax: {formattedTax * item.quantity}</h2>
 								<div className="gc-right-floated-content">
 									<div
 										onClick={() => {

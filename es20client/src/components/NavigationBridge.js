@@ -32,7 +32,8 @@ class NavigationBridge extends Component {
            top_rated: false,
            categoryBoolean: false,
            category: "None",
-           passwordMessage: null,
+           changePasswordMessege: null,
+           forgotPasswordMessege: null,
            redirectChangePassword: false,
            visible: false
         }  
@@ -45,9 +46,14 @@ class NavigationBridge extends Component {
   } 
   componentDidUpdate() {
     // console.log('componentDidUpdate', this.state);
-    if (this.state.passwordMessage) {
+    if (this.state.changePasswordMessege) {
       setTimeout(() => {
-      this.setState({ passwordMessage: null });
+      this.setState({ changePasswordMessege: null });
+    }, "8000")
+    }
+    if (this.state.forgotPasswordMessege) {
+      setTimeout(() => {
+      this.setState({ forgotPasswordMessege: null });
     }, "8000")
     }
     // no funcionado
@@ -116,7 +122,7 @@ class NavigationBridge extends Component {
     // console.log('a) setting screen ', screen);
     localStorage.setItem('currentScreen', screen);
     if (message == "Received") {
-      this.setState({ user_in_app_state: user_in_app_state, screen: screen, cart_items: cart_items, passwordMessage: "Password Updated", redirectChangePassword: true, visible: true });
+      this.setState({ user_in_app_state: user_in_app_state, screen: screen, cart_items: cart_items, changePasswordMessege: "Password Updated", redirectChangePassword: true, visible: true });
 
     } else {
       this.setState({ user_in_app_state: user_in_app_state, screen: screen, cart_items: cart_items });
@@ -143,7 +149,7 @@ class NavigationBridge extends Component {
     return <NavigateToScreen screen={"cartguest"} />;
   }
   addToCart(item) {
-    console.log('addToCart', item);
+    // console.log('addToCart', item);
     // console.log('NavigationBridge state', this.state);
     // console.log('NavigationBridge props', this.props);
     const values = {
@@ -206,7 +212,7 @@ class NavigationBridge extends Component {
 
   }
   changeCartItemGuest(operation, cartItemBundle, cartItemId) {
-    console.log('changeCartItemGuest', operation, cartItemBundle);
+    // console.log('changeCartItemGuest', operation, cartItemBundle);
     if (operation == "+") {
       let updatedList = this.state.cartItemsNoUser.map((item, index) => 
         {
@@ -248,7 +254,7 @@ class NavigationBridge extends Component {
     }
   }
   changeCartItemUser(operation, cartItemBundle, cartItemId) {
-    console.log('changeCartItemUser', operation, cartItemBundle);
+    // console.log('changeCartItemUser', operation, cartItemBundle);
     if (operation == "+") {
       const values = {
         // userObject: this.state.user_in_app_state,
@@ -309,8 +315,11 @@ class NavigationBridge extends Component {
       
     }
   }
+
+
+
   sortFilteredProducts(user_filter_string, stateFilteredProducts) {
-    // console.log('sortFilteredProducts', user_filter_string);
+    console.log('sortFilteredProducts user_filter_string', user_filter_string);
     // console.log('this.state', this.state);
     let searchTermConcat = "";
     let newProducts = [];
@@ -345,17 +354,17 @@ class NavigationBridge extends Component {
       this.setState({ filteredProducts: newProducts, searchTerm: user_filter_string });
     }
   }
-  arrangeFilteredProducts(filter) {
-    // console.log('arrangeFilteredProducts');
+  arrangeFilteredProducts(filter, keptProducts) {
+    console.log('arrangeFilteredProducts filter', filter);
     if (filter == "cheapest") {
       if (this.state.cheapest) {
-        const sorted = this.state.filteredProducts.sort((a, b) => {
+        const sorted = keptProducts.sort((a, b) => {
           // console.log('normal');
             return a.product.id - b.product.id;
         });
         this.setState({ filteredProducts: sorted, cheapest: false });
       } else {
-        const sorted = this.state.filteredProducts.sort((a, b) => {
+        const sorted = keptProducts.sort((a, b) => {
           // console.log('normal');
             return a.product.price - b.product.price;
         });
@@ -363,13 +372,13 @@ class NavigationBridge extends Component {
       }
     } else {
       if (this.state.top_rated) {
-        const sorted = this.state.filteredProducts.sort((a, b) => {
+        const sorted = keptProducts.sort((a, b) => {
           // console.log('normal');
             return a.product.id - b.product.id;
         });
         this.setState({ filteredProducts: sorted, top_rated: false });
       } else {
-        const sorted = this.state.filteredProducts.sort((a, b) => {
+        const sorted = keptProducts.sort((a, b) => {
           // console.log('top_rated');
             return b.product.rate - a.product.rate;
         });
@@ -378,6 +387,7 @@ class NavigationBridge extends Component {
     }
   }
   categorizeFilteredProducts(category, stateFilteredProducts) {
+    console.log('categorizeFilteredProducts', category);
     let newProducts = [];
     if (category == "None") {
       this.state.products.map((object) => {
@@ -396,11 +406,26 @@ class NavigationBridge extends Component {
       this.setState({ filteredProducts: newProducts, category: category });
     }
   }
+
+
+
   triggerRedirectChangePassword() {
     this.setState({ redirectChangePassword: false });
   }
   sendForgotEmail(email) {
     console.log('sendForgotEmail to ', email);
+  }
+  setForgotPasswordEmailMessege(messege) {
+    console.log('setForgotPasswordEmailMessege messege', messege);
+    this.setState({ forgotPasswordMessege: messege });
+  }
+  renderFlashMesseges() {
+    if (this.state.changePasswordMessege) {
+      return <div className={this.state.visible?'fadeIn':'fadeOut'}><p className="flashCss">{this.state.changePasswordMessege}</p></div>;
+    } else if (this.state.forgotPasswordMessege) {
+      console.log('this.state.forgotPasswordMessege!');
+      return <div className={this.state.visible?'fadeIn':'fadeOut'}><p className="flashCss">{this.state.forgotPasswordMessege}</p></div>;
+    }
   }
   render() {  
     // console.log('NavigationBridge', this.props, this.state);
@@ -429,7 +454,7 @@ class NavigationBridge extends Component {
               historyRedirect={this.historyRedirect.bind(this)}
             />
             <h1>(...under construction... fake products)</h1>
-            <div className={this.state.visible?'fadeIn':'fadeOut'}><p className="flashCss">{this.state.passwordMessage}</p></div>
+            {this.renderFlashMesseges()}
             <Route 
               path="/homescreen" 
               render= { (props) => <HomeScreen
@@ -495,6 +520,7 @@ class NavigationBridge extends Component {
               path="/forgotpassword"
               render= { (props) => <ForgotPassword
                                       sendForgotEmail={this.sendForgotEmail.bind(this)}
+                                      setForgotPasswordEmailMessege={this.setForgotPasswordEmailMessege.bind(this)}
                                    />
                       }
             />
