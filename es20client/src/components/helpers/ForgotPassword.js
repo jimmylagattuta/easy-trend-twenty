@@ -10,7 +10,7 @@ class ForgotPassword extends Component {
 	      }  
 	}
 	onSubmitSendEmail(values) {
-		console.log('onSubmit SignInUser!', values);
+		// console.log('onSubmit SignInUser!', values);
 		// console.log('onSubmit SignInUser!', values);
 		fetch("api/v1/forgot_password", {
 	      method: "POST",
@@ -25,7 +25,7 @@ class ForgotPassword extends Component {
 	        res.json().then((response) => {
 	        	// console.log('response forgot password', response);
 		    	this.props.setForgotPasswordEmailMessege("Check Your Email For Change Password Instructions.")
-	    	    form.change('email_or_username, undefined');
+	    	    
 	        });
 	      } else {
 	        res.json().then((errors) => {
@@ -52,9 +52,11 @@ class ForgotPassword extends Component {
 				          	<Field name="email_or_username" component="input" placeholder="Email" />
 				        </div>
 				        <div className="sign-in-and-forgot-password">
-					        	<button onClick={() => {
-						    	    form.change('email_or_username, undefined');
-					        	}} type="submit" name="sign-in-button">
+					        	<button
+								  onClick={() => {
+								      form.reset();
+								  }}
+					        	 type="submit" name="sign-in-button">
 					        		Submit
 					        	</button>
 				    	</div>
