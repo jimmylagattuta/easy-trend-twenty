@@ -12,32 +12,27 @@ class ForgotPassword extends Component {
 	onSubmitSendEmail(values, form) {
 		// console.log('onSubmit SignInUser!', values);
 		// console.log('onSubmit SignInUser!', values);
-		fetch("api/v1/forgot_password", {
-	      method: "POST",
-	      credentials: 'same-origin',
-	      headers: {
-	        "Content-Type": "application/json",
-	      },
-	      body: JSON.stringify(values),
-	    }).then((res) => {
-    	  // console.log('response', res);
-	      if (res.ok) {
-	        res.json().then((response) => {
-	        	// console.log('response forgot password', response);
-		    	this.props.setForgotPasswordEmailMessege("Check Your Email For Change Password Instructions.")
-	    	    form.clear();
-	        });
-	      } else {
-	        res.json().then((errors) => {
-	          // console.error('error forgot password', errors);
-	        });
-	      }
-	    })
-	    .then(() => {
-	    	// this.setState({ redirect: false });
-	    });
-		// removing redux to configure then will branch to add back redux
-		// this.props.loginUser(values);
+		// fetch("api/v1/forgot_password", {
+	    //   method: "POST",
+	    //   credentials: 'same-origin',
+	    //   headers: {
+	    //     "Content-Type": "application/json",
+	    //   },
+	    //   body: JSON.stringify(values),
+	    // }).then((res) => {
+    	//   // console.log('response', res);
+	    //   if (res.ok) {
+	    //     res.json().then((response) => {
+	    //     	// console.log('response forgot password', response);
+		//     	this.props.setForgotPasswordEmailMessege("Check Your Email For Change Password Instructions.")
+	    // 	    form.clear();
+	    //     });
+	    //   } else {
+	    //     res.json().then((errors) => {
+	    //       // console.error('error forgot password', errors);
+	    //     });
+	    //   }
+	    // })
 	}
 	render() {
 		return (
@@ -54,7 +49,27 @@ class ForgotPassword extends Component {
 				        <div className="sign-in-and-forgot-password">
 					        	<button
 								  onClick={() => {
-								  	console.log('Potential clearing location ForgotPassword 57');
+									fetch("api/v1/forgot_password", {
+								      method: "POST",
+								      credentials: 'same-origin',
+								      headers: {
+								        "Content-Type": "application/json",
+								      },
+								      body: JSON.stringify(values),
+								    }).then((res) => {
+							    	  // console.log('response', res);
+								      if (res.ok) {
+								        res.json().then((response) => {
+								        	// console.log('response forgot password', response);
+									    	this.props.setForgotPasswordEmailMessege("Check Your Email For Change Password Instructions.")
+								    	    form.clear();
+								        });
+								      } else {
+								        res.json().then((errors) => {
+								          // console.error('error forgot password', errors);
+								        });
+								      }
+								    })
 								      // form.reset();
 								  }}
 					        	 type="submit" name="sign-in-button">
