@@ -54,7 +54,7 @@ class ForgotPassword extends Component {
 				        <div className="sign-in-and-forgot-password">
 					        	<button
 								  onClick={() => {
-								      form.reset();
+								      handleSubmit.reset();
 								  }}
 					        	 type="submit" name="sign-in-button">
 					        		Submit
