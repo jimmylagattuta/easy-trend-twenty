@@ -25,6 +25,7 @@ class ForgotPassword extends Component {
 	        res.json().then((response) => {
 	        	// console.log('response forgot password', response);
 		    	this.props.setForgotPasswordEmailMessege("Check Your Email For Change Password Instructions.")
+		    	return <Redirect to="/userhome" />;
 	        });
 	      } else {
 	        res.json().then((errors) => {
