@@ -119,7 +119,7 @@ class Navbar extends Component {
 		}
 	}
 	renderCheckoutGuest(cartItemsNoUser) {
-		console.log('renderCheckoutGuest');
+		// console.log('renderCheckoutGuest');
 		// console.log('cartItemsNoUser', cartItemsNoUser);
 		if (cartItemsNoUser.length > 0) {
 			return (
@@ -139,7 +139,7 @@ class Navbar extends Component {
 		}
 	}
 	renderCheckoutUser(cart_items) {
-		console.log('renderCheckoutUser');
+		// console.log('renderCheckoutUser');
 		// console.log('cart_items', cart_items);
 		if (cart_items.length > 0) {
 			return (
@@ -159,7 +159,7 @@ class Navbar extends Component {
 		}
 	}
 	renderCartNavGuest() {
-		console.log('renderCartNavGuest');
+		// console.log('renderCartNavGuest');
 		// console.log('renderCartNavGuest state', this.state);
 			return (
 				<div id="cart-div-component">
@@ -182,7 +182,7 @@ class Navbar extends Component {
 			);
 	}
 	renderCartNavUser() {
-		console.log('renderCartNavUser "User"');
+		// console.log('renderCartNavUser "User"');
 		// console.log('renderCartNavUser(User) state', this.state);
 		if (this.props.cart_items) {
 			// console.log('cart_items!', this.props);

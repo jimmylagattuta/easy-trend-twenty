@@ -72,6 +72,13 @@ class CartUserHelper extends Component {
 		// console.log('renderItems/CartUserHelper props', this.props);
 		return items.map((item, id) => {
 			const product = item.product;
+			const formattedPrice = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(product.price);
+			let taxToFormat = ((product.price) * (item.quantity))*0.3;
+			const formattedTax = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(taxToFormat);
+			let totalToFormat = ((product.price*item.quantity)*0.3) + (product.price*item.quantity);
+			const formattedTotal = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(totalToFormat);
+
+
 			return (
 				<div className="gc-add-to-cart-mini-menu-cart-items" key={product.id}>
 					<div className="gc-space-out-quantity-and-buttons">
@@ -88,9 +95,9 @@ class CartUserHelper extends Component {
 							<div className="gc-row-container">
 
 
-
-								<h2 className="gc-mini-menu-title">Price: ${product.price}</h2>
-								<h2 className="gc-mini-menu-title">Tax: ${(product.price) * (item.quantity)}</h2>
+{/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/}
+								<h2 className="gc-mini-menu-title">Price: {formattedPrice}</h2>
+								<h2 className="gc-mini-menu-title">Tax: {formattedTax}</h2>
 								<div className="gc-right-floated-content">
 									<div
 										onClick={() => {
@@ -110,7 +117,8 @@ class CartUserHelper extends Component {
 										{this.renderMinusSignCartItem(item)}										
 									</div>
 								</div>
-								<h2 className="gc-mini-menu-title">Total: ${((product.price*item.quantity)*0.3) + (product.price*item.quantity)}</h2>
+								<h2 className="gc-mini-menu-title">Total: {formattedTotal}</h2>
+{/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/}
 							</div>
 						</div>
 					</div>

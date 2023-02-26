@@ -4,7 +4,7 @@ import './MiniMenu.css';
 class MiniMenu extends Component {
 
 	renderMinusSignCartItem(item) {
-		console.log('renderMinusSignCartItem');
+		// console.log('renderMinusSignCartItem');
 		// console.log('item', item);
 		if (item.quantity === 1) {
 			return <p id="red-delete-button-minus" className="red-delete-button">Delete</p>;

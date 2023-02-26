@@ -143,7 +143,7 @@ class NavigationBridge extends Component {
     return <NavigateToScreen screen={"cartguest"} />;
   }
   addToCart(item) {
-    // console.log('addToCart', item);
+    console.log('addToCart', item);
     // console.log('NavigationBridge state', this.state);
     // console.log('NavigationBridge props', this.props);
     const values = {
@@ -164,7 +164,8 @@ class NavigationBridge extends Component {
           res.json().then((new_cart) => {
             // console.log('setCurrentUser(user)');
             // console.log('api/v1/add_to_cart new_cart', new_cart);
-            this.setState({ cart_items: new_cart.cart_items });
+            const newList = new_cart.cart_items.sort((a,b) => a.productId-b.productId);
+            this.setState({ cart_items: newList });
           });
         } else {
           res.json().then((errors) => {
@@ -199,13 +200,13 @@ class NavigationBridge extends Component {
         // console.log('adding item not in cart');
         updatedList.push(item);
       }
-
-      this.setState({ cartItemsNoUser: updatedList });
+      const newList = updatedList.sort((a,b) => a.productId-b.productId);
+      this.setState({ cartItemsNoUser: newList });
     }
 
   }
   changeCartItemGuest(operation, cartItemBundle, cartItemId) {
-    // console.log('changeCartItemGuest', operation, cartItemBundle);
+    console.log('changeCartItemGuest', operation, cartItemBundle);
     if (operation == "+") {
       let updatedList = this.state.cartItemsNoUser.map((item, index) => 
         {
@@ -214,7 +215,8 @@ class NavigationBridge extends Component {
           }
           return item; // else return unmodified item 
       });
-      this.setState({ cartItemsNoUser: updatedList });
+      const newList = updatedList.sort((a,b) => a.productId-b.productId);
+      this.setState({ cartItemsNoUser: newList });
 
     } else {
       if (cartItemBundle.quantity == 1) {
@@ -238,13 +240,15 @@ class NavigationBridge extends Component {
           // console.log('adding item not in cart');
           updatedList.push(cartItemBundle);
         }
-        this.setState({ cartItemsNoUser: updatedList });
+            const newList = updatedList.sort((a,b) => a.productId-b.productId);
+
+        this.setState({ cartItemsNoUser: newList });
       }
 
     }
   }
   changeCartItemUser(operation, cartItemBundle, cartItemId) {
-    // console.log('changeCartItemUser', operation, cartItemBundle);
+    console.log('changeCartItemUser', operation, cartItemBundle);
     if (operation == "+") {
       const values = {
         // userObject: this.state.user_in_app_state,
@@ -264,7 +268,8 @@ class NavigationBridge extends Component {
             res.json().then((new_cart) => {
               // console.log('setCurrentUser(user)');
               // console.log('api/v1/add_to_cart new_cart', new_cart);
-              this.setState({ cart_items: new_cart.cart_items });
+            const newList = new_cart.cart_items.sort((a,b) => a.productId-b.productId);
+              this.setState({ cart_items: newList });
             });
           } else {
             res.json().then((errors) => {
@@ -292,7 +297,8 @@ class NavigationBridge extends Component {
             res.json().then((new_cart) => {
               // console.log('setCurrentUser(user)');
               // console.log('api/v1/minus_from_cart new_cart', new_cart);
-              this.setState({ cart_items: new_cart.cart_items });
+              const newList = new_cart.cart_items.sort((a,b) => a.productId-b.productId);
+              this.setState({ cart_items: newList });
             });
           } else {
             res.json().then((errors) => {
@@ -397,7 +403,7 @@ class NavigationBridge extends Component {
     console.log('sendForgotEmail to ', email);
   }
   render() {  
-    console.log('NavigationBridge', this.props, this.state);
+    // console.log('NavigationBridge', this.props, this.state);
     // console.log('this.props.screen', this.props.screen);
     const screenToken = localStorage.getItem('currentScreen');
     // localStorage.removeItem('currentScreen');
