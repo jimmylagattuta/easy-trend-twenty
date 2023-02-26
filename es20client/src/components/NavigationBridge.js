@@ -431,13 +431,14 @@ class NavigationBridge extends Component {
   }
   renderFlashMesseges() {
     if (this.state.changePasswordMessege) {
-      return <div className={this.state.visible?'fadeIn':'fadeOut'}><p className="flashCss">{this.state.changePasswordMessege}</p></div>;
+      return <div className={this.state.visible?'fadeIn':'fadeOut'}><p className="flashCssGreen">{this.state.changePasswordMessege}</p></div>;
     } else if (this.state.forgotPasswordMessege) {
       console.log('this.state.forgotPasswordMessege!');
-      return <div className={this.state.visible?'fadeIn':'fadeOut'}><p className="flashCss">{this.state.forgotPasswordMessege}</p></div>;
+      return <div className={this.state.visible?'fadeIn':'fadeOut'}><p className="flashCssGreen">{this.state.forgotPasswordMessege}</p></div>;
     } else if (this.state.forgotPasswordMessegeError) {
       console.log('this.state.forgotPasswordMessegeError!');
       return <div className={this.state.visible?'fadeIn':'fadeOut'}><p className="flashCssRed">{this.state.forgotPasswordMessegeError}</p></div>;
+    }
   }
   render() {  
     // console.log('NavigationBridge', this.props, this.state);
