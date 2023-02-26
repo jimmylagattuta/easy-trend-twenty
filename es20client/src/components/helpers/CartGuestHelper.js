@@ -72,11 +72,14 @@ class CartGuestHelper extends Component {
 		// console.log('renderItems/CartGuestHelper props', this.props);
 		return items.map((item, id) => {
 			const product = item.product;
-			const formattedPrice = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(product.price);
-			let taxToFormat = (product.price) * (item.quantity);
-			const formattedTax = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(taxToFormat);
+			const formattedPrice = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(product.price * item.quantity);
+		    console.log('');
+			let taxToFormat = (product.price) * 0.3;
+		    console.log('taxToFormat', taxToFormat);
+			const formattedTax = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(taxToFormat * item.quantity);
 			let totalToFormat = ((product.price*item.quantity)*0.3) + (product.price*item.quantity);
 			const formattedTotal = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(totalToFormat);
+		    console.log('');
 
 			return (
 				<div className="gc-add-to-cart-mini-menu-cart-items" key={product.id}>
