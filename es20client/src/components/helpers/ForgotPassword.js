@@ -64,6 +64,7 @@ class ForgotPassword extends Component {
 								    	    console.log('handleSubmit', handleSubmit);
 								    	    console.log('form', form);
 								    	    console.log('values', values);
+								    	    values.email_or_username.clear();
 									    	this.props.setForgotPasswordEmailMessege("Check Your Email For Change Password Instructions.")
 								        });
 								      } else {
