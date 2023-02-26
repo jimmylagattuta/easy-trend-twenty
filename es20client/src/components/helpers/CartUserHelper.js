@@ -1,13 +1,36 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './CartUserHelper.css';
 class CartUserHelper extends Component {
 	renderMinusSignCartItem(item) {
-		// console.log('renderMinusSignCartItem');
+		console.log('renderMinusSignCartItem');
 		// console.log('item', item);
-		if (item.quantity === 1) {
-			return <p id="gc-red-delete-button-minus" className="gc-red-delete-button">Delete</p>;
+		const cart_items = this.props.cart_items;
+		if (cart_items.length == 1) {
+			console.log('cart_items = 1');
+			if (item.quantity == 1) {
+				console.log('item = 1');
+				return (
+					<Link to="/homescreen">
+						<p id="gc-red-delete-button-minus" className="gc-red-delete-button">
+							Delete
+						</p>
+					</Link>
+				);
+			} else {
+				console.log('item > 1');
+				return <p id="gc-button-minus" className="gc-mini-menu-select">-</p>;
+			}
+
 		} else {
-			return <p id="gc-button-minus" className="gc-mini-menu-select">-</p>;
+			console.log('cart_items > 1');
+			if (item.quantity == 1) {
+				console.log('item = 1');
+				return <p id="gc-red-delete-button-minus" className="gc-red-delete-button">Delete</p>;
+			} else {
+				console.log('item > 1');
+				return <p id="gc-button-minus" className="gc-mini-menu-select">-</p>;
+			}
 		}
 
 	}
@@ -96,7 +119,7 @@ class CartUserHelper extends Component {
 		});
 	}
 	renderStripeApi() {
-		console.log('Ready for Stripe API');
+		// console.log('Ready for Stripe API');
 		return (
 			<div>
 				<h1>(...Will be Button for StripeAPI(debit/credit)...)</h1>
@@ -105,6 +128,7 @@ class CartUserHelper extends Component {
 	}
 	render() {
 		console.log('CartUserHelper props', this.props);
+
 		return (
 			<div className="user-cart">
 				{this.renderItems(this.props.cart_items)}

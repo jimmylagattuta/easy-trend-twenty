@@ -109,14 +109,18 @@ class Navbar extends Component {
 	}
 	sortCartRedirect() {
 		if (this.props.user_in_app_state.logged_in) {
-			this.props.navigateScreen("usercart");
+			// console.log('sending to usercart');
+			this.props.navigateScreen("cartuser");
 			this.setState({ redirectCartUser: true });
 		} else {
+			// console.log('sending to cartguest');
 			this.props.navigateScreen("cartguest");
 			this.setState({ redirectCartGuest: true });
 		}
 	}
 	renderCheckout(cart_items) {
+		// console.log('renderCheckout');
+		// console.log('cart_items', cart_items);
 		if (cart_items.length > 0) {
 			return (
 				<Button
@@ -127,7 +131,7 @@ class Navbar extends Component {
 						this.sortCartRedirect();
 					}} 
 				>
-					<Link to="/cartguest">
+					<Link to="/cartuser">
 						<p className="mini-menu-select">Checkout</p>
 					</Link>
 				</Button>
@@ -158,7 +162,7 @@ class Navbar extends Component {
 			);
 	}
 	renderCartNav() {
-		console.log('renderCartNav "User"');
+		// console.log('renderCartNav "User"');
 		// console.log('renderCartNav(User) state', this.state);
 		if (this.props.cart_items) {
 			// console.log('cart_items!', this.props);

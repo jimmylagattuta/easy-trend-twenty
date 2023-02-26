@@ -44,11 +44,16 @@ class NavigationBridge extends Component {
     // console.log('NavigationBridge handleEvent. this.state', this.state);
   } 
   componentDidUpdate() {
+    // console.log('componentDidUpdate', this.state);
     if (this.state.passwordMessage) {
       setTimeout(() => {
       this.setState({ passwordMessage: null });
     }, "8000")
     }
+    // no funcionado
+    // if (this.state.screen === 'cartuser' && this.state.cart_items.length == 0) {
+    //   return <Redirect to="/homescreen" />;
+    // }
   }
   componentDidMount() {
     // console.log('componentDidMount props state NOT YET RUNNING 4:04PM01/15/23(infinite loop userhome)', this.props, this.state);
@@ -392,7 +397,7 @@ class NavigationBridge extends Component {
     console.log('sendForgotEmail to ', email);
   }
   render() {  
-    // console.log('NavigationBridge', this.props, this.state);
+    console.log('NavigationBridge', this.props, this.state);
     // console.log('this.props.screen', this.props.screen);
     const screenToken = localStorage.getItem('currentScreen');
     // localStorage.removeItem('currentScreen');

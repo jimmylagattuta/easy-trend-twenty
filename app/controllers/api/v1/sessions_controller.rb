@@ -48,14 +48,13 @@
 	    	# puts "carts"
 	    	# puts carts.inspect
 	    	# puts "*" * 100
-	    	if carts.length > 0
+	    	if carts.find_by(status: "active")
 		    	cart = carts.find_by(status: "active")
 		    	# puts "*" * 100
 	    		# puts "~  cart  ~" * 10
 	    		# puts cart.inspect
 	    		# puts "*" * 100
-	    		if cart && cart.length > 0
-
+	    		if cart && cart.status == 'active'
 				    cart_items_list = cart.cart_items.all
 				    cart_with_products_add = []
 				    puts "*" * 100
