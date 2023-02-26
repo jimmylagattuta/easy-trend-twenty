@@ -44,7 +44,7 @@ class ForgotPassword extends Component {
 			<div>
 				<Form
 				    onSubmit={this.onSubmitSendEmail.bind(this)}
-				    render={({ handleSubmit }) => (
+				    render={({ handleSubmit, form }) => (
 				      <form onSubmit={handleSubmit}>
 				        <h1>Forgot Password</h1>
 					      	<p id="red">{this.state.error}</p>
