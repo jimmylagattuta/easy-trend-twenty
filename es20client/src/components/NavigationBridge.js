@@ -1,7 +1,6 @@
 import React, { Component, useState, useEffect } from "react";
-import { BrowserRouter, Route, Link, withRouter, Redirect } from "react-router-dom";
+import { BrowserRouter, Route, Link, withRouter, Redirect, useHistory } from "react-router-dom";
 import HomeScreen from './screens/HomeScreen';
-import ProductsHome from './screens/ProductsHome';
 import CareersHome from './screens/CareersHome';
 import ContactUsHome from './screens/ContactUsHome';
 import UserHome from './screens/UserHome';
@@ -109,6 +108,7 @@ class NavigationBridge extends Component {
     // console.log('screen', screen);
     // console.log('cart_items', cart_items);
     // console.log('message', message);
+    console.log('a) setting screen ', screen);
     localStorage.setItem('currentScreen', screen);
     if (message === "Received") {
       this.setState({ user_in_app_state: user_in_app_state, screen: screen, cart_items: cart_items, passwordMessage: "Password Updated", redirectChangePassword: true, visible: true });
@@ -119,16 +119,23 @@ class NavigationBridge extends Component {
     }
   }  
   navigateScreen(screen) {
-    console.log('navigateScreen screen', screen);
+    // console.log('navigateScreen screen', screen);
+    // console.log('b) setting screen ', screen);
     localStorage.setItem('currentScreen', screen);
     this.setState({ screen: screen });
   }
   setScreen(screen) {
 
     // console.log('setScreen state', this.state);
-    // console.log('setScreen screen', screen);
+    // console.log('c) setting screen ', screen);
     localStorage.setItem('currentScreen', screen);
     this.setState({ screen: screen});
+  }
+  historyRedirect(screen) {
+    console.log('historyRedirect', screen);
+      // const history = useHistory();
+      // history.push(screen);
+    return <NavigateToScreen screen={"cartguest"} />;
   }
   addToCart(item) {
     // console.log('addToCart', item);
@@ -385,7 +392,11 @@ class NavigationBridge extends Component {
     console.log('sendForgotEmail to ', email);
   }
   render() {  
-    // console.log('NavigationBridge', this.props, this.state);
+    console.log('NavigationBridge', this.props, this.state);
+    // console.log('this.props.screen', this.props.screen);
+    const screenToken = localStorage.getItem('currentScreen');
+    // localStorage.removeItem('currentScreen');
+    console.log('screenToken', screenToken);
     return (
       <div>
           <div className="App">
@@ -403,6 +414,8 @@ class NavigationBridge extends Component {
               cart_items={this.state.cart_items}
               redirectChangePassword={this.state.redirectChangePassword}
               triggerRedirectChangePassword={this.triggerRedirectChangePassword.bind(this)}
+              history={this.props.history}
+              historyRedirect={this.historyRedirect.bind(this)}
             />
             <h1>(...under construction... fake products)</h1>
             <div className={this.state.visible?'fadeIn':'fadeOut'}><p className="flashCss">{this.state.passwordMessage}</p></div>

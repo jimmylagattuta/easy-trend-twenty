@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import {Row, Col, Container} from 'react-bootstrap';
 import { Button } from "../cssComponents/Button";
-import AddToCartHelper from './AddToCartHelper';
-import KeywordFilter from './filterHelpers/KeywordFilter';
-import CheapestFilter from './filterHelpers/CheapestFilter';
-import RatingFilter from './filterHelpers/RatingFilter';
-import CategoryFilter from './filterHelpers/CategoryFilter';
+import AddToCartHelper from '../helpers/AddToCartHelper';
+import KeywordFilter from '../helpers/filterHelpers/KeywordFilter';
+import CheapestFilter from '../helpers/filterHelpers/CheapestFilter';
+import RatingFilter from '../helpers/filterHelpers/RatingFilter';
+import CategoryFilter from '../helpers/filterHelpers/CategoryFilter';
 
 import './ProductsHelper.css';
 // products will be fiilterable here, a more specific page than home
@@ -28,19 +28,8 @@ class ProductsHelper extends Component{
 					if (this.props.cartItemsNoUser.length > 0) {
 					    let updatedList = this.props.cartItemsNoUser.map((item, index) => {
 					    	if (item.productId === p.product.id) {
-					    		// console.log('item.productId === p.id');
-					    		// console.log('item.productId', item.productId);
-					    		// console.log('p.id', p.id);
-					    		// console.log('addCartBundle', addCartBundle);
-					    		// console.log('index', index);
 								this.props.addToCartNoUser(addCartBundle, index);
 					    	} else {
-					    		// console.log('item.productId !== p.id');
-					    		// console.log('item.productId', item.productId);
-					    		// console.log('p.id', p.id);
-					    		// console.log('addCartBundle', addCartBundle);
-					    		// // looks ok
-					    		// console.log('index', index);
 					    		this.props.addToCartNoUser(addCartBundle);
 					    	}
 					    });
@@ -49,7 +38,7 @@ class ProductsHelper extends Component{
 					}
 				}}
 				id="add-hover-settings" className="make-row">
-					Add to Cart
+					Add To Cart
 				</Button>
 			);
 			// user

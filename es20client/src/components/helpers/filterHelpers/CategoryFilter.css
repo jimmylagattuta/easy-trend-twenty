@@ -5,7 +5,7 @@
 
 .dropdown-div div {
   font-size: 18px;
-
+  position: inherit;
 }
 
 

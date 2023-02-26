@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, Redirect, useHistory } from 'react-router-dom';
 import { MenuItems } from "./MenuItems";
 import { Button } from "../cssComponents/Button";
 import { connect } from 'react-redux';
 import CartComponent from './CartComponent';
+import NavigateToScreen from './../helpers/NavigateToScreen';
 import { signOutUser, logoutUser, fetchLoginStatus } from '../../actions';
 import MiniMenu from './navhelpers/MiniMenu';
 import Popup from 'reactjs-popup';
@@ -14,7 +15,14 @@ import Logo from './fakelogo.png';
 class Navbar extends Component {
 	// changed all className to class 1/2923 7:49PM
 	state = {
-		clicked: false, popUpGo: false, redirect: false, redirectSettings: false, redirectLogout: false, redirectCartGuest: false, redirectCartUser: false
+		clicked: false,
+		popUpGo: false,
+		redirect: false,
+		redirectSettings: false,
+		redirectLogout: false,
+		redirectCartGuest: false,
+		redirectCartUser: false,
+		dontRedirectCartGuest: true
 	}
   	componentDidMount() {
   		// moving to higher component
@@ -22,6 +30,13 @@ class Navbar extends Component {
   	}
   	componentDidUpdate() {
   		// console.log('componentDidUpdate ~>', this.props);
+  		// if (this.props.screen === "cartguest") {
+  		// 	this.setState({ dontRedirectCartGuest: false });
+	  	// 	if (this.props.dontRedirectCartGuest) {
+	  	// 		this.setState({ dontRedirectCartGuest: true });
+	  	// 		return <Redirect to="/cartguest" />;
+	  	// 	}
+  		// }
 		if (this.state.redirect) {
 			// console.log('did run 2a?');
 			this.setState({ redirect: false });
@@ -33,9 +48,9 @@ class Navbar extends Component {
 			return <Redirect to="/settingshome" />;
 		}
 		if (this.state.redirectCartGuest) {
-			// console.log('did run 2c?');
+			// console.log('redirectCartGuest');
 			this.setState({ redirectCartGuest: false });
-			return <Redirect to="/cartguest" />;
+			return <NavigateToScreen screen="cartguest" />;
 		}
 		if (this.state.redirectCartUser) {
 			// console.log('did run 2d?');
@@ -112,7 +127,9 @@ class Navbar extends Component {
 						this.sortCartRedirect();
 					}} 
 				>
-					<p className="mini-menu-select">Checkout</p>
+					<Link to="/cartguest">
+						<p className="mini-menu-select">Checkout</p>
+					</Link>
 				</Button>
 			);
 		}
@@ -186,9 +203,9 @@ class Navbar extends Component {
 						{MenuItems.map((item, index) => {
 								return (
 									<li key={index}>
-										<Link to={item.linkTo}><a className={item.cName} href={item.url}>
-										{item.title}
-										</a></Link>
+										<Link className={item.cName} href={item.url} to={item.linkTo}>
+											{item.title}
+										</Link>
 									</li>
 								);
 						})}
@@ -373,7 +390,7 @@ class Navbar extends Component {
 		} 
 	}
 	render() {
-		// console.log('Navbar props ~>', this.props);
+		// console.log('Navbar', this.props, this.state);
 		// console.log('Navbar state ~>', this.state);
 		// console.log('this.state Navbar ~>', this.state);
 		// console.log('navigator', navigator);

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import ItemList from '../homeScreenHelpers/ItemList';
 import ItemDetail from '../homeScreenHelpers/ItemDetail';
-import ProductsHelper from './../helpers/ProductsHelper';
+import ProductsHelper from './../homeScreenHelpers/ProductsHelper';
 import { fetchCookie } from '../../actions';
 import {Row, Col, Container} from 'react-bootstrap';
 
@@ -41,7 +41,7 @@ class HomeScreen extends Component {
 		);
 	}
 	render() {
-		console.log('HomeScreen with ProductsHelper', this.props);
+		// console.log('HomeScreen with ProductsHelper', this.props);
 		// console.log('this.state HomeScreen', this.state);
 		// console.log('this.props.user_in_app_state', this.props.user_in_app_state);
 

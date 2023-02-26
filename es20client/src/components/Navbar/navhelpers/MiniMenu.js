@@ -132,7 +132,7 @@ class MiniMenu extends Component {
 			// console.log('MiniMenu Empty cart_items and cartItemsNoUser', this.props);
 			return (
 				<div className="add-to-cart-mini-menu">
-					<p className="mini-menu-title-menu">Add To Cart!</p>
+					<p className="mini-menu-title-menu">Add 2 Cart!</p>
 					<div className="visible-mini-cart-menu"></div>
 				</div>
 			);
