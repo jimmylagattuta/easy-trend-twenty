@@ -9,7 +9,7 @@ class ForgotPassword extends Component {
 	         error: ""
 	      }  
 	}
-	onSubmitSendEmail(values) {
+	onSubmitSendEmail(values, form) {
 		// console.log('onSubmit SignInUser!', values);
 		// console.log('onSubmit SignInUser!', values);
 		fetch("api/v1/forgot_password", {
@@ -25,7 +25,7 @@ class ForgotPassword extends Component {
 	        res.json().then((response) => {
 	        	// console.log('response forgot password', response);
 		    	this.props.setForgotPasswordEmailMessege("Check Your Email For Change Password Instructions.")
-	    	    
+	    	    form.clear();
 	        });
 	      } else {
 	        res.json().then((errors) => {
@@ -54,7 +54,8 @@ class ForgotPassword extends Component {
 				        <div className="sign-in-and-forgot-password">
 					        	<button
 								  onClick={() => {
-								      handleSubmit.reset();
+								  	console.log('Potential clearing location ForgotPassword 57');
+								      // form.reset();
 								  }}
 					        	 type="submit" name="sign-in-button">
 					        		Submit
