@@ -9,7 +9,7 @@ class CheapestFilter extends Component {
     	this.props.arrangeFilteredProducts("cheapest", this.props.filteredProducts);
     }
 	render() {
-		console.log('CheapestFilter Component props', this.props);
+		// console.log('CheapestFilter Component props', this.props);
 	    const handleChange = (event) => {
 	    	// console.log('this.props KeywordFilter', this.props);
 	        this.onSubmit(event.target.value);

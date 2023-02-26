@@ -325,7 +325,7 @@ class NavigationBridge extends Component {
 
 
   sortFilteredProducts(user_filter_string, stateFilteredProducts) {
-    console.log('sortFilteredProducts user_filter_string', user_filter_string);
+    // console.log('sortFilteredProducts user_filter_string', user_filter_string);
     // console.log('this.state', this.state);
     let searchTermConcat = "";
     let newProducts = [];
@@ -361,7 +361,7 @@ class NavigationBridge extends Component {
     }
   }
   arrangeFilteredProducts(filter, keptProducts) {
-    console.log('arrangeFilteredProducts filter', filter);
+    // console.log('arrangeFilteredProducts filter', filter);
     if (filter == "cheapest") {
       if (this.state.cheapest) {
         const sorted = keptProducts.sort((a, b) => {
@@ -393,7 +393,7 @@ class NavigationBridge extends Component {
     }
   }
   categorizeFilteredProducts(category, stateFilteredProducts) {
-    console.log('categorizeFilteredProducts', category);
+    // console.log('categorizeFilteredProducts', category);
     let newProducts = [];
     if (category == "None") {
       this.state.products.map((object) => {
@@ -419,24 +419,24 @@ class NavigationBridge extends Component {
     this.setState({ redirectChangePassword: false });
   }
   sendForgotEmail(email) {
-    console.log('sendForgotEmail to ', email);
+    // console.log('sendForgotEmail to ', email);
   }
   setForgotPasswordEmailMessege(messege) {
-    console.log('setForgotPasswordEmailMessege messege', messege);
-    this.setState({ forgotPasswordMessege: messege });
+    // console.log('setForgotPasswordEmailMessege messege', messege);
+    this.setState({ forgotPasswordMessege: messege, forgotPasswordMessegeError: null });
   }
   setForgotPasswordEmailMessegeError(messege) {
-    console.log('setForgotPasswordEmailMessegeError messege', messege);
+    // console.log('setForgotPasswordEmailMessegeError messege', messege);
     this.setState({ forgotPasswordMessegeError: messege });
   }
   renderFlashMesseges() {
     if (this.state.changePasswordMessege) {
       return <div className={this.state.visible?'fadeIn':'fadeOut'}><p className="flashCssGreen">{this.state.changePasswordMessege}</p></div>;
     } else if (this.state.forgotPasswordMessege) {
-      console.log('this.state.forgotPasswordMessege!');
+      // console.log('this.state.forgotPasswordMessege!');
       return <div className={this.state.visible?'fadeIn':'fadeOut'}><p className="flashCssGreen">{this.state.forgotPasswordMessege}</p></div>;
     } else if (this.state.forgotPasswordMessegeError) {
-      console.log('this.state.forgotPasswordMessegeError!');
+      // console.log('this.state.forgotPasswordMessegeError!');
       return <div className={this.state.visible?'fadeIn':'fadeOut'}><p className="flashCssRed">{this.state.forgotPasswordMessegeError}</p></div>;
     }
   }

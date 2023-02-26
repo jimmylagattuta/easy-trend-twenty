@@ -109,11 +109,11 @@ class Navbar extends Component {
 	}
 	sortCartRedirect() {
 		if (this.props.user_in_app_state.logged_in) {
-			console.log('sending to usercart');
+			// console.log('sending to usercart');
 			this.props.navigateScreen("cartuser");
 			this.setState({ redirectCartUser: true });
 		} else {
-			console.log('sending to cartguest');
+			// console.log('sending to cartguest');
 			this.props.navigateScreen("cartguest");
 			this.setState({ redirectCartGuest: true });
 		}
