@@ -60,7 +60,7 @@ class ForgotPassword extends Component {
 							    	  // console.log('response', res);
 								      if (res.ok) {
 								        res.json().then((response) => {
-								        	// console.log('response forgot password', response);
+								        	console.log('response forgot password', response);
 								    	    console.log('handleSubmit', handleSubmit);
 								    	    console.log('form', form);
 								    	    console.log('values', values);
