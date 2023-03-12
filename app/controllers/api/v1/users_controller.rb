@@ -180,6 +180,19 @@ class Api::V1::UsersController < ApplicationController
 	private
 
 	def user_params
-		params.permit(:username, :email, :first_name, :last_name, :password, :password_confirmation, :consumer, :admin , :super_admin, :employee)
+		params.permit(
+			:username,
+			:email,
+			:first_name,
+			:last_name,
+			:password,
+			:password_confirmation,
+			:consumer,
+			:admin ,
+			:super_admin,
+			:employee,
+			:security_question_one,
+			:security_answer_one
+		)
 	end
 end

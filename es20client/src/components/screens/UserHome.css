@@ -1,3 +1,27 @@
+.security-question {
+  display: flex;
+  flex-direction: row;  
+  max-width: calc(100vw / 4);
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.security-questions-div {
+  display: flex;
+  flex-direction: column;
+  margin: 60px;
+}
+
+.security-question-item {
+  margin-left: 15px;
+  margin-right: 15px;
+  padding: 15px;
+}
+
+.sign-up-item {
+  margin: 15px;
+}
+
 .sign-in-and-forgot-password {
   display: flex;
   justify-content: space-between;

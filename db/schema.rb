@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_25_063118) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_03_201630) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -73,6 +73,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_25_063118) do
     t.boolean "super_admin"
     t.boolean "employee"
     t.boolean "consumer"
+    t.string "security_question_one"
+    t.string "security_question_two"
+    t.string "security_question_three"
+    t.string "security_answer_one"
+    t.string "security_answer_two"
+    t.string "security_answer_three"
   end
 
   add_foreign_key "notes", "users"

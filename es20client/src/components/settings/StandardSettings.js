@@ -70,7 +70,9 @@ class StandardSettings extends Component{
 		}
 
 	}
-
+	onSubmitChangeUser(values) {
+		console.log('onSubmitChangeUser values', values);
+	}
 	render() {
 		// console.log('StandardSettings props state', this.props, this.state);
 		return (
@@ -93,6 +95,19 @@ class StandardSettings extends Component{
 					        <p id="red">{this.state.errorPassword}</p>
 				        	<label>New Password Confirmation</label>
 				          	<Field name="new_password_confirmation" component="input" type="password" placeholder="New Password Confirmation" />
+				        </div>
+				        <button type="submit">Submit</button>
+				      </form>
+				    )}
+				  />
+				<Form
+				    onSubmit={this.onSubmitChangeUser.bind(this)}
+				    render={({ handleSubmit }) => (
+				      <form onSubmit={handleSubmit}>
+				        <h1>Change User</h1>
+				        <div>
+				        	<label>Email</label>
+				          	<Field name="email" component="input" placeholder="User's Email" />
 				        </div>
 				        <button type="submit">Submit</button>
 				      </form>
