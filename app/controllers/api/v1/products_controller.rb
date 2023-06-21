@@ -20,6 +20,10 @@ class Api::V1::ProductsController < ApplicationController
 		require "json"
 		file = File.open ("jsonValues.json")
 		file.each do |item|
+			puts "*" * 100
+			puts "item"
+			puts item.inspect
+			puts "*" * 100
 			x = Product.create(title: item["title"], quantity: item["quantity"], price: item["price"], category: item["category"], description: item["description"], image: item["image"], rate: item["rating"]["rate"])
 			if x.save
 				puts "*" * 100
