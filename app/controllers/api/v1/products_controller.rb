@@ -19,12 +19,8 @@ class Api::V1::ProductsController < ApplicationController
 	def new_products
 		require "json"
 		file = File.open ("jsonValues.json")
-		file.each do |object|
-			puts "*" * 100
-			puts "object"
-			puts object.inspect
-			puts "*" * 100
-			object.each do |item|
+		file = Json.parse(file)
+		file.each do |item|
 				puts "*" * 100
 				puts "item"
 				puts item.inspect
@@ -40,7 +36,6 @@ class Api::V1::ProductsController < ApplicationController
 					puts x.errors.full_messages
 					puts "Error " * 10 
 				end
-			end
 		end
 		render json: { message: "new_products" }, status: :ok
 	end
