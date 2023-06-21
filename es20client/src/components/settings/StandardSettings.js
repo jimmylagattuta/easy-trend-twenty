@@ -10,7 +10,7 @@ import './StandardSettings.css';
 
 //   useEffect(() => {
 //     if (this.props.user_in_app_state) {
-//       navigate("/homescreen");
+//       navigate("/");
 //     }
 //   }, []);
 // }

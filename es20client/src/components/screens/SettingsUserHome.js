@@ -21,7 +21,7 @@ class SettingsUserHome extends React.Component {
 	}
 	redirectChangePassword() {
 		// console.log('redirecting');
-		this.props.history.push("/homescreen");
+		this.props.history.push("/");
 	}
 	render() {
 		// console.log('SettingsUserHome props', this.props);

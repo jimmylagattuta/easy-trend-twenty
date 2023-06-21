@@ -1,6 +1,6 @@
-# https://sleepy-brook-50921.herokuapp.com/homescreen only works after first
+# https://sleepy-brook-50921.herokuapp.com/ only works after first
 # going to https://sleepy-brook-50921.herokuapp.com first then navigating
-# to https://sleepy-brook-50921.herokuapp.com/homescreen button
+# to https://sleepy-brook-50921.herokuapp.com/ button
 
 
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>

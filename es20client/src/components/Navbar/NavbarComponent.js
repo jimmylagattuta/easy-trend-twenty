@@ -40,7 +40,7 @@ class Navbar extends Component {
 		if (this.state.redirect) {
 			// console.log('did run 2a?');
 			this.setState({ redirect: false });
-			return <Redirect to="/homescreen" />;
+			return <Redirect to="/" />;
 		}
 		if (this.state.redirectSettings) {
 			// console.log('did run 2b?');
@@ -63,7 +63,7 @@ class Navbar extends Component {
 			// console.log('redirectingLogout state', this.state);
 			this.setState({ redirectLogout: false });
 			// this is not necessary, redirect already goes to homescreen
-			return <Redirect to="/homescreen" />;
+			return <Redirect to="/" />;
 		}
   	}
 	handleClick = () => {
@@ -76,17 +76,17 @@ class Navbar extends Component {
 		if (operatingSystem.includes('Macintosh')) {
 			// console.log('running in operating system check 1');
 			return (
-				// <Link to="/homescreen"><h1 className="navbar-logo">Easy Trend 20<i className="fas fa-hat-wizard"></i></h1></Link>
+				// <Link to="/"><h1 className="navbar-logo">Easy Trend 20<i className="fas fa-hat-wizard"></i></h1></Link>
 				<Link onClick={() => {
 					// console.log('running in operating system check 2');
 					this.props.setScreen({ screen: "homescreen" });
 					}}
-				to="/homescreen">
+				to="/">
 			<h1 id="add-hover" className="navbar-logo">Easy Trend 20<i className="fas fa-hat-wizard"></i></h1></Link>
 			);
 		} else if (operatingSystem.includes('Windows')) {
 			return (
-				<Link to="/homescreen"><h1 id="add-hover" className="navbar-logo-windows">Easy Trend 20<i className="fas fa-hat-wizard"></i></h1></Link>
+				<Link to="/"><h1 id="add-hover" className="navbar-logo-windows">Easy Trend 20<i className="fas fa-hat-wizard"></i></h1></Link>
 			);
 		} else {
 			console.log('Operating System not Macitosh or Windows Easy Trend And Logo');
@@ -298,7 +298,7 @@ class Navbar extends Component {
 			            onClick={() => {
 			              // console.log("Yes it's here");
 			              this.handleLogout(setUserObject.bind(this));
-			              this.props.setScreen('/homescreen');
+			              this.props.setScreen('/');
 
 			              // set screen(ok) and redirect(automatic?)
 			              close();
