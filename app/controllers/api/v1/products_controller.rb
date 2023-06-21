@@ -19,13 +19,11 @@ class Api::V1::ProductsController < ApplicationController
 	def new_products
 		require "json"
 		file = File.open ("jsonValues.json")
-		puts "*" * 100
-		puts "file"
-		puts file
-		puts "file.inspect"
-		puts file.inspect
-		puts "*" * 100
 		File.open(file) do |f|
+			puts "*" * 100
+			puts "f"
+			puts f.inspect
+			puts "*" * 100			
 			f.each do |item|
 				puts "*" * 100
 				puts "item"
