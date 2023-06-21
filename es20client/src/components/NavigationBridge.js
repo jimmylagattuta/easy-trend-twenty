@@ -468,24 +468,26 @@ class NavigationBridge extends Component {
             />
             <h1>(...under construction... fake products)</h1>
             {this.renderFlashMesseges()}
-            <Route 
-              path="/homepage" 
-              render= { (props) => <HomeScreen
-                                      user_in_app_state={this.state.user_in_app_state}
-                                      products={this.state.products}
-                                      addToCart={this.addToCart.bind(this)}
-                                      cartItemsNoUser={this.state.cartItemsNoUser}
-                                      addToCartNoUser={this.addToCartNoUser.bind(this)}
-                                      filteredProducts={this.state.filteredProducts}
-                                      sortFilteredProducts={this.sortFilteredProducts.bind(this)}
-                                      searchTerm={this.state.searchTerm}
-                                      arrangeFilteredProducts={this.arrangeFilteredProducts.bind(this)}
-                                      categorizeFilteredProducts={this.categorizeFilteredProducts.bind(this)}
-                                      category={this.state.category}
-                                      screen={this.state.screen}
-                                    /> 
-                      }
-            />      
+            <Redirect exact from="/" to="/homepage" />
+              <Route 
+                path="/homepage" 
+                render= { (props) => <HomeScreen
+                                        user_in_app_state={this.state.user_in_app_state}
+                                        products={this.state.products}
+                                        addToCart={this.addToCart.bind(this)}
+                                        cartItemsNoUser={this.state.cartItemsNoUser}
+                                        addToCartNoUser={this.addToCartNoUser.bind(this)}
+                                        filteredProducts={this.state.filteredProducts}
+                                        sortFilteredProducts={this.sortFilteredProducts.bind(this)}
+                                        searchTerm={this.state.searchTerm}
+                                        arrangeFilteredProducts={this.arrangeFilteredProducts.bind(this)}
+                                        categorizeFilteredProducts={this.categorizeFilteredProducts.bind(this)}
+                                        category={this.state.category}
+                                        screen={this.state.screen}
+                                      /> 
+                        }
+              />      
+
             <Route 
               path="/careershome" 
               render= { (props) => <CareersHome user_in_app_state={this.state.user_in_app_state} /> }
