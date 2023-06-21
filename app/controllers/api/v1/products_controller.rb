@@ -23,8 +23,9 @@ class Api::V1::ProductsController < ApplicationController
 			puts "*" * 100
 			puts "f"
 			puts f.inspect
-			puts "*" * 100			
-			f.each do |item|
+			puts "*" * 100
+			list = JSON.parse(f)			
+			list.each do |item|
 				puts "*" * 100
 				puts "item"
 				puts item.inspect
