@@ -64,7 +64,7 @@ class NavigationBridge extends Component {
     }
     // no funcionado
     // if (this.state.screen === 'cartuser' && this.state.cart_items.length == 0) {
-    //   return <Redirect to="/" />;
+    //   return <Redirect to="/homepage" />;
     // }
   }
   componentDidMount() {
@@ -469,7 +469,7 @@ class NavigationBridge extends Component {
             <h1>(...under construction... fake products)</h1>
             {this.renderFlashMesseges()}
             <Route 
-              path="/" 
+              path="/homepage" 
               render= { (props) => <HomeScreen
                                       user_in_app_state={this.state.user_in_app_state}
                                       products={this.state.products}

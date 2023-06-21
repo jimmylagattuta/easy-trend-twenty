@@ -11,7 +11,7 @@ class CartUserHelper extends Component {
 			if (item.quantity == 1) {
 				// console.log('item = 1');
 				return (
-					<Link to="/">
+					<Link to="/homepage">
 						<p id="gc-red-delete-button-minus" className="gc-red-delete-button">
 							Delete
 						</p>

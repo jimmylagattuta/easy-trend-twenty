@@ -20,7 +20,7 @@ class Navbar extends Component {
 	renderNavHome() {
 		return (
 			<nav className="NavbarItems">
-				<Link to="/"><h1 className="navbar-logo">Easy Trend 20<i className="fas fa-hat-wizard"></i></h1></Link>
+				<Link to="/homepage"><h1 className="navbar-logo">Easy Trend 20<i className="fas fa-hat-wizard"></i></h1></Link>
 				<div className="menu-icon" onClick={this.handleClick}>
 					<i className={this.state.clicked ? 'fas fa-times' : 'fas fa-bars'}></i>
 				</div>
@@ -42,7 +42,7 @@ class Navbar extends Component {
 	renderNavUser() {
 		return (
 			<nav className="NavbarItems">
-				<Link to="/"><h1 className="navbar-logo">Easy Trend 20<i className="fas fa-hat-wizard"></i></h1></Link>
+				<Link to="/homepage"><h1 className="navbar-logo">Easy Trend 20<i className="fas fa-hat-wizard"></i></h1></Link>
 				<div className="menu-icon" onClick={this.handleClick}>
 					<i className={this.state.clicked ? 'fas fa-times' : 'fas fa-bars'}></i>
 				</div>

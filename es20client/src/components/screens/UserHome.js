@@ -10,7 +10,7 @@ import './UserHome.css';
 
 //   useEffect(() => {
 //     if (this.props.user_in_app_state) {
-//       navigate("/");
+//       navigate("/homepage");
 //     }
 //   }, []);
 // }
@@ -134,7 +134,7 @@ class UserHome extends Component{
 		// console.log('this.state UserHome render ~>', this.state);
 		const { redirect } = this.state;
 		if (redirect || this.props.user_in_app_state.logged_in) {
-			return <Redirect to="/" />;
+			return <Redirect to="/homepage" />;
 		}
 		return (
 			<div className="App">

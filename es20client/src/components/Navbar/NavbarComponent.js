@@ -40,7 +40,7 @@ class Navbar extends Component {
 		if (this.state.redirect) {
 			// console.log('did run 2a?');
 			this.setState({ redirect: false });
-			return <Redirect to="/" />;
+			return <Redirect to="/homepage" />;
 		}
 		if (this.state.redirectSettings) {
 			// console.log('did run 2b?');
@@ -63,7 +63,7 @@ class Navbar extends Component {
 			// console.log('redirectingLogout state', this.state);
 			this.setState({ redirectLogout: false });
 			// this is not necessary, redirect already goes to homescreen
-			return <Redirect to="/" />;
+			return <Redirect to="/homepage" />;
 		}
   	}
 	handleClick = () => {
@@ -76,17 +76,17 @@ class Navbar extends Component {
 		if (operatingSystem.includes('Macintosh')) {
 			// console.log('running in operating system check 1');
 			return (
-				// <Link to="/"><h1 className="navbar-logo">Easy Trend 20<i className="fas fa-hat-wizard"></i></h1></Link>
+				// <Link to="/homepage"><h1 className="navbar-logo">Easy Trend 20<i className="fas fa-hat-wizard"></i></h1></Link>
 				<Link onClick={() => {
 					// console.log('running in operating system check 2');
 					this.props.setScreen({ screen: "homescreen" });
 					}}
-				to="/">
+				to="/homepage">
 			<h1 id="add-hover" className="navbar-logo">Easy Trend 20<i className="fas fa-hat-wizard"></i></h1></Link>
 			);
 		} else if (operatingSystem.includes('Windows')) {
 			return (
-				<Link to="/"><h1 id="add-hover" className="navbar-logo-windows">Easy Trend 20<i className="fas fa-hat-wizard"></i></h1></Link>
+				<Link to="/homepage"><h1 id="add-hover" className="navbar-logo-windows">Easy Trend 20<i className="fas fa-hat-wizard"></i></h1></Link>
 			);
 		} else {
 			console.log('Operating System not Macitosh or Windows Easy Trend And Logo');
