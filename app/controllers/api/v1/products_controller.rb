@@ -2,6 +2,10 @@ class Api::V1::ProductsController < ApplicationController
 	skip_before_action :authenticate_user, only: [:all_products, :new_products]
 
 	def all_products
+		puts "*" * 100
+		puts "EASY_TREND_TWENTY_DATABASE_PASSWORD"
+		puts ENV['EASY_TREND_TWENTY_DATABASE_PASSWORD']
+		puts "*" * 100
 		products = Product.all
 	    cart_with_products_add = []
 	    products.each do |item|
