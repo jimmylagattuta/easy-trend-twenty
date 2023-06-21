@@ -26,14 +26,7 @@ class Api::V1::ProductsController < ApplicationController
 		puts file.inspect
 		puts "*" * 100
 		File.open(file) do |f|
-			puts "%" * 100
-		  hash = JSON.parse(f.read)  #***HERE***
-		  p hash
-			puts "%" * 100
-		  
-		end
-		# file = JSON.parse(file)
-		file.each do |item|
+			f.each do |item|
 				puts "*" * 100
 				puts "item"
 				puts item.inspect
@@ -49,6 +42,7 @@ class Api::V1::ProductsController < ApplicationController
 					puts x.errors.full_messages
 					puts "Error " * 10 
 				end
+			end
 		end
 		render json: { message: "new_products" }, status: :ok
 	end
