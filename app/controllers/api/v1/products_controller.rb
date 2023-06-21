@@ -19,21 +19,27 @@ class Api::V1::ProductsController < ApplicationController
 	def new_products
 		require "json"
 		file = File.open ("jsonValues.json")
-		file[0].each do |item|
+		file.each do |object|
 			puts "*" * 100
-			puts "item"
-			puts item.inspect
+			puts "object"
+			puts object.inspect
 			puts "*" * 100
-			x = Product.create(title: item["title"], quantity: item["quantity"], price: item["price"], category: item["category"], description: item["description"], image: item["image"], rate: item["rating"]["rate"])
-			if x.save
+			object.each do |item|
 				puts "*" * 100
-				puts "ready"
+				puts "item"
+				puts item.inspect
 				puts "*" * 100
-			else
-				puts "Error " * 10
-				puts "error"
-				puts x.errors.full_messages
-				puts "Error " * 10 
+				x = Product.create(title: item["title"], quantity: item["quantity"], price: item["price"], category: item["category"], description: item["description"], image: item["image"], rate: item["rating"]["rate"])
+				if x.save
+					puts "*" * 100
+					puts "ready"
+					puts "*" * 100
+				else
+					puts "Error " * 10
+					puts "error"
+					puts x.errors.full_messages
+					puts "Error " * 10 
+				end
 			end
 		end
 		render json: { message: "new_products" }, status: :ok
